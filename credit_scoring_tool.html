@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>AI-Augmented Credit Analysis | Helios Towers Africa</title>
+  <style>
+    :root {
+      --navy: #0a1628;
+      --navy-light: #112240;
+      --navy-mid: #1a3a5c;
+      --blue: #1d6fa4;
+      --blue-accent: #2196f3;
+      --teal: #00bcd4;
+      --green: #00c896;
+      --amber: #ffb300;
+      --red: #ef5350;
+      --text: #e8f0fe;
+      --text-dim: #8ea8c3;
+      --border: rgba(255,255,255,0.08);
+      --card: rgba(255,255,255,0.04);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      background: var(--navy);
+      color: var(--text);
+      min-height: 100vh;
+    }
+
+    /* ── HEADER ── */
+    header {
+      background: var(--navy-light);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      display: flex; align-items: center; gap: 10px;
+    }
+    .logo-icon {
+      width: 34px; height: 34px;
+      background: linear-gradient(135deg, var(--blue), var(--teal));
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 16px;
+    }
+    .logo-text { font-size: 15px; font-weight: 700; letter-spacing: 0.3px; }
+    .logo-sub { font-size: 10px; color: var(--text-dim); letter-spacing: 1px; text-transform: uppercase; }
+    .badge-hitl {
+      background: linear-gradient(90deg, #1a3a5c, #1d6fa4);
+      border: 1px solid rgba(0,188,212,0.4);
+      border-radius: 20px;
+      padding: 5px 14px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.4px;
+      color: var(--teal);
+    }
+
+    /* ── DISCLAIMER BANNER ── */
+    .disclaimer-banner {
+      background: rgba(255,179,0,0.08);
+      border-bottom: 1px solid rgba(255,179,0,0.2);
+      padding: 8px 32px;
+      font-size: 11px;
+      color: var(--amber);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* ── MAIN LAYOUT ── */
+    .container {
+      max-width: 1060px;
+      margin: 0 auto;
+      padding: 32px 24px;
+    }
+    .page-title {
+      font-size: 22px; font-weight: 700; margin-bottom: 4px;
+    }
+    .page-sub {
+      font-size: 13px; color: var(--text-dim); margin-bottom: 28px;
+    }
+
+    /* ── INPUT PANEL ── */
+    .input-panel {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 24px;
+      margin-bottom: 24px;
+    }
+    .panel-title {
+      font-size: 12px; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--teal);
+      margin-bottom: 18px;
+    }
+    .form-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 11px; font-weight: 600;
+      color: var(--text-dim);
+      text-transform: uppercase; letter-spacing: 0.8px;
+      margin-bottom: 6px;
+    }
+    .form-group input {
+      width: 100%;
+      background: var(--navy);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px;
+      padding: 10px 14px;
+      color: var(--text);
+      font-size: 13px;
+      outline: none;
+    }
+    .analyst-note {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,188,212,0.06);
+      border: 1px solid rgba(0,188,212,0.15);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 20px;
+      font-size: 12px;
+      color: var(--text-dim);
+    }
+    .run-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #1d6fa4, #00bcd4);
+      border: none;
+      border-radius: 8px;
+      padding: 12px 28px;
+      color: white;
+      font-size: 14px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: opacity 0.2s, transform 0.1s;
+      letter-spacing: 0.3px;
+    }
+    .run-btn:hover { opacity: 0.9; transform: translateY(-1px); }
+    .run-btn:active { transform: translateY(0); }
+
+    /* ── LOADING ── */
+    #loading {
+      display: none;
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 40px;
+      text-align: center;
+      margin-bottom: 24px;
+    }
+    .loading-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-width: 440px;
+      margin: 20px auto 0;
+      text-align: left;
+    }
+    .step-item {
+      display: flex; align-items: flex-start; gap: 12px;
+      font-size: 13px; color: var(--text-dim);
+      opacity: 0;
+      transform: translateX(-8px);
+      transition: all 0.4s ease;
+    }
+    .step-item.active { opacity: 1; transform: translateX(0); color: var(--text); }
+    .step-item.done { opacity: 1; transform: translateX(0); color: var(--green); }
+    .step-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--text-dim); flex-shrink: 0; margin-top: 4px;
+      transition: background 0.3s;
+    }
+    .step-item.active .step-dot { background: var(--teal); animation: pulse 1s infinite; }
+    .step-item.done .step-dot { background: var(--green); }
+    .step-tag {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.5px;
+      padding: 2px 7px; border-radius: 4px; margin-left: 4px;
+    }
+    .tag-ai { background: rgba(0,188,212,0.15); color: var(--teal); }
+    .tag-human { background: rgba(255,179,0,0.15); color: var(--amber); }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.4} }
+
+    /* ── PENDING REVIEW BANNER ── */
+    .review-banner {
+      background: rgba(255,179,0,0.08);
+      border: 1px solid rgba(255,179,0,0.3);
+      border-radius: 10px;
+      padding: 14px 20px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 13px;
+    }
+    .review-icon { font-size: 18px; }
+    .review-text b { color: var(--amber); }
+    .approve-btn {
+      margin-left: auto;
+      background: var(--green);
+      border: none;
+      border-radius: 6px;
+      padding: 7px 18px;
+      color: #0a1628;
+      font-size: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .approved-tag {
+      margin-left: auto;
+      background: rgba(0,200,150,0.15);
+      border: 1px solid rgba(0,200,150,0.4);
+      border-radius: 6px;
+      padding: 5px 14px;
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--green);
+      display: none;
+    }
+
+    /* ── OUTPUT ── */
+    #output { display: none; }
+
+    /* Score Banner */
+    .score-banner {
+      background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    .score-left h2 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+    .score-left p { font-size: 13px; color: var(--text-dim); }
+    .score-left .source-note {
+      font-size: 11px; color: rgba(255,179,0,0.7);
+      margin-top: 6px;
+      display: flex; align-items: center; gap: 5px;
+    }
+    .score-right { display: flex; align-items: center; gap: 24px; }
+    .score-circle {
+      width: 90px; height: 90px;
+      border-radius: 50%;
+      display: flex; flex-direction: column;
+      align-items: center; justify-content: center;
+      border: 3px solid var(--amber);
+      box-shadow: 0 0 24px rgba(255,179,0,0.15);
+    }
+    .score-num { font-size: 28px; font-weight: 800; color: var(--amber); line-height: 1; }
+    .score-lbl { font-size: 9px; color: var(--text-dim); letter-spacing: 1px; margin-top: 2px; }
+    .rating-badge {
+      background: rgba(255,179,0,0.08);
+      border: 1px solid rgba(255,179,0,0.25);
+      border-radius: 8px;
+      padding: 10px 18px;
+      text-align: center;
+    }
+    .rating-val { font-size: 22px; font-weight: 800; color: var(--amber); }
+    .rating-lbl { font-size: 10px; color: var(--text-dim); letter-spacing: 0.8px; }
+    .rating-note { font-size: 9px; color: rgba(255,179,0,0.6); margin-top: 3px; }
+
+    /* Metrics Grid */
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 14px;
+      margin-bottom: 20px;
+    }
+    .metric-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px;
+      position: relative;
+    }
+    .metric-source {
+      position: absolute; top: 8px; right: 10px;
+      font-size: 9px; color: rgba(255,179,0,0.5);
+      letter-spacing: 0.3px;
+    }
+    .metric-label {
+      font-size: 10px; font-weight: 600; letter-spacing: 0.8px;
+      color: var(--text-dim); text-transform: uppercase;
+      margin-bottom: 8px;
+    }
+    .metric-value {
+      font-size: 22px; font-weight: 700; line-height: 1;
+      margin-bottom: 4px;
+    }
+    .metric-sub { font-size: 11px; color: var(--text-dim); }
+    .metric-trend {
+      font-size: 11px; margin-top: 6px;
+      display: flex; align-items: center; gap: 4px;
+    }
+    .up { color: var(--green); }
+    .down { color: var(--red); }
+    .neutral { color: var(--amber); }
+
+    /* Two column section */
+    .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 20px; }
+    .panel {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+    }
+
+    /* Risk Flags */
+    .risk-item {
+      display: flex; align-items: flex-start; gap: 10px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 13px;
+    }
+    .risk-item:last-child { border-bottom: none; }
+    .risk-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      flex-shrink: 0; margin-top: 4px;
+    }
+    .risk-high { background: var(--red); }
+    .risk-med { background: var(--amber); }
+    .risk-low { background: var(--green); }
+    .risk-text { flex: 1; line-height: 1.4; }
+    .risk-cat { font-size: 10px; color: var(--text-dim); margin-top: 2px; }
+    .risk-source { font-size: 9px; color: rgba(255,179,0,0.5); }
+
+    /* Waterfall */
+    .waterfall { margin-top: 12px; }
+    .wf-row {
+      display: flex; align-items: center; gap: 10px;
+      margin-bottom: 10px;
+    }
+    .wf-label { font-size: 12px; color: var(--text-dim); width: 130px; flex-shrink: 0; }
+    .wf-bar-wrap { flex: 1; background: rgba(255,255,255,0.06); border-radius: 4px; height: 20px; overflow: hidden; }
+    .wf-bar { height: 100%; border-radius: 4px; transition: width 1s ease; }
+    .wf-val { font-size: 12px; font-weight: 600; width: 70px; text-align: right; }
+
+    /* Analyst judgement */
+    .analyst-judgement {
+      background: rgba(255,179,0,0.05);
+      border: 1px solid rgba(255,179,0,0.2);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+    }
+    .aj-header {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 11px; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--amber);
+      margin-bottom: 10px;
+    }
+    .aj-label { font-size: 10px; color: var(--text-dim); margin-bottom: 4px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
+    .aj-text { font-size: 13px; line-height: 1.6; margin-bottom: 12px; }
+    .aj-override {
+      display: flex; gap: 10px; margin-top: 8px;
+      align-items: center; flex-wrap: wrap;
+    }
+    .aj-override label { font-size: 12px; color: var(--text-dim); }
+    .aj-override input[type=text] {
+      background: var(--navy);
+      border: 1px solid rgba(255,255,255,0.15);
+      border-radius: 6px;
+      padding: 6px 12px;
+      color: var(--text);
+      font-size: 12px;
+      width: 260px;
+      outline: none;
+    }
+    .aj-override button {
+      background: rgba(255,179,0,0.15);
+      border: 1px solid rgba(255,179,0,0.3);
+      border-radius: 6px;
+      padding: 6px 14px;
+      color: var(--amber);
+      font-size: 12px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    /* Recommendation */
+    .rec-box {
+      background: rgba(0,188,212,0.04);
+      border: 1px solid rgba(0,188,212,0.15);
+      border-radius: 10px;
+      padding: 16px 20px;
+      margin-bottom: 20px;
+    }
+    .rec-header { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--teal); margin-bottom: 8px; }
+    .rec-text { font-size: 14px; line-height: 1.6; }
+
+    /* Footer */
+    .ai-footer {
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 1px solid var(--border);
+      padding-top: 16px;
+      margin-top: 4px;
+      font-size: 11px;
+      color: var(--text-dim);
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .ai-tag {
+      display: flex; align-items: center; gap: 6px;
+    }
+    .ai-tag-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--teal);
+      animation: pulse 2s infinite;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .metrics-grid { grid-template-columns: repeat(2,1fr); }
+      .two-col { grid-template-columns: 1fr; }
+      .score-banner { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="logo">
+    <div class="logo-icon">📊</div>
+    <div>
+      <div class="logo-text">Credit Intelligence</div>
+      <div class="logo-sub">AI-Augmented Analysis</div>
+    </div>
+  </div>
+  <div class="badge-hitl">👤 Human-in-the-Loop · Analyst Verified</div>
+</header>
+
+<div class="disclaimer-banner">
+  ⚠️ &nbsp;Figures sourced from Helios Towers plc public filings (Annual Report / Investor Presentations). All outputs are AI-generated drafts — analyst review and verification required before use.
+</div>
+
+<div class="container">
+  <div class="page-title">AI-Augmented Credit Memo — Helios Towers Africa plc</div>
+  <div class="page-sub">AI processes the filings. The analyst verifies, adjusts, and signs off. This is a human-in-the-loop workflow — not a black box.</div>
+
+  <!-- Input Panel -->
+  <div class="input-panel">
+    <div class="panel-title">📋 Analysis Parameters</div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Company</label>
+        <input type="text" value="Helios Towers Africa plc (LON: HTWS)" readonly />
+      </div>
+      <div class="form-group">
+        <label>Sector</label>
+        <input type="text" value="TMT / Tower Infrastructure" readonly />
+      </div>
+    </div>
+    <div class="form-grid">
+      <div class="form-group">
+        <label>Output Type</label>
+        <input type="text" value="Full Credit Memo" readonly />
+      </div>
+      <div class="form-group">
+        <label>Data Source</label>
+        <input type="text" value="Public Filings — FY2023 / FY2024 Interim" readonly />
+      </div>
+    </div>
+    <div class="analyst-note">
+      💡 &nbsp;The AI pipeline extracts and structures data from public filings. The analyst reviews all outputs, overrides where needed, and approves before the memo is finalised.
+    </div>
+    <button class="run-btn" onclick="runAnalysis()">
+      ▶ &nbsp;Run AI-Augmented Analysis
+    </button>
+  </div>
+
+  <!-- Loading -->
+  <div id="loading">
+    <div style="font-size:15px;font-weight:600;">Running AI-Augmented Pipeline...</div>
+    <div style="font-size:12px;color:var(--text-dim);margin-top:4px;">AI processes · Analyst reviews · Human approves</div>
+    <div class="loading-steps" id="steps">
+      <div class="step-item" id="s1">
+        <div class="step-dot"></div>
+        <span>Extracting financials from public filings &amp; annual report <span class="step-tag tag-ai">AI</span></span>
+      </div>
+      <div class="step-item" id="s2">
+        <div class="step-dot"></div>
+        <span>Computing credit ratios, leverage &amp; coverage metrics <span class="step-tag tag-ai">AI</span></span>
+      </div>
+      <div class="step-item" id="s3">
+        <div class="step-dot"></div>
+        <span>Running scenario &amp; sensitivity analysis <span class="step-tag tag-ai">AI</span></span>
+      </div>
+      <div class="step-item" id="s4">
+        <div class="step-dot"></div>
+        <span>Identifying risk flags &amp; structural mitigants <span class="step-tag tag-ai">AI</span></span>
+      </div>
+      <div class="step-item" id="s5">
+        <div class="step-dot"></div>
+        <span>Drafting credit recommendation <span class="step-tag tag-ai">AI</span></span>
+      </div>
+      <div class="step-item" id="s6">
+        <div class="step-dot"></div>
+        <span>⏳ &nbsp;Pending analyst review &amp; sign-off <span class="step-tag tag-human">ANALYST</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Output -->
+  <div id="output">
+
+    <!-- Pending Review Banner -->
+    <div class="review-banner" id="review-banner">
+      <div class="review-icon">👤</div>
+      <div class="review-text">
+        <b>Analyst Review Required</b> — AI draft complete. Please review all figures against source documents before approving.
+      </div>
+      <button class="approve-btn" onclick="approveMemo()">✓ Approve Memo</button>
+      <div class="approved-tag" id="approved-tag">✓ Analyst Approved</div>
+    </div>
+
+    <!-- Score Banner -->
+    <div class="score-banner">
+      <div class="score-left">
+        <h2>Helios Towers Africa plc</h2>
+        <p>TMT / Tower Infrastructure · Full Credit Memo · March 2026</p>
+        <div class="source-note">⚠ Figures from public filings (FY2023 / H1 FY2024) — verify against latest annual report</div>
+      </div>
+      <div class="score-right">
+        <div class="score-circle">
+          <div class="score-num">72</div>
+          <div class="score-lbl">SCORE/100</div>
+        </div>
+        <div class="rating-badge">
+          <div class="rating-val">BB+</div>
+          <div class="rating-lbl">IMPLIED RATING</div>
+          <div class="rating-note">AI-derived · pending analyst confirmation</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Key Metrics -->
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-source">Public filing</div>
+        <div class="metric-label">Revenue (FY2023)</div>
+        <div class="metric-value">$549m</div>
+        <div class="metric-sub">+12% YoY</div>
+        <div class="metric-trend up">▲ Driven by tenancy growth</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-source">Public filing</div>
+        <div class="metric-label">Adj. EBITDA Margin</div>
+        <div class="metric-value">~52%</div>
+        <div class="metric-sub">Stable tower margins</div>
+        <div class="metric-trend up">▲ Consistent TowerCo profile</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-source">Public filing</div>
+        <div class="metric-label">Net Leverage</div>
+        <div class="metric-value">~5.8x</div>
+        <div class="metric-sub">ND / Adj. EBITDA</div>
+        <div class="metric-trend neutral">● Above 5x IG threshold</div>
+      </div>
+      <div class="metric-card">
+        <div class="metric-source">AI-derived</div>
+        <div class="metric-label">Est. DSCR</div>
+        <div class="metric-value">~1.4x</div>
+        <div class="metric-sub">Debt Service Cover</div>
+        <div class="metric-trend up">▲ Adequate — verify vs. covenants</div>
+      </div>
+    </div>
+
+    <!-- Risk + Debt Capacity -->
+    <div class="two-col">
+      <div class="panel">
+        <div class="panel-title">⚠️ Risk Flags — AI Identified · Analyst to Verify</div>
+        <div class="risk-item">
+          <div class="risk-dot risk-high"></div>
+          <div>
+            <div class="risk-text">Elevated leverage (~5.8x ND/EBITDA) above investment grade threshold of 5.0x</div>
+            <div class="risk-cat">Financial Risk <span class="risk-source">· Source: annual report</span></div>
+          </div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-dot risk-high"></div>
+          <div>
+            <div class="risk-text">Multi-currency FX exposure — TZS, GHS, ZMW, CDF vs USD-denominated debt</div>
+            <div class="risk-cat">Currency Risk <span class="risk-source">· Source: annual report</span></div>
+          </div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-dot risk-med"></div>
+          <div>
+            <div class="risk-text">Customer concentration: MTN &amp; Airtel estimated ~60–65% of revenue</div>
+            <div class="risk-cat">Counterparty Risk <span class="risk-source">· Source: segmental reporting — verify %</span></div>
+          </div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-dot risk-med"></div>
+          <div>
+            <div class="risk-text">Rising African market rates creating refinancing pressure on USD bonds</div>
+            <div class="risk-cat">Refinancing Risk <span class="risk-source">· Analyst judgement required</span></div>
+          </div>
+        </div>
+        <div class="risk-item">
+          <div class="risk-dot risk-low"></div>
+          <div>
+            <div class="risk-text">Avg. 10-year tower lease terms provide strong contracted revenue base</div>
+            <div class="risk-cat">Mitigant <span class="risk-source">· Source: investor presentation</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="panel">
+        <div class="panel-title">📊 Debt Capacity Waterfall (USD m) — AI Estimate</div>
+        <div style="font-size:11px;color:var(--amber);margin-bottom:12px;">⚠ Indicative only — analyst to verify against actual debt schedule</div>
+        <div class="waterfall">
+          <div class="wf-row">
+            <div class="wf-label">Adj. EBITDA</div>
+            <div class="wf-bar-wrap"><div class="wf-bar" style="width:100%;background:var(--blue);"></div></div>
+            <div class="wf-val" style="color:var(--blue);">~285</div>
+          </div>
+          <div class="wf-row">
+            <div class="wf-label">Est. Debt Service</div>
+            <div class="wf-bar-wrap"><div class="wf-bar" style="width:71%;background:var(--amber);"></div></div>
+            <div class="wf-val" style="color:var(--amber);">~200</div>
+          </div>
+          <div class="wf-row">
+            <div class="wf-label">Growth Capex</div>
+            <div class="wf-bar-wrap"><div class="wf-bar" style="width:21%;background:var(--blue-accent);"></div></div>
+            <div class="wf-val" style="color:var(--blue-accent);">~60</div>
+          </div>
+          <div class="wf-row">
+            <div class="wf-label">Free Cash Flow</div>
+            <div class="wf-bar-wrap"><div class="wf-bar" style="width:9%;background:var(--green);"></div></div>
+            <div class="wf-val" style="color:var(--green);">~25</div>
+          </div>
+          <div class="wf-row">
+            <div class="wf-label">Max Add. Debt @5x</div>
+            <div class="wf-bar-wrap"><div class="wf-bar" style="width:50%;background:#7c4dff;"></div></div>
+            <div class="wf-val" style="color:#7c4dff;">~140</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Analyst Judgement Layer -->
+    <div class="analyst-judgement">
+      <div class="aj-header">
+        👤 Analyst Judgement Layer — Human Override
+      </div>
+      <div class="aj-label">AI Draft Recommendation</div>
+      <div class="aj-text">
+        Helios Towers carries an implied BB+ rating with meaningful credit risk driven by elevated leverage (~5.8x) and multi-currency FX exposure across Sub-Saharan Africa. However, its contracted tower lease model, blue-chip MNO counterparties, and ~52% EBITDA margins provide strong structural protection. AI recommends: <strong>Proceed with Conditions</strong> — leverage covenant step-down to 5.0x by FY26, FX hedging requirements, cash sweep above 6.0x. Estimated incremental debt capacity: USD ~140m.
+      </div>
+      <div class="aj-label">Analyst Override / Annotation</div>
+      <div class="aj-override">
+        <input type="text" id="analyst-note-input" placeholder="Add your annotation or override (e.g. 'Confirm customer concentration % from latest filing…')" />
+        <button onclick="addNote()">+ Add Note</button>
+      </div>
+      <div id="analyst-notes-list" style="margin-top:10px;"></div>
+    </div>
+
+    <!-- AI Draft Recommendation -->
+    <div class="rec-box">
+      <div class="rec-header">📄 AI-Drafted Credit Recommendation — Pending Analyst Sign-Off</div>
+      <div class="rec-text">
+        Helios Towers Africa presents a sub-investment grade credit (implied BB+), supported by a contracted tower-lease business model with top-tier MNO counterparties across Sub-Saharan Africa. The ~52% Adjusted EBITDA margin reflects the structural strength of the TowerCo model. Credit concerns are centred on leverage (~5.8x ND/EBITDA), FX mismatch between USD-denominated debt and local currency revenues, and a refinancing profile that warrants close monitoring. <strong>Recommended decision: Proceed with Conditions.</strong> Suggested covenant package: net leverage step-down to 5.0x by FY2026, mandatory FX hedging on ≥70% of USD obligations, and a cash sweep mechanism triggered above 6.0x leverage. Estimated headroom for additional debt on current EBITDA: USD ~140m at 5.0x covenant level.
+        <br><br>
+        <span style="font-size:12px;color:var(--amber);">⚠ This is an AI-generated draft. The analyst must verify all figures against source documents, apply professional judgement, and approve before this memo is used for any credit decision.</span>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="ai-footer">
+      <div class="ai-tag">
+        <div class="ai-tag-dot"></div>
+        AI-Augmented · Claude · Multi-step reasoning pipeline
+      </div>
+      <div style="color:var(--amber);font-size:11px;">👤 Human-in-the-Loop — Analyst review required before publication</div>
+      <div>Illustrative only · Not investment advice · Verify all figures</div>
+    </div>
+
+  </div>
+</div>
+
+<script>
+async function runAnalysis() {
+  document.getElementById("output").style.display = "none";
+  const loading = document.getElementById("loading");
+  loading.style.display = "block";
+
+  for (let i = 1; i <= 6; i++) {
+    document.getElementById("s" + i).className = "step-item";
+  }
+
+  const delays = [700, 1000, 900, 800, 700, 600];
+  for (let i = 1; i <= 6; i++) {
+    await sleep(delays[i - 1]);
+    document.getElementById("s" + i).classList.add("active");
+    if (i > 1) document.getElementById("s" + (i - 1)).classList.add("done");
+  }
+  await sleep(900);
+  document.getElementById("s6").classList.add("active"); // stays pending — analyst needs to act
+
+  await sleep(500);
+  loading.style.display = "none";
+  document.getElementById("output").style.display = "block";
+  document.getElementById("approved-tag").style.display = "none";
+  document.querySelector(".approve-btn").style.display = "inline-block";
+  document.getElementById("review-banner").style.borderColor = "rgba(255,179,0,0.3)";
+  document.getElementById("review-banner").style.background = "rgba(255,179,0,0.08)";
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+function approveMemo() {
+  document.querySelector(".approve-btn").style.display = "none";
+  document.getElementById("approved-tag").style.display = "inline-block";
+  document.getElementById("review-banner").style.borderColor = "rgba(0,200,150,0.3)";
+  document.getElementById("review-banner").style.background = "rgba(0,200,150,0.06)";
+  document.getElementById("review-banner").querySelector(".review-text").innerHTML =
+    '<b style="color:var(--green)">✓ Analyst Approved</b> — Memo verified and signed off. Ready for credit committee.';
+}
+
+function addNote() {
+  const inp = document.getElementById("analyst-note-input");
+  const val = inp.value.trim();
+  if (!val) return;
+  const list = document.getElementById("analyst-notes-list");
+  const now = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+  const div = document.createElement("div");
+  div.style.cssText = "background:rgba(255,179,0,0.06);border:1px solid rgba(255,179,0,0.2);border-radius:6px;padding:8px 12px;margin-top:6px;font-size:12px;";
+  div.innerHTML = `<span style="color:var(--amber);font-weight:600;">👤 Analyst · ${now}</span><br>${val}`;
+  list.appendChild(div);
+  inp.value = "";
+}
+</script>
+</body>
+</html>
