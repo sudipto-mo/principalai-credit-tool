@@ -1,12 +1,20 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <!-- memo-revision: rating-summary-only-toc-2026-03-31 -->
+  <!-- memo-revision: light-default-theme-toggle-2026-03-31 -->
   <title>AI-Augmented Credit Analysis | Helios Towers Africa</title>
+  <script>
+    (function () {
+      try {
+        var t = localStorage.getItem("credit-memo-theme");
+        if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
+      } catch (e) {}
+    })();
+  </script>
   <style>
-    :root {
+    html[data-theme="dark"] {
       --navy: #0a1628;
       --navy-light: #112240;
       --navy-mid: #1a3a5c;
@@ -20,6 +28,25 @@
       --text-dim: #8ea8c3;
       --border: rgba(255,255,255,0.08);
       --card: rgba(255,255,255,0.04);
+      --chart-grid: rgba(255,255,255,0.10);
+      --approve-btn-text: #0a1628;
+    }
+    html[data-theme="light"] {
+      --navy: #eef1f6;
+      --navy-light: #ffffff;
+      --navy-mid: #e2e8f0;
+      --blue: #1565a0;
+      --blue-accent: #1976d2;
+      --teal: #007c91;
+      --green: #0d7a62;
+      --amber: #b45309;
+      --red: #b91c1c;
+      --text: #0f172a;
+      --text-dim: #475569;
+      --border: rgba(15, 23, 42, 0.1);
+      --card: rgba(15, 23, 42, 0.04);
+      --chart-grid: rgba(15, 23, 42, 0.12);
+      --approve-btn-text: #ffffff;
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
     body {
@@ -80,6 +107,70 @@
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 0.4px;
+      color: var(--teal);
+    }
+
+    /* Appearance: Light (default) / Dark — finance-friendly */
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+    .theme-toggle {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .theme-toggle-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.9px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      white-space: nowrap;
+    }
+    .theme-toggle-group {
+      display: inline-flex;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      overflow: hidden;
+      background: var(--card);
+    }
+    .theme-toggle-group button {
+      appearance: none;
+      border: none;
+      margin: 0;
+      padding: 7px 12px;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.35px;
+      font-family: inherit;
+      cursor: pointer;
+      color: var(--text-dim);
+      background: transparent;
+      transition: background 0.15s, color 0.15s;
+    }
+    .theme-toggle-group button:hover {
+      color: var(--text);
+    }
+    .theme-toggle-group button[aria-pressed="true"] {
+      background: rgba(0, 188, 212, 0.18);
+      color: var(--teal);
+    }
+    html[data-theme="dark"] .theme-toggle-group button[aria-pressed="true"] {
+      background: rgba(0, 188, 212, 0.22);
+    }
+    .theme-toggle-group button:focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 2px;
+      z-index: 1;
+    }
+
+    html[data-theme="light"] .badge-hitl {
+      background: linear-gradient(90deg, #e2e8f0, #dbeafe);
+      border-color: rgba(0, 124, 145, 0.35);
       color: var(--teal);
     }
 
@@ -300,7 +391,7 @@
       border: none;
       border-radius: 6px;
       padding: 7px 18px;
-      color: #0a1628;
+      color: var(--approve-btn-text);
       font-size: 12px;
       font-weight: 700;
       cursor: pointer;
@@ -910,6 +1001,47 @@
       animation: pulse 2s infinite;
     }
 
+    /* Light theme: inputs & data surfaces (tabs, tables) */
+    html[data-theme="light"] .form-group input {
+      background: #ffffff;
+      border-color: rgba(15, 23, 42, 0.12);
+      color: var(--text);
+    }
+    html[data-theme="light"] .memo-toc-select {
+      background: #ffffff;
+      border-color: rgba(15, 23, 42, 0.12);
+      color: var(--text);
+    }
+    html[data-theme="light"] .memo-toc-select:focus {
+      border-color: rgba(0, 124, 145, 0.45);
+      box-shadow: 0 0 0 2px rgba(0, 124, 145, 0.12);
+    }
+    html[data-theme="light"] .ca-tab {
+      border-color: rgba(15, 23, 42, 0.12);
+      background: rgba(15, 23, 42, 0.03);
+    }
+    html[data-theme="light"] .nwa-table th,
+    html[data-theme="light"] .nwa-table td {
+      border-color: rgba(15, 23, 42, 0.1);
+    }
+    html[data-theme="light"] .nwa-legend code {
+      color: var(--text);
+      background: rgba(180, 83, 9, 0.1);
+      border-color: rgba(180, 83, 9, 0.22);
+    }
+    html[data-theme="light"] .nwa-chart-svg {
+      background: rgba(15, 23, 42, 0.05);
+      border-color: rgba(15, 23, 42, 0.1);
+    }
+    html[data-theme="light"] .memo-back-top {
+      color: #ffffff;
+    }
+    html[data-theme="light"] .aj-override input[type="text"] {
+      background: #ffffff;
+      border-color: rgba(15, 23, 42, 0.12);
+      color: var(--text);
+    }
+
     /* Responsive */
     @media (max-width: 768px) {
       .form-grid { grid-template-columns: 1fr; }
@@ -919,6 +1051,7 @@
       .container { padding: 24px 16px; }
       header { padding: 12px 16px; flex-wrap: wrap; gap: 8px; }
       .disclaimer-banner { padding: 8px 16px; }
+      .header-actions { width: 100%; justify-content: space-between; }
     }
   </style>
 </head>
@@ -934,7 +1067,16 @@
       <div class="logo-sub">AI-Augmented Analysis</div>
     </div>
   </div>
-  <div class="badge-hitl">👤 Human-in-the-Loop · Analyst Verified</div>
+  <div class="header-actions">
+    <div class="theme-toggle" role="group" aria-label="Appearance">
+      <span class="theme-toggle-label" id="theme-toggle-heading">Appearance</span>
+      <div class="theme-toggle-group" role="toolbar" aria-labelledby="theme-toggle-heading">
+        <button type="button" id="theme-light" aria-pressed="true">Light</button>
+        <button type="button" id="theme-dark" aria-pressed="false">Dark</button>
+      </div>
+    </div>
+    <div class="badge-hitl">👤 Human-in-the-Loop · Analyst Verified</div>
+  </div>
 </header>
 
 <div class="disclaimer-banner">
@@ -1751,6 +1893,41 @@ function scrollBehaviorOpt() {
   return prefersReducedMotion() ? "instant" : "smooth";
 }
 
+function memoChartGridColor() {
+  var v = getComputedStyle(document.documentElement).getPropertyValue("--chart-grid");
+  return (v && v.trim()) || "rgba(255,255,255,0.10)";
+}
+
+(function setupAppearanceToggle() {
+  var KEY = "credit-memo-theme";
+  var lightBtn = document.getElementById("theme-light");
+  var darkBtn = document.getElementById("theme-dark");
+  if (!lightBtn || !darkBtn) return;
+
+  function apply(theme) {
+    var t = theme === "dark" ? "dark" : "light";
+    document.documentElement.setAttribute("data-theme", t);
+    try {
+      localStorage.setItem(KEY, t);
+    } catch (e) {}
+    lightBtn.setAttribute("aria-pressed", t === "light" ? "true" : "false");
+    darkBtn.setAttribute("aria-pressed", t === "dark" ? "true" : "false");
+  }
+
+  function current() {
+    return document.documentElement.getAttribute("data-theme") === "dark" ? "dark" : "light";
+  }
+
+  lightBtn.addEventListener("click", function () {
+    apply("light");
+  });
+  darkBtn.addEventListener("click", function () {
+    apply("dark");
+  });
+
+  apply(current());
+})();
+
 function scrollMemoTop() {
   const t = document.getElementById("sec-review");
   if (t) t.scrollIntoView({ behavior: scrollBehaviorOpt(), block: "start" });
@@ -2051,7 +2228,7 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
       .join(" ");
 
     const lineColor = "rgba(0,188,212,0.95)";
-    const gridColor = "rgba(255,255,255,0.10)";
+    const gridColor = memoChartGridColor();
 
     const circles = valid
       .map((p) => {
@@ -2212,7 +2389,7 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
       .join(" ");
 
     const lineColor = "rgba(0,188,212,0.95)";
-    const gridColor = "rgba(255,255,255,0.10)";
+    const gridColor = memoChartGridColor();
 
     const circles = valid
       .map((p) => {
@@ -2398,7 +2575,7 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
       .join(" ");
 
     const lineColor = "rgba(0,188,212,0.95)";
-    const gridColor = "rgba(255,255,255,0.10)";
+    const gridColor = memoChartGridColor();
 
     const circles = valid
       .map((p) => {
@@ -2524,7 +2701,7 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
       .join(" ");
 
     const lineColor = "rgba(0,188,212,0.95)";
-    const gridColor = "rgba(255,255,255,0.10)";
+    const gridColor = memoChartGridColor();
 
     const circles = valid
       .map((p) => {
@@ -2717,7 +2894,7 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
     if (seg.length >= 2) segs.push(seg);
 
     const lineColor = "rgba(0,188,212,0.95)";
-    const gridColor = "rgba(255,255,255,0.10)";
+    const gridColor = memoChartGridColor();
 
     const avgX = pad;
     void avgX; // keep eslint quiet if present
