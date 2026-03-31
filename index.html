@@ -28,6 +28,28 @@
       min-height: 100vh;
     }
 
+    /* ── SKIP LINK (Stage 4) ── */
+    .skip-link {
+      position: absolute;
+      left: -9999px;
+      top: 0;
+      z-index: 200;
+      padding: 12px 20px;
+      background: var(--navy-light);
+      border: 1px solid rgba(0,188,212,0.5);
+      border-radius: 8px;
+      color: var(--teal);
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .skip-link:focus {
+      left: 16px;
+      top: 16px;
+      outline: 2px solid var(--teal);
+      outline-offset: 2px;
+    }
+
     /* ── HEADER ── */
     header {
       background: var(--navy-light);
@@ -104,6 +126,9 @@
       gap: 16px;
       margin-bottom: 20px;
     }
+    .form-group-full {
+      grid-column: 1 / -1;
+    }
     .form-group label {
       display: block;
       font-size: 11px; font-weight: 600;
@@ -121,6 +146,53 @@
       font-size: 13px;
       outline: none;
     }
+    .financial-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px 16px;
+      margin-top: 14px;
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(0,188,212,0.08);
+      border: 1px solid rgba(0,188,212,0.35);
+      border-radius: 8px;
+      padding: 10px 16px;
+      color: var(--teal);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .btn-secondary:hover {
+      background: rgba(0,188,212,0.14);
+      border-color: rgba(0,188,212,0.5);
+    }
+    .btn-secondary:focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 2px;
+    }
+    .financial-login-hint {
+      font-size: 11px;
+      color: rgba(255,179,0,0.75);
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+    .financial-hint-box {
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 12px;
+      line-height: 1.45;
+      color: var(--text-dim);
+      background: rgba(255,179,0,0.06);
+      border: 1px solid rgba(255,179,0,0.2);
+      display: none;
+    }
+    .financial-hint-box.is-visible { display: block; }
     .analyst-note {
       display: flex;
       align-items: center;
@@ -133,6 +205,20 @@
       font-size: 12px;
       color: var(--text-dim);
     }
+    .demo-banner {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      background: rgba(255,179,0,0.07);
+      border: 1px solid rgba(255,179,0,0.22);
+      border-radius: 8px;
+      padding: 10px 14px;
+      margin-bottom: 12px;
+      font-size: 12px;
+      color: var(--text-dim);
+      line-height: 1.5;
+    }
+    .demo-banner strong { color: var(--amber); font-weight: 700; }
     .run-btn {
       display: flex;
       align-items: center;
@@ -234,6 +320,403 @@
     /* ── OUTPUT ── */
     #output { display: none; }
 
+    /* ── MEMO SECTIONS + TOC (Stage 1) ── */
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      .wf-bar { transition: none; }
+      .step-item { transition: none; }
+    }
+    .memo-shell {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      align-items: stretch;
+    }
+    .memo-toc {
+      padding: 14px 16px;
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+    .memo-toc-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 10px;
+    }
+    .memo-toc ul {
+      list-style: none;
+      display: flex;
+      flex-wrap: nowrap;
+      gap: 10px;
+      overflow-x: auto;
+      padding: 4px 2px 8px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+    }
+    .memo-toc-jump-wrap {
+      display: none;
+      margin-bottom: 4px;
+    }
+    .memo-toc-jump-label {
+      display: block;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+      color: var(--text-dim);
+      margin-bottom: 8px;
+    }
+    .memo-toc-select {
+      width: 100%;
+      background: var(--navy);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 8px;
+      padding: 12px 14px;
+      min-height: 48px;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 600;
+      cursor: pointer;
+      outline: none;
+    }
+    .memo-toc-select:focus {
+      border-color: rgba(0,188,212,0.45);
+      box-shadow: 0 0 0 2px rgba(0,188,212,0.15);
+    }
+    .memo-toc a {
+      display: flex;
+      align-items: center;
+      white-space: nowrap;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-dim);
+      text-decoration: none;
+      padding: 8px 14px;
+      min-height: 44px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--card);
+      transition: color 0.15s, border-color 0.15s, background 0.15s;
+    }
+    .memo-toc a:hover {
+      color: var(--text);
+      border-color: rgba(0,188,212,0.35);
+      background: rgba(0,188,212,0.06);
+    }
+    .memo-toc a:focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 2px;
+    }
+    .memo-toc a.is-active {
+      color: var(--teal);
+      border-color: rgba(0,188,212,0.45);
+      background: rgba(0,188,212,0.12);
+    }
+    .memo-main { min-width: 0; }
+    .memo-section {
+      scroll-margin-top: 20px;
+    }
+    .memo-section-title {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 6px;
+    }
+    .deck-placeholder {
+      background: var(--card);
+      border: 1px dashed rgba(0,188,212,0.22);
+      border-radius: 10px;
+      padding: 16px 18px;
+      margin-bottom: 16px;
+      font-size: 13px;
+      color: var(--text-dim);
+      line-height: 1.55;
+    }
+    .deck-placeholder strong { color: var(--text); }
+    .deck-placeholder-title {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.7px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .metrics-grid.metrics-grid--pair {
+      grid-template-columns: repeat(2, 1fr);
+      max-width: 520px;
+    }
+    /* Business Model (deck-aligned) */
+    .bm-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 14px;
+    }
+    .bm-grid.bm-grid--single {
+      grid-template-columns: 1fr;
+    }
+    .bm-col {
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 18px 16px;
+    }
+    .bm-heading {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 10px;
+    }
+    .bm-subtitle {
+      margin-top: 12px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--text-dim);
+      letter-spacing: 0.2px;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .bm-list {
+      margin-left: 18px;
+      margin-bottom: 0;
+      padding-left: 10px;
+      line-height: 1.55;
+      color: var(--text-dim);
+      font-size: 13px;
+    }
+    .bm-list li { margin: 6px 0; }
+    .bm-li-label {
+      color: var(--text);
+      font-weight: 800;
+    }
+
+    /* Current Asset: tabs for Metrics vs Conclusion */
+    .ca-tabs { margin-top: 6px; }
+    .ca-tablist {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin: 8px 0 12px;
+    }
+    .ca-tab {
+      appearance: none;
+      border: 1px solid rgba(255,255,255,0.14);
+      background: rgba(255,255,255,0.04);
+      color: var(--text-dim);
+      font-weight: 800;
+      letter-spacing: 0.25px;
+      text-transform: uppercase;
+      font-size: 11px;
+      padding: 8px 10px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 160ms ease, border-color 160ms ease, color 160ms ease, transform 120ms ease;
+    }
+    .ca-tab:hover { border-color: rgba(0,188,212,0.55); color: var(--text); }
+    .ca-tab:active { transform: translateY(1px); }
+    .ca-tab:focus-visible {
+      outline: 2px solid rgba(0,188,212,0.75);
+      outline-offset: 2px;
+    }
+    .ca-tab[aria-selected="true"] {
+      background: rgba(0,188,212,0.12);
+      border-color: rgba(0,188,212,0.55);
+      color: var(--text);
+    }
+    .ca-panel { margin-top: 0; }
+    .ca-panel[hidden] { display: none !important; }
+
+    /* Hover analytics for Current Asset */
+    .nwa-table-wrap {
+      margin-top: 10px;
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .nwa-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 560px;
+      font-size: 12px;
+    }
+    .nwa-table th, .nwa-table td {
+      border: 1px solid rgba(255,255,255,0.10);
+      padding: 8px 10px;
+      text-align: right;
+      white-space: nowrap;
+    }
+    .nwa-table th {
+      background: var(--navy-mid);
+      color: var(--text);
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.35px;
+      font-size: 10px;
+    }
+    .nwa-table td:first-child, .nwa-table th:first-child {
+      text-align: left;
+      white-space: normal;
+    }
+    .nwa-legend {
+      font-size: 11px;
+      color: rgba(255,179,0,0.85);
+      margin: 6px 0 12px;
+      font-weight: 600;
+    }
+    .nwa-legend code {
+      color: #ffffff;
+      background: rgba(255,179,0,0.08);
+      border: 1px solid rgba(255,179,0,0.18);
+      padding: 1px 6px;
+      border-radius: 6px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 11px;
+    }
+    .nwa-row {
+      cursor: pointer;
+    }
+    .nwa-row:hover {
+      background: rgba(0,188,212,0.12);
+    }
+
+    
+    .nwa-chart-tooltip {
+      position: fixed;
+      width: 380px;
+      max-width: calc(100vw - 30px);
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 12px 12px;
+      z-index: 250;
+      box-shadow: 0 18px 45px rgba(0,0,0,0.45);
+      display: none;
+    }
+    .nwa-chart-tooltip.is-visible {
+      display: block;
+    }
+    .nwa-chart-title {
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+    .nwa-chart-values {
+      font-size: 11px;
+      color: var(--text-dim);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px 14px;
+      margin-bottom: 8px;
+    }
+    .nwa-chart-values span {
+      white-space: nowrap;
+    }
+    .nwa-chart-svg {
+      width: 100%;
+      height: 130px;
+      background: rgba(0,0,0,0.18);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 10px;
+    }
+    .nwa-hidden-marker td {
+      text-align: center;
+      font-style: italic;
+      color: rgba(255,179,0,0.85);
+      background: rgba(255,179,0,0.05);
+      border: 1px dashed rgba(255,179,0,0.25) !important;
+      padding: 12px 10px;
+    }
+    @media (max-width: 768px) {
+      .bm-grid { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 900px) {
+      .memo-shell {
+        display: grid;
+        grid-template-columns: 200px minmax(0, 1fr);
+        gap: 28px;
+        align-items: start;
+      }
+      .memo-toc {
+        position: sticky;
+        top: 16px;
+        padding: 16px 14px;
+      }
+      .memo-toc ul {
+        flex-direction: column;
+        flex-wrap: nowrap;
+        overflow-x: visible;
+        gap: 4px;
+      }
+      .memo-toc a {
+        white-space: normal;
+        padding: 8px 10px;
+        border: none;
+        background: transparent;
+        border-radius: 6px;
+        line-height: 1.35;
+      }
+      .memo-toc a:hover {
+        background: rgba(0,188,212,0.08);
+      }
+      .memo-toc a.is-active {
+        border-left: 3px solid var(--teal);
+        padding-left: 7px;
+        margin-left: -3px;
+        border-top: none;
+        border-right: none;
+        border-bottom: none;
+      }
+    }
+
+    /* Narrow phones: dropdown instead of chip row (Stage 4) */
+    @media (max-width: 599px) {
+      .memo-toc-jump-wrap { display: block; }
+      .memo-toc-title { display: none; }
+      .memo-toc ul { display: none; }
+    }
+
+    /* ── BACK TO TOP (Stage 3) ── */
+    .memo-back-top {
+      position: fixed;
+      right: 20px;
+      bottom: 24px;
+      z-index: 50;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 12px 16px;
+      min-height: 48px;
+      background: linear-gradient(135deg, rgba(29,111,164,0.95), rgba(0,188,212,0.85));
+      border: 1px solid rgba(0,188,212,0.4);
+      border-radius: 10px;
+      color: white;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.35);
+      transition: opacity 0.2s, transform 0.15s;
+    }
+    .memo-back-top:hover { opacity: 0.92; transform: translateY(-2px); }
+    .memo-back-top:focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 3px;
+    }
+    .memo-back-top[hidden] { display: none !important; }
+    @media (prefers-reduced-motion: reduce) {
+      .memo-back-top { transition: none; }
+    }
+
     /* Score Banner */
     .score-banner {
       background: linear-gradient(135deg, var(--navy-mid), var(--navy-light));
@@ -247,7 +730,8 @@
       flex-wrap: wrap;
       gap: 20px;
     }
-    .score-left h2 { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
+    .score-left h2,
+    .score-left .company-title { font-size: 20px; font-weight: 700; margin-bottom: 4px; }
     .score-left p { font-size: 13px; color: var(--text-dim); }
     .score-left .source-note {
       font-size: 11px; color: rgba(255,179,0,0.7);
@@ -431,10 +915,15 @@
       .metrics-grid { grid-template-columns: repeat(2,1fr); }
       .two-col { grid-template-columns: 1fr; }
       .score-banner { flex-direction: column; }
+      .container { padding: 24px 16px; }
+      header { padding: 12px 16px; flex-wrap: wrap; gap: 8px; }
+      .disclaimer-banner { padding: 8px 16px; }
     }
   </style>
 </head>
 <body>
+
+<a class="skip-link" href="#main">Skip to main content</a>
 
 <header>
   <div class="logo">
@@ -451,9 +940,9 @@
   ⚠️ &nbsp;Figures sourced from Helios Towers plc public filings (Annual Report / Investor Presentations). All outputs are AI-generated drafts — analyst review and verification required before use.
 </div>
 
-<div class="container">
+<main id="main" class="container" tabindex="-1">
   <div class="page-title">AI-Augmented Credit Memo — Helios Towers Africa plc</div>
-  <div class="page-sub">AI processes the filings. The analyst verifies, adjusts, and signs off. This is a human-in-the-loop workflow — not a black box.</div>
+  <div class="page-sub">AI processes the filings. The analyst verifies, adjusts, and signs off. Section order follows the <strong>Helios credit deck</strong>; this page shows summary exhibits and placeholders where the full PPTX carries the narrative.</div>
 
   <!-- Input Panel -->
   <div class="input-panel">
@@ -469,19 +958,24 @@
       </div>
     </div>
     <div class="form-grid">
-      <div class="form-group">
-        <label>Output Type</label>
-        <input type="text" value="Full Credit Memo" readonly />
-      </div>
-      <div class="form-group">
-        <label>Data Source</label>
-        <input type="text" value="Public Filings — FY2023 / FY2024 Interim" readonly />
+      <div class="form-group form-group-full">
+        <label>Financials</label>
+        <input type="text" id="financials-range" value="Public filings · FY 2019 – FY 2024" readonly />
+        <div class="financial-toolbar">
+          <button type="button" class="btn-secondary" onclick="addLatestFinancials()">+ Add latest financials</button>
+          <span class="financial-login-hint">Subscription only</span>
+        </div>
+        <div id="financial-hint-box" class="financial-hint-box" role="status"></div>
       </div>
     </div>
     <div class="analyst-note">
       💡 &nbsp;The AI pipeline extracts and structures data from public filings. The analyst reviews all outputs, overrides where needed, and approves before the memo is finalised.
     </div>
-    <button class="run-btn" onclick="runAnalysis()">
+    <div class="demo-banner" role="note">
+      <span aria-hidden="true">🧪</span>
+      <span><strong>Demo:</strong> This page is a static showcase. <strong>Run AI-Augmented Analysis</strong> does not call a live model or your data—it runs a short UI simulation and reveals <strong>pre-generated</strong> memo content produced via <strong>Claude CoWork — Skills</strong>. Not for production credit decisions.</span>
+    </div>
+    <button type="button" class="run-btn" onclick="runAnalysis()">
       ▶ &nbsp;Run AI-Augmented Analysis
     </button>
   </div>
@@ -521,7 +1015,37 @@
   <!-- Output -->
   <div id="output">
 
-    <!-- Pending Review Banner -->
+  <div class="memo-shell">
+    <nav class="memo-toc" aria-label="Credit memo sections">
+      <div class="memo-toc-title">Credit memo</div>
+      <div class="memo-toc-jump-wrap">
+        <label for="memo-toc-jump" class="memo-toc-jump-label">Jump to section</label>
+        <select id="memo-toc-jump" class="memo-toc-select">
+          <option value="" selected disabled>Select section…</option>
+          <option value="#sec-review">Review &amp; sign-off</option>
+          <option value="#sec-cover">Rating Summary</option>
+          <option value="#sec-credit-summary">Credit assessment summary</option>
+          <option value="#sec-biz-overview">Business Model</option>
+          <option value="#sec-biz-asset">Asset management</option>
+          <option value="#sec-biz-sales">Business risk — sales &amp; profitability</option>
+          <option value="#sec-fin-agent">Financial Risk</option>
+        </select>
+      </div>
+      <ul>
+        <li><a href="#sec-review">Review &amp; sign-off</a></li>
+        <li><a href="#sec-cover">Rating Summary</a></li>
+        <li><a href="#sec-credit-summary">Credit assessment summary</a></li>
+        <li><a href="#sec-biz-overview">Business Model</a></li>
+        <li><a href="#sec-biz-asset">Asset management</a></li>
+        <li><a href="#sec-biz-sales">Sales &amp; Profitability</a></li>
+        <li><a href="#sec-fin-agent">Financial Risk</a></li>
+      </ul>
+    </nav>
+
+    <div class="memo-main">
+
+    <section id="sec-review" class="memo-section" aria-labelledby="memo-h-review">
+      <h2 id="memo-h-review" class="memo-section-title">Review &amp; sign-off</h2>
     <div class="review-banner" id="review-banner">
       <div class="review-icon">👤</div>
       <div class="review-text">
@@ -530,13 +1054,15 @@
       <button class="approve-btn" onclick="approveMemo()">✓ Approve Memo</button>
       <div class="approved-tag" id="approved-tag">✓ Analyst Approved</div>
     </div>
+    </section>
 
-    <!-- Score Banner -->
+    <section id="sec-cover" class="memo-section" aria-labelledby="memo-h-cover">
+      <h2 id="memo-h-cover" class="memo-section-title">Rating Summary</h2>
     <div class="score-banner">
       <div class="score-left">
-        <h2>Helios Towers Africa plc</h2>
+        <p class="company-title">Helios Towers Africa plc</p>
         <p>TMT / Tower Infrastructure · Full Credit Memo · March 2026</p>
-        <div class="source-note">⚠ Figures from public filings (FY2023 / H1 FY2024) — verify against latest annual report</div>
+        <div class="source-note">⚠ Figures from public filings (FY 2019 – FY 2024 window) — verify against latest annual report</div>
       </div>
       <div class="score-right">
         <div class="score-circle">
@@ -550,81 +1076,609 @@
         </div>
       </div>
     </div>
+    </section>
 
-    <!-- Key Metrics -->
-    <div class="metrics-grid">
-      <div class="metric-card">
-        <div class="metric-source">Public filing</div>
-        <div class="metric-label">Revenue (FY2023)</div>
-        <div class="metric-value">$549m</div>
-        <div class="metric-sub">+12% YoY</div>
-        <div class="metric-trend up">▲ Driven by tenancy growth</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-source">Public filing</div>
-        <div class="metric-label">Adj. EBITDA Margin</div>
-        <div class="metric-value">~52%</div>
-        <div class="metric-sub">Stable tower margins</div>
-        <div class="metric-trend up">▲ Consistent TowerCo profile</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-source">Public filing</div>
-        <div class="metric-label">Net Leverage</div>
-        <div class="metric-value">~5.8x</div>
-        <div class="metric-sub">ND / Adj. EBITDA</div>
-        <div class="metric-trend neutral">● Above 5x IG threshold</div>
-      </div>
-      <div class="metric-card">
-        <div class="metric-source">AI-derived</div>
-        <div class="metric-label">Est. DSCR</div>
-        <div class="metric-value">~1.4x</div>
-        <div class="metric-sub">Debt Service Cover</div>
-        <div class="metric-trend up">▲ Adequate — verify vs. covenants</div>
+    <section id="sec-credit-summary" class="memo-section" aria-labelledby="memo-h-credit-summary">
+      <h2 id="memo-h-credit-summary" class="memo-section-title">Credit assessment summary</h2>
+    <div class="rec-box">
+      <div class="rec-header">📄 AI-drafted credit recommendation — pending analyst sign-off</div>
+      <div class="rec-text">
+        Helios Towers Africa presents a sub-investment grade credit (implied BB+), supported by a contracted tower-lease business model with top-tier MNO counterparties across Sub-Saharan Africa. The ~52% Adjusted EBITDA margin reflects the structural strength of the TowerCo model. Credit concerns are centred on leverage (~5.8x ND/EBITDA), FX mismatch between USD-denominated debt and local currency revenues, and a refinancing profile that warrants close monitoring. <strong>Recommended decision: Proceed with Conditions.</strong> Suggested covenant package: net leverage step-down to 5.0x by FY2026, mandatory FX hedging on ≥70% of USD obligations, and a cash sweep mechanism triggered above 6.0x leverage. Estimated headroom for additional debt on current EBITDA: USD ~140m at 5.0x covenant level.
+        <br><br>
+        <span style="font-size:12px;color:var(--amber);">⚠ This is an AI-generated draft. The analyst must verify all figures against source documents, apply professional judgement, and approve before this memo is used for any credit decision.</span>
       </div>
     </div>
+    </section>
 
-    <!-- Risk + Debt Capacity -->
-    <div class="two-col">
-      <div class="panel">
-        <div class="panel-title">⚠️ Risk Flags — AI Identified · Analyst to Verify</div>
-        <div class="risk-item">
-          <div class="risk-dot risk-high"></div>
-          <div>
-            <div class="risk-text">Elevated leverage (~5.8x ND/EBITDA) above investment grade threshold of 5.0x</div>
-            <div class="risk-cat">Financial Risk <span class="risk-source">· Source: annual report</span></div>
+    <section id="sec-biz-overview" class="memo-section" aria-labelledby="memo-h-biz-overview">
+      <h2 id="memo-h-biz-overview" class="memo-section-title">Business Model</h2>
+      <div class="bm-grid">
+        <div class="bm-col">
+          <div class="bm-heading">Activities &amp; Products</div>
+          <ul class="bm-list">
+            <li><span class="bm-li-label">Business:</span> Passive telecoms tower infrastructure — own, build and lease tower sites to MNOs under long-term contracts</li>
+            <li><span class="bm-li-label">Sales:</span> USD 613–620m FY2023; Adj. EBITDA ~50% margin (~USD 305–315m) [V]</li>
+            <li><span class="bm-li-label">Model:</span> CPI-linked annual escalators; largely cost pass-through on energy supply</li>
+          </ul>
+
+          <div class="bm-subtitle">Operational Footprint</div>
+          <ul class="bm-list">
+            <li><span class="bm-li-label">Scale:</span> 14,525 tower sites across 9 markets — Tanzania, DRC, Ghana, Senegal, Congo Brazzaville, South Africa, Madagascar, Malawi, Oman (as at 31 Dec 2024)</li>
+            <li><span class="bm-li-label">Tenancy ratio:</span> 2.03x (FY2024); Tanzania and DRC are key sales contributors; Malawi added via Airtel acquisition (2022)</li>
+          </ul>
+        </div>
+
+        <div class="bm-col">
+          <div class="bm-heading">Key Buyers &amp; Suppliers</div>
+          <ul class="bm-list">
+            <li><span class="bm-li-label">Customers:</span> Airtel Africa (largest), MTN, Vodacom, Orange, Millicom/Tigo; 10–15yr contracts; top 3 ~60–65% of sales [V]</li>
+            <li><span class="bm-li-label">Inputs:</span> Diesel/HFO fuel (~20–25% opex) and ground leases are main cost drivers; solar-hybrid rollout underway</li>
+          </ul>
+
+          <div class="bm-subtitle">Ownership &amp; Management</div>
+          <ul class="bm-list">
+            <li><span class="bm-li-label">Structure:</span> LSE listed (HTWS); Millicom ~25–28% stake; CEO Tom Greenwood (co-founder); management transition flagged 2023/24 [V]</li>
+            <li><span class="bm-li-label">Strategy:</span> Priorities: Grow tenancy ratio organically; deleverage from ~6x Net Debt/EBITDA; accelerate energy transition to solar-hybrid [V]</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-biz-asset" class="memo-section" aria-labelledby="memo-h-biz-asset">
+      <h2 id="memo-h-biz-asset" class="memo-section-title">Asset management</h2>
+      <div class="bm-grid bm-grid--single">
+        <div class="bm-col">
+          <div class="bm-heading">Current Asset</div>
+          <div class="ca-tabs" data-ca-tabs>
+            <div class="ca-tablist" role="tablist" aria-label="Current asset panels">
+              <button class="ca-tab" type="button" role="tab" id="ca-tab-km" aria-controls="ca-panel-km" aria-selected="true" tabindex="0">Key metrics</button>
+              <button class="ca-tab" type="button" role="tab" id="ca-tab-df" aria-controls="ca-panel-df" aria-selected="false" tabindex="-1">Detailed figures</button>
+              <button class="ca-tab" type="button" role="tab" id="ca-tab-conclusion" aria-controls="ca-panel-conclusion" aria-selected="false" tabindex="-1">Conclusion</button>
+            </div>
+
+            <div id="ca-panel-km" class="ca-panel" role="tabpanel" aria-labelledby="ca-tab-km">
+              <div class="metrics-grid metrics-grid--pair" style="margin-bottom:12px;">
+                <div class="metric-card">
+                  <div class="metric-source">Derived</div>
+                  <div class="metric-label">Adj. NWA change (FY2022)</div>
+                  <div class="metric-value">(54.0)</div>
+                  <div class="metric-sub">USD m</div>
+                  <div class="metric-trend neutral">● Peak working-capital outflow year</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-source">Derived</div>
+                  <div class="metric-label">NWA (Adj) / Sales (FY2024)</div>
+                  <div class="metric-value">10%</div>
+                  <div class="metric-sub">Ratio</div>
+                  <div class="metric-trend up">▲ Stabilised vs. FY2022/23 volatility</div>
+                </div>
+              </div>
+              <div class="deck-placeholder">
+                <div class="deck-placeholder-title">What to look for</div>
+                Focus on receivables, contract assets, and deferred income drivers; validate against billing/collection dynamics and IFRS 15 movements.
+              </div>
+            </div>
+
+            <div id="ca-panel-df" class="ca-panel" role="tabpanel" aria-labelledby="ca-tab-df" hidden>
+              <div class="deck-placeholder-title" style="margin-bottom:6px;">NWA Impact on Cash Flow</div>
+
+              <div class="nwa-table-wrap" id="nwa-table-wrap">
+                <div class="nwa-chart-tooltip" id="nwa-hover-chart" role="tooltip" aria-hidden="true">
+                  <div class="nwa-chart-title" id="nwa-chart-title">—</div>
+                  <div class="nwa-chart-values" id="nwa-chart-values"></div>
+                  <svg id="nwa-chart-svg" viewBox="0 0 340 130" preserveAspectRatio="none"></svg>
+                </div>
+
+                <div class="nwa-legend"><code>■</code> (Subscription only)</div>
+
+                <table class="nwa-table" aria-label="NWA impact on cash flow table">
+                  <thead>
+                    <tr>
+                      <th>Change in Adj. NWA (USD Millions)</th>
+                      <th>FY2019</th>
+                      <th>FY2020</th>
+                      <th>FY2021</th>
+                      <th>FY2022</th>
+                      <th>FY2023</th>
+                      <th>FY2024</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="nwa-row" data-series="netReceivables">
+                      <td>Change in Net Receivables</td>
+                      <td>—</td><td>54.2</td><td>(0.3)</td><td>2.4</td><td>(6.1)</td><td>2.0</td>
+                    </tr>
+
+                    <tr class="nwa-row" data-series="accruedRevenue">
+                      <td>Change in Accrued Revenue</td>
+                      <td>—</td><td>(8.8)</td><td>3.6</td><td>(15.5)</td><td>12.8</td><td>3.1</td>
+                    </tr>
+
+                    <tr class="nwa-row" data-series="contractAssets">
+                      <td>Change in Contract Assets</td>
+                      <td>—</td><td>—</td><td>(17.2)</td><td>(44.4)</td><td>(17.5)</td><td>2.8</td>
+                    </tr>
+
+                    <tr class="nwa-row" data-series="inventory">
+                      <td>Change in Inventory</td>
+                      <td>—</td><td>—</td><td>0.3</td><td>(1.5)</td><td>(4.1)</td><td>1.9</td>
+                    </tr>
+
+                    <tr class="nwa-row" data-series="prepayments">
+                      <td>Change in Prepayments</td>
+                      <td>—</td><td>—</td><td>(25.2)</td><td>(4.0)</td><td>(2.4)</td><td>5.7</td>
+                    </tr>
+
+                    <tr class="nwa-row" data-series="dueFromRelated">
+                      <td>Change in Due from Related Parties</td>
+                      <td>—</td><td>—</td><td>(13.7)</td><td>37.1</td><td>—</td><td>0.7</td>
+                    </tr>
+
+                    <tr class="nwa-row" data-series="deferredIncome">
+                      <td>Change in Deferred Income</td>
+                      <td>—</td><td>(13.4)</td><td>(5.2)</td><td>(36.0)</td><td>50.8</td><td>3.8</td>
+                    </tr>
+
+                    <tr class="nwa-row" data-series="tradePayables">
+                      <td>Change in Trade Payables</td>
+                      <td>—</td><td>(5.2)</td><td>0.8</td><td>18.5</td><td>(0.7)</td><td>6.6</td>
+                    </tr>
+
+                    <tr class="nwa-row" data-series="accrualsOtherCL">
+                      <td>Change in Accruals &amp; Other CL</td>
+                      <td>—</td><td>11.5</td><td>29.6</td><td>27.5</td><td>16.4</td><td>(25.1)</td>
+                    </tr>
+
+                    <tr class="nwa-row" data-series="adjNWA">
+                      <td>Change in Adj. NWA</td>
+                      <td>—</td><td>(30.3)</td><td>11.2</td><td>(54.0)</td><td>1.7</td><td>(7.5)</td>
+                    </tr>
+
+                    <tr class="nwa-spacer" aria-hidden="true">
+                      <td colspan="7"></td>
+                    </tr>
+
+                    <tr class="nwa-row" data-series="grossCFO">
+                      <td><b>Gross Cash from Operations</b></td>
+                      <td>186.3</td><td>196.2</td><td>251.8</td><td>228.7</td><td>370.7</td><td>412.3</td>
+                    </tr>
+
+                    <tr class="nwa-row" data-series="nwaAdjSales">
+                      <td><b>NWA (Adj) / Sales*</b></td>
+                      <td>1% [P]</td><td>8%</td><td>5%</td><td>13%</td><td>10%</td><td>10%</td>
+                    </tr>
+
+                    <tr class="nwa-row" data-series="salesGrowth">
+                      <td><b>Sales Growth (%) *</b></td>
+                      <td>—</td><td>7%</td><td>8%</td><td>25%</td><td>29%</td><td>10%</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div id="ca-panel-conclusion" class="ca-panel" role="tabpanel" aria-labelledby="ca-tab-conclusion" hidden>
+              <ul class="bm-list">
+                <li><span class="bm-li-label">Deferred income + related party receivables:</span> kept early NWA low; then unwound as FY2019→FY2024 progressed.</li>
+                <li><span class="bm-li-label">Contract assets:</span> IFRS 15 amplifier; the build/unwind drove the biggest swings in NWA.</li>
+                <li><span class="bm-li-label">Accruals &amp; other CL:</span> generally acted as a headwind in FY2024 (offsetting contract asset benefit).</li>
+                <li><span class="bm-li-label">Receivables:</span> structurally the drag (collection cycles lengthening even when advances exist).</li>
+                <li><span class="bm-li-label">NWCC context:</span> advance payments (and deferred income) partially offset trade exposure.</li>
+              </ul>
+            </div>
           </div>
         </div>
-        <div class="risk-item">
-          <div class="risk-dot risk-high"></div>
-          <div>
-            <div class="risk-text">Multi-currency FX exposure — TZS, GHS, ZMW, CDF vs USD-denominated debt</div>
-            <div class="risk-cat">Currency Risk <span class="risk-source">· Source: annual report</span></div>
-          </div>
-        </div>
-        <div class="risk-item">
-          <div class="risk-dot risk-med"></div>
-          <div>
-            <div class="risk-text">Customer concentration: MTN &amp; Airtel estimated ~60–65% of revenue</div>
-            <div class="risk-cat">Counterparty Risk <span class="risk-source">· Source: segmental reporting — verify %</span></div>
-          </div>
-        </div>
-        <div class="risk-item">
-          <div class="risk-dot risk-med"></div>
-          <div>
-            <div class="risk-text">Rising African market rates creating refinancing pressure on USD bonds</div>
-            <div class="risk-cat">Refinancing Risk <span class="risk-source">· Analyst judgement required</span></div>
-          </div>
-        </div>
-        <div class="risk-item">
-          <div class="risk-dot risk-low"></div>
-          <div>
-            <div class="risk-text">Avg. 10-year tower lease terms provide strong contracted revenue base</div>
-            <div class="risk-cat">Mitigant <span class="risk-source">· Source: investor presentation</span></div>
+
+      </div>
+    </section>
+
+    <section id="sec-biz-asset-fixed" class="memo-section" aria-labelledby="memo-h-biz-asset-fixed">
+      <h2 id="memo-h-biz-asset-fixed" class="memo-section-title">Fixed Asset</h2>
+      <div class="bm-grid bm-grid--single">
+        <div class="bm-col">
+          <div class="bm-heading">Fixed Asset</div>
+          <div class="ca-tabs" data-fa-tabs>
+            <div class="ca-tablist" role="tablist" aria-label="Fixed asset panels">
+              <button class="ca-tab" type="button" role="tab" id="fa-tab-km" aria-controls="fa-panel-km" aria-selected="true" tabindex="0">Key metrics</button>
+              <button class="ca-tab" type="button" role="tab" id="fa-tab-df" aria-controls="fa-panel-df" aria-selected="false" tabindex="-1">Detailed figures</button>
+              <button class="ca-tab" type="button" role="tab" id="fa-tab-conclusion" aria-controls="fa-panel-conclusion" aria-selected="false" tabindex="-1">Conclusion</button>
+            </div>
+
+            <div id="fa-panel-km" class="ca-panel" role="tabpanel" aria-labelledby="fa-tab-km">
+              <div class="metrics-grid metrics-grid--pair" style="margin-bottom:12px;">
+                <div class="metric-card">
+                  <div class="metric-source">Derived</div>
+                  <div class="metric-label">Capex / Total D&amp;A (FY2024)</div>
+                  <div class="metric-value">1.4x</div>
+                  <div class="metric-sub">Intensity</div>
+                  <div class="metric-trend neutral">● Normalised from acquisition peak</div>
+                </div>
+                <div class="metric-card">
+                  <div class="metric-source">Derived</div>
+                  <div class="metric-label">Sales per Site (FY2024)</div>
+                  <div class="metric-value">55.3</div>
+                  <div class="metric-sub">$000</div>
+                  <div class="metric-trend up">▲ Back to pre-M&amp;A baseline</div>
+                </div>
+              </div>
+              <div class="deck-placeholder">
+                <div class="deck-placeholder-title">What to look for</div>
+                Track capex mix (maintenance vs growth), funding coverage after interest/amortisation, and efficiency vs peers (turnover, capex/sales).
+              </div>
+            </div>
+
+            <div id="fa-panel-df" class="ca-panel" role="tabpanel" aria-labelledby="fa-tab-df" hidden>
+              <div class="nwa-table-wrap" id="fa-figures-wrap">
+                <div class="nwa-chart-tooltip" id="fa-hover-chart" role="tooltip" aria-hidden="true">
+                  <div class="nwa-chart-title" id="fa-chart-title">—</div>
+                  <div class="nwa-chart-values" id="fa-chart-values"></div>
+                  <svg id="fa-chart-svg" viewBox="0 0 340 130" preserveAspectRatio="none"></svg>
+                </div>
+
+                <div class="nwa-legend"><code>■</code> (Subscription only)</div>
+                <table class="nwa-table" id="fa-figures-table" aria-label="Fixed asset figures table">
+                  <thead>
+                    <tr>
+                      <th>Helios Towers · USD Millions unless stated</th>
+                      <th>FY2019</th>
+                      <th>FY2020</th>
+                      <th>FY2021</th>
+                      <th>FY2022</th>
+                      <th>FY2023</th>
+                      <th>FY2024</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr class="fa-row" data-series="faSales">
+                      <td>Sales (USD m)</td>
+                      <td>387.8</td><td>414.0</td><td>449.1</td><td>560.7</td><td>721.0</td><td>792.0</td>
+                    </tr>
+                    <tr class="fa-row" data-series="faEbitdaMargin">
+                      <td>EBITDA Margin (%)</td>
+                      <td>55%</td><td>58%</td><td>63%</td><td>66%</td><td>58%</td><td>55% [E]</td>
+                    </tr>
+                    <tr class="fa-row" data-series="faDA">
+                      <td>D&amp;A — Total (USD m)</td>
+                      <td>138.0</td><td>135.4</td><td>157.5</td><td>165.8</td><td>192.9</td><td>139.2</td>
+                    </tr>
+                    <tr class="fa-row" data-series="faSites">
+                      <td>Total Sites</td>
+                      <td>7,000 [A]</td><td>6,966</td><td>14,231 [A]</td><td>14,416 [A]</td><td>14,097</td><td>14,325</td>
+                    </tr>
+                    <tr class="fa-row" data-series="faCapex">
+                      <td><b>Chg in Net Fixed Assets (CAPEX)</b></td>
+                      <td><b>108.7</b></td><td><b>114.3</b></td><td><b>334.1</b></td><td><b>417.8</b></td><td><b>230.7</b></td><td><b>200.0</b></td>
+                    </tr>
+                    <tr class="fa-row" data-series="faCapexToDA">
+                      <td><b>Capex / Total D&amp;A (x)</b></td>
+                      <td><b>0.8x</b></td><td><b>0.8x</b></td><td><b>2.1x</b></td><td><b>2.5x</b></td><td><b>1.2x</b></td><td><b>1.4x</b></td>
+                    </tr>
+                    <tr class="fa-row" data-series="faSalesPerSite">
+                      <td><b>Sales per Site ($000)</b></td>
+                      <td><b>55.4</b></td><td><b>59.4</b></td><td><b>31.6</b></td><td><b>41.2</b></td><td><b>51.1</b></td><td><b>55.3</b></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+            <div id="fa-panel-conclusion" class="ca-panel" role="tabpanel" aria-labelledby="fa-tab-conclusion" hidden>
+              <ul class="bm-list">
+                <li><span class="bm-li-label">CAPEX Trajectory — Acquisitive to Organic:</span> CAPEX/D&amp;A peaked at 2.5x (FY2022) during the DRC, South Africa, Senegal and Malawi acquisition program (FY2021–22, ~7,000+ towers added). Management formally pivoted to organic-only in 2023: +544 sites (FY2023), +228 sites (FY2024). CAPEX/D&amp;A has moderated to 1.4x (FY2024), appropriate for maintenance + organic build. Note: the ratio is flattered by the South Africa disposal which reduced total D&amp;A sharply from 192.9 (FY2023) to 139.2 (FY2024) — watch for re-acceleration in FY2025+.</li>
+                <li><span class="bm-li-label">CAPEX Affordability — Structural Turning Point in FY2023/24:</span> NCAO improved from $165–219M (FY2020–22) to $410–418M (FY2023–24) as tenancy growth drove operating leverage. NCAO/CAPEX recovered from 0.5x (FY2021–22) to 2.1x (FY2024): Helios now self-funds all CAPEX from operations for the first time. CASH AFTER DEBT AMORTIZATION (168.8M, FY2024) falls marginally short of total CAPEX (200.0M), still requiring modest external funding for growth — but the gap vs. prior years (CADA was only 9.3M in FY2021) represents a step-change improvement.</li>
+                <li><span class="bm-li-label">Investment Payoff — Confirmed by Operational KPIs:</span> Tenancy ratio reached 2.07x (FY2024), confirmed from annual report, up from ~1.30x pre-acquisition: the internal 2.0x investment thesis has been delivered. Sales per site fully recovered to $55.3k (FY2024), matching the FY2019 pre-M&amp;A baseline of $55.4k despite near-doubling of site count (7,000 → 14,325). EBITDA/site also recovered to $30.2k (FY2024) vs $30.6k (FY2019). The dilution from acquiring lower-utilisation towers has been fully absorbed.</li>
+                <li><span class="bm-li-label">Leverage and Affordability Risk:</span> Interest expense (196.9M, FY2024) consumes 47% of NCAO, leaving CASH AFTER FINANCING COSTS of 220.8M. CPLTD of 52.0M (CPLTD Bond 16.5M + Finance Leases CP 35.5M) then reduces CADA to 168.8M. While improved vs FY2021 (CADA: 9.3M), any NCAO reversal — driven by SSA FX devaluation (TZS, GHS, CDF) or energy cost spikes — would quickly erode CAPEX coverage. Bond refinancing risk remains the key overhang, given elevated net leverage.</li>
+                <li><span class="bm-li-label">Asset Efficiency vs. Peers — Still Closing the Gap:</span> Fixed asset turnover (0.24x, FY2024) remains below AMT (0.27x) and SBA (0.46x), reflecting structurally lower revenue density in SSA vs. developed markets. Capex/Sales at ~25% (FY2024) has normalised from the FY2021 peak of ~349% but remains above global tower peers (~9–14%). The path to peer-level returns requires continued tenancy growth (current 2.07x vs. mature market benchmark ~2.5x+) and EBITDA margin expansion beyond the current ~55% base.</li>
+              </ul>
+            </div>
           </div>
         </div>
       </div>
-      <div class="panel">
-        <div class="panel-title">📊 Debt Capacity Waterfall (USD m) — AI Estimate</div>
+    </section>
+
+    <section id="sec-biz-sales" class="memo-section" aria-labelledby="memo-h-biz-sales">
+      <h2 id="memo-h-biz-sales" class="memo-section-title">Sales &amp; Profitability</h2>
+      <div class="ca-tabs" data-sales-tabs>
+        <div class="ca-tablist" role="tablist" aria-label="Sales and profitability panels">
+          <button class="ca-tab" type="button" role="tab" id="sp-tab-km" aria-controls="sp-panel-km" aria-selected="true" tabindex="0">Key metrics</button>
+          <button class="ca-tab" type="button" role="tab" id="sp-tab-df" aria-controls="sp-panel-df" aria-selected="false" tabindex="-1">Detailed figures</button>
+          <button class="ca-tab" type="button" role="tab" id="sp-tab-conc" aria-controls="sp-panel-conc" aria-selected="false" tabindex="-1">Conclusion</button>
+        </div>
+
+        <div id="sp-panel-km" class="ca-panel" role="tabpanel" aria-labelledby="sp-tab-km">
+          <div class="metrics-grid metrics-grid--pair">
+            <div class="metric-card">
+              <div class="metric-source">Public filing</div>
+              <div class="metric-label">Revenue (FY2023)</div>
+              <div class="metric-value">$549m</div>
+              <div class="metric-sub">+12% YoY</div>
+              <div class="metric-trend up">▲ Driven by tenancy growth</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-source">Public filing</div>
+              <div class="metric-label">Adj. EBITDA Margin</div>
+              <div class="metric-value">~52%</div>
+              <div class="metric-sub">Stable tower margins</div>
+              <div class="metric-trend up">▲ Consistent TowerCo profile</div>
+            </div>
+          </div>
+        </div>
+
+        <div id="sp-panel-df" class="ca-panel" role="tabpanel" aria-labelledby="sp-tab-df" hidden>
+          <div class="deck-placeholder-title" style="margin-bottom:6px;">Profitability</div>
+          <div class="nwa-table-wrap" id="sp-figures-wrap">
+            <div class="nwa-chart-tooltip" id="sp-hover-chart" role="tooltip" aria-hidden="true">
+              <div class="nwa-chart-title" id="sp-chart-title">—</div>
+              <div class="nwa-chart-values" id="sp-chart-values"></div>
+              <svg id="sp-chart-svg" viewBox="0 0 340 130" preserveAspectRatio="none"></svg>
+            </div>
+
+            <div class="nwa-legend"><code>■</code> (Subscription only)</div>
+            <table class="nwa-table" id="sp-figures-table" aria-label="Sales and profitability detailed figures table">
+              <thead>
+                <tr>
+                  <th>Profitability</th>
+                  <th>31/12/2019</th>
+                  <th>31/12/2020</th>
+                  <th>31/12/2021</th>
+                  <th>31/12/2022</th>
+                  <th>31/12/2023</th>
+                  <th>31/12/2024</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="sp-row" data-series="spTotalSales">
+                  <td>Total Sales</td>
+                  <td>387.8</td><td>414.0</td><td>449.1</td><td>560.7</td><td>721.0</td><td>792.0</td>
+                </tr>
+                <tr class="sp-row" data-series="spGrossProfit">
+                  <td><b>Gross Profit</b></td>
+                  <td><b>125.9</b></td><td><b>147.9</b></td><td><b>153.8</b></td><td><b>194.8</b></td><td><b>270.6</b></td><td><b>383.1</b></td>
+                </tr>
+                <tr class="sp-row" data-series="spNPAT">
+                  <td>Net Profit After Tax</td>
+                  <td>(136.6)</td><td>(36.7)</td><td>(156.2)</td><td>(171.4)</td><td>(111.8)</td><td>27.0</td>
+                </tr>
+                <tr class="sp-row" data-series="spSalesChg">
+                  <td>Change in Sales (%)</td>
+                  <td>—</td><td>6.8%</td><td>8.5%</td><td>24.8%</td><td>28.6%</td><td>9.8%</td>
+                </tr>
+                <tr class="sp-row" data-series="spGPM">
+                  <td><b>Gross Profit Margin (%)</b></td>
+                  <td><b>32.5%</b></td><td><b>35.7%</b></td><td><b>34.2%</b></td><td><b>34.7%</b></td><td><b>37.5%</b></td><td><b>48.4%</b></td>
+                </tr>
+                <tr class="sp-row" data-series="spEbitdaToSales">
+                  <td><b>EBITDA to Sales (%)</b></td>
+                  <td><b>52.9%</b></td><td><b>54.7%</b></td><td><b>53.6%</b></td><td><b>50.4%</b></td><td><b>51.2%</b></td><td><b>53.0%</b></td>
+                </tr>
+                <tr class="sp-row" data-series="spNPBTToSales">
+                  <td>NPBT to Sales (%)</td>
+                  <td>(19.3%)</td><td>(5.0%)</td><td>(26.6%)</td><td>(29.0%)</td><td>(15.6%)</td><td>5.6%</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div id="sp-panel-conc" class="ca-panel" role="tabpanel" aria-labelledby="sp-tab-conc" hidden>
+          <ul class="bm-list">
+            <li><span class="bm-li-label">Revenue: strong USD growth, FX the persistent headwind:</span> Sales expanded from $414m (FY2020) to $792m (FY2024) — a 91% increase over four years, underpinned by tower additions, tenancy ratio gains, and contracted CPI-linked escalators. USD growth peaked at +29% (FY2023) before moderating to +10% (FY2024) as SSA currency devaluations increasingly compress reported USD revenue. Tanzania ($270m, 34%) and DRC ($118m, 15%) are the dominant markets — together ~49% of FY2024 revenue — with Ghana ($127m, 16%) adding further FX exposure; collectively ~65% of revenue is in high-FX-risk jurisdictions (TZS, CDF, GHS). Senegal and South Africa provide growing but subscale offsets.</li>
+            <li><span class="bm-li-label">GP margin step-change in FY2024: IFRS 16 rolloff, not cash improvement:</span> Gross Profit margin from trading jumped 10.8pp to 48.4% in FY2024 (from 37.5% in FY2023). The primary driver was IFRS 16 ROU depreciation rolling off acquired lease towers (+9.2pp), a non-cash accounting release; incremental cash COS efficiency contributed only +1.7pp. The EBITDA(CF) margin improved modestly from 51% to 53% (FY2023→FY2024), confirming the bulk of the GP uplift is non-cash. EBITDA(CF) grew from $227m (FY2020) to $420m (FY2024) — an 85% increase at 17% CAGR — reflecting genuine operating leverage on the tower network.</li>
+            <li><span class="bm-li-label">FY2024: first profit since IPO, but interest &amp; FX costs remain elevated:</span> EBIT reached $263m (FY2024), driving the first positive NPBT (+$44.2m) and NPAT (+$27m) since listing. However, gross interest expense compounded at ~16% p.a. to $197m (FY2024), and FX translation losses on non-USD debt added a further $22m — total interest and FX cost of $219m absorbed the majority of EBIT. FY2022/FY2023 FX losses ($52m/$66m) severely suppressed NPBT in those years. Structural profitability requires both continued EBITDA expansion and FX stabilisation across the SSA portfolio.</li>
+            <li><span class="bm-li-label">Divisional: Tanzania and DRC core, but no segment EBITDA disclosed:</span> Tanzania ($270m, +9% YoY) and DRC ($118m, +10%) are the earnings engine, growing steadily despite currency pressure. South Africa delivered the fastest growth at +10% to $87m as the build-out matures. Ghana ($127m) and Senegal ($71m) are broadly stable. The Group reports only segment revenue — no divisional EBITDA or margin data is disclosed, limiting the ability to assess profitability distribution and cross-subsidy risk across the six markets.</li>
+            <li><span class="bm-li-label">Cash generation: step-change in FY2024; interest coverage improving:</span> Derived GCFO reached $440m (FY2024), more than doubling from $197m (FY2021), as EBITDA(CF) expanded and NWA reversed — releasing $20m in FY2024 after absorbing $44–54m annually in FY2021–FY2023. NCAO of $418m (FY2024) covers cash interest of $197m at 2.1x (FY2019: 1.7x). CACF (post-interest) improved to $221m, providing meaningful headroom for debt service and growth CAPEX. Est. FY2025 NCAO ~$400m [E] — stable-to-slight decline as the FY2023 tax credit unwinds and FX/other costs normalise.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-fin-agent" class="memo-section" aria-labelledby="memo-h-fin-agent">
+      <h2 id="memo-h-fin-agent" class="memo-section-title">Financial Risk</h2>
+      <div class="deck-placeholder">
+        <div class="deck-placeholder-title">Chapter</div>
+        <p>This chapter is organised into <strong>Solvency</strong>, <strong>Funding</strong>, and <strong>Liquidity</strong> sections below.</p>
+      </div>
+    </section>
+
+    <section id="sec-fin-solvency" class="memo-section" aria-labelledby="memo-h-fin-solvency">
+      <h2 id="memo-h-fin-solvency" class="memo-section-title">Solvency</h2>
+      <div class="ca-tabs" data-solv-tabs>
+        <div class="ca-tablist" role="tablist" aria-label="Solvency panels">
+          <button class="ca-tab" type="button" role="tab" id="solv-tab-km" aria-controls="solv-panel-km" aria-selected="true" tabindex="0">Key metrics</button>
+          <button class="ca-tab" type="button" role="tab" id="solv-tab-df" aria-controls="solv-panel-df" aria-selected="false" tabindex="-1">Detailed figures</button>
+          <button class="ca-tab" type="button" role="tab" id="solv-tab-conc" aria-controls="solv-panel-conc" aria-selected="false" tabindex="-1">Conclusion</button>
+        </div>
+
+        <div id="solv-panel-km" class="ca-panel" role="tabpanel" aria-labelledby="solv-tab-km">
+          <div class="metrics-grid metrics-grid--pair" style="margin-bottom:16px;">
+            <div class="metric-card">
+              <div class="metric-source">Public filing</div>
+              <div class="metric-label">Net Leverage</div>
+              <div class="metric-value">~5.8x</div>
+              <div class="metric-sub">ND / Adj. EBITDA</div>
+              <div class="metric-trend neutral">● Above 5x IG threshold</div>
+            </div>
+            <div class="metric-card">
+              <div class="metric-source">AI-derived</div>
+              <div class="metric-label">Est. DSCR</div>
+              <div class="metric-value">~1.4x</div>
+              <div class="metric-sub">Debt Service Cover</div>
+              <div class="metric-trend up">▲ Adequate — verify vs. covenants</div>
+            </div>
+          </div>
+
+          <div class="panel">
+            <div class="panel-title">⚠️ Risk flags — AI identified · analyst to verify</div>
+            <div class="risk-item">
+              <div class="risk-dot risk-high"></div>
+              <div>
+                <div class="risk-text">Elevated leverage (~5.8x ND/EBITDA) above investment grade threshold of 5.0x</div>
+                <div class="risk-cat">Financial Risk <span class="risk-source">· Source: annual report</span></div>
+              </div>
+            </div>
+            <div class="risk-item">
+              <div class="risk-dot risk-high"></div>
+              <div>
+                <div class="risk-text">Multi-currency FX exposure — TZS, GHS, ZMW, CDF vs USD-denominated debt</div>
+                <div class="risk-cat">Currency Risk <span class="risk-source">· Source: annual report</span></div>
+              </div>
+            </div>
+            <div class="risk-item">
+              <div class="risk-dot risk-med"></div>
+              <div>
+                <div class="risk-text">Customer concentration: MTN &amp; Airtel estimated ~60–65% of revenue</div>
+                <div class="risk-cat">Counterparty Risk <span class="risk-source">· Source: segmental reporting — verify %</span></div>
+              </div>
+            </div>
+            <div class="risk-item">
+              <div class="risk-dot risk-med"></div>
+              <div>
+                <div class="risk-text">Rising African market rates creating refinancing pressure on USD bonds</div>
+                <div class="risk-cat">Refinancing Risk <span class="risk-source">· Analyst judgement required</span></div>
+              </div>
+            </div>
+            <div class="risk-item">
+              <div class="risk-dot risk-low"></div>
+              <div>
+                <div class="risk-text">Avg. 10-year tower lease terms provide strong contracted revenue base</div>
+                <div class="risk-cat">Mitigant <span class="risk-source">· Source: investor presentation</span></div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="solv-panel-df" class="ca-panel" role="tabpanel" aria-labelledby="solv-tab-df" hidden>
+          <div class="deck-placeholder-title" style="margin-bottom:6px;">Solvency — debt protection</div>
+          <div class="nwa-table-wrap" id="solv-figures-wrap">
+            <div class="nwa-chart-tooltip" id="solv-hover-chart" role="tooltip" aria-hidden="true">
+              <div class="nwa-chart-title" id="solv-chart-title">—</div>
+              <div class="nwa-chart-values" id="solv-chart-values"></div>
+              <svg id="solv-chart-svg" viewBox="0 0 340 130" preserveAspectRatio="none"></svg>
+            </div>
+            <div class="nwa-legend"><code>■</code> (Subscription only)</div>
+            <table class="nwa-table" id="solv-figures-table" aria-label="Solvency detailed figures: debt protection">
+              <thead>
+                <tr>
+                  <th>Debt protection (Total Debt incl. Finance Leases)</th>
+                  <th>31/12/2019</th>
+                  <th>31/12/2020</th>
+                  <th>31/12/2021</th>
+                  <th>31/12/2022</th>
+                  <th>31/12/2023</th>
+                  <th>31/12/2024</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="solv-row" data-series="solvGearing">
+                  <td>Gearing (Total Debt / Net Worth)</td>
+                  <td>[V]</td><td>10.47x</td><td>(25.00)x</td><td>(3.37)x</td><td>(3.23)x</td><td>(3.93)x</td>
+                </tr>
+                <tr class="solv-row" data-series="solvInterestCover">
+                  <td>Interest Cover (NPBIT / Interest)</td>
+                  <td>0.32x</td><td>0.75x</td><td>0.24x</td><td>0.22x</td><td>0.85x</td><td>1.33x</td>
+                </tr>
+                <tr class="solv-row" data-series="solvDebtToEbitda">
+                  <td><b>Debt to EBITDA</b></td>
+                  <td><b>3.96x</b></td><td><b>4.95x</b></td><td><b>6.14x</b></td><td><b>6.36x</b></td><td><b>4.99x</b></td><td><b>4.52x</b></td>
+                </tr>
+                <tr class="solv-row" data-series="solvEbitdaToInterest">
+                  <td><b>EBITDA to Interest</b></td>
+                  <td><b>2.21x</b></td><td><b>2.32x</b></td><td><b>1.86x</b></td><td><b>2.00x</b></td><td><b>2.11x</b></td><td><b>2.13x</b></td>
+                </tr>
+                <tr class="solv-row" data-series="solvSTObligations">
+                  <td>Maturing ST Obligations (USD M)</td>
+                  <td>[V]</td><td>26</td><td>36</td><td>54</td><td>70</td><td>81</td>
+                </tr>
+                <tr class="solv-row" data-series="solvDSCR">
+                  <td>Debt Service Cover Ratio</td>
+                  <td>[V]</td><td>2.01x</td><td>1.94x</td><td>1.62x</td><td>2.12x</td><td>2.09x</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="deck-placeholder-title" style="margin:18px 0 6px;">Cash flow — debt servicing (USD m)</div>
+          <div class="nwa-table-wrap" id="solv-cf-wrap">
+            <div class="nwa-chart-tooltip" id="solv-cf-hover-chart" role="tooltip" aria-hidden="true">
+              <div class="nwa-chart-title" id="solv-cf-chart-title">—</div>
+              <div class="nwa-chart-values" id="solv-cf-chart-values"></div>
+              <svg id="solv-cf-chart-svg" viewBox="0 0 340 130" preserveAspectRatio="none"></svg>
+            </div>
+            <div class="nwa-legend"><code>■</code> (Subscription only)</div>
+            <table class="nwa-table" id="solv-cf-table" aria-label="Solvency cash flow available for debt servicing">
+              <thead>
+                <tr>
+                  <th>USD Millions</th>
+                  <th>31/12/2019</th>
+                  <th>31/12/2020</th>
+                  <th>31/12/2021</th>
+                  <th>31/12/2022</th>
+                  <th>31/12/2023</th>
+                  <th>31/12/2024</th>
+                  <th>FY2025 Est.</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="solv-cf-row" data-series="solvCfNcao">
+                  <td>NCAO (CF)</td>
+                  <td>162.0</td><td>165.6</td><td>164.9</td><td>218.6</td><td>410.4</td><td>417.7</td><td>400 [E]</td>
+                </tr>
+                <tr class="solv-cf-row" data-series="solvCfCapex">
+                  <td>Less: Lower of CAPEX or Depreciation</td>
+                  <td>(108.7)</td><td>(114.3)</td><td>(157.5)</td><td>(165.8)</td><td>(192.9)</td><td>(139.2)</td><td>(150) [E]</td>
+                </tr>
+                <tr class="solv-cf-row" data-series="solvCfAvailDebt">
+                  <td><b>Cash Flow Available for Debt Servicing</b></td>
+                  <td><b>53.3</b></td><td><b>51.3</b></td><td><b>7.4</b></td><td><b>52.8</b></td><td><b>217.5</b></td><td><b>278.5</b></td><td><b>250 [E]</b></td>
+                </tr>
+                <tr class="solv-cf-row" data-series="solvCfInterest">
+                  <td>Less: Interest Expense</td>
+                  <td>(92.9)</td><td>(97.8)</td><td>(129.5)</td><td>(141.0)</td><td>(175.2)</td><td>(196.9)</td><td>(200) [E]</td>
+                </tr>
+                <tr class="solv-cf-row" data-series="solvCfDividends">
+                  <td>Less: Dividends</td>
+                  <td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td><td>—</td>
+                </tr>
+                <tr class="solv-cf-row" data-series="solvCfDebtRepay">
+                  <td><b>Cash Flow for Debt Repayment</b></td>
+                  <td><b>(39.6)</b></td><td><b>(46.5)</b></td><td><b>(122.1)</b></td><td><b>(88.2)</b></td><td><b>42.3</b></td><td><b>81.6</b></td><td><b>50 [E]</b></td>
+                </tr>
+                <tr class="solv-cf-row" data-series="solvCfCpltd">
+                  <td>CPLTD &amp; Finance Leases ᶜ</td>
+                  <td>(37.0)</td><td>(45.7)</td><td>(26.1)</td><td>(35.8)</td><td>(46.7)</td><td>(52.0)</td><td>(57.9)</td>
+                </tr>
+                <tr class="solv-cf-row" data-series="solvCfSubtotal">
+                  <td><b>Subtotal (CF after all Debt Obligations)</b></td>
+                  <td><b>(76.6)</b></td><td><b>(92.2)</b></td><td><b>(148.2)</b></td><td><b>(124.0)</b></td><td><b>(4.4)</b></td><td><b>29.6</b></td><td><b>(7.9) [E]</b></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <div class="deck-placeholder" style="margin-top:14px;">
+            <div class="deck-placeholder-title">Peer solvency &amp; refinancing tables</div>
+            <p>Peer ratio pages and refinancing cash-flow detail remain in the PPTX only.</p>
+          </div>
+        </div>
+
+        <div id="solv-panel-conc" class="ca-panel" role="tabpanel" aria-labelledby="solv-tab-conc" hidden>
+          <div class="deck-placeholder-title" style="margin-bottom:12px;">Solvency</div>
+          <ul class="bm-list">
+            <li><span class="bm-li-label">Financial risk assessment — Elevated / high:</span> Helios Towers operates with a structurally leveraged balance sheet built to fund an aggressive acquisition-led growth strategy.</li>
+            <li><span class="bm-li-label">Liquidity — Moderate risk:</span> Approximately $581m in known sources versus $323m in near-term uses implies a surplus; however, growth capex (~$165–180m p.a.) and limited visibility on undrawn facilities absorb most of that buffer.</li>
+            <li><span class="bm-li-label">Solvency — Elevated risk:</span> Debt / EBITDA ~4.6× (FY2024) is improving but remains above investment-grade thresholds. Negative net worth (equity deficit ~$527m, FY2024) and EBITDA / interest ~2.15× underscore balance-sheet stress.</li>
+            <li><span class="bm-li-label">Affordability — Improving:</span> Cash flow after all debt obligations turned positive in FY2023; FY2024 ~+$24m marks the first sustained positive outcome on this bridge.</li>
+            <li><span class="bm-li-label">Refinancing — High risk (key concern):</span> ~$1.1bn of senior secured bonds mature in 2026–2028 (~3× annual NCAO), with dependency on bond and bank markets in a rising-rate environment.</li>
+            <li><span class="bm-li-label">Equity — High risk:</span> Share price down ~58% from IPO; market cap ~$390m versus gross debt ~$1.9bn — material risk of equity dilution if markets remain stressed.</li>
+            <li><span class="bm-li-label">Overall:</span> Financial risk is elevated but manageable in the near term provided EBITDA growth holds and bond refinancing executes; the 2026–2028 maturity wall is the single most critical risk event.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section id="sec-fin-funding" class="memo-section" aria-labelledby="memo-h-fin-funding">
+    <div class="panel">
+        <div class="panel-title" id="memo-h-fin-funding">📊 Debt capacity waterfall (USD m) — AI estimate</div>
         <div style="font-size:11px;color:var(--amber);margin-bottom:12px;">⚠ Indicative only — analyst to verify against actual debt schedule</div>
         <div class="waterfall">
           <div class="wf-row">
@@ -654,9 +1708,10 @@
           </div>
         </div>
       </div>
-    </div>
+    </section>
 
-    <!-- Analyst Judgement Layer -->
+    <section id="sec-analyst" class="memo-section" aria-labelledby="memo-h-analyst">
+      <h2 id="memo-h-analyst" class="memo-section-title">Analyst judgement layer</h2>
     <div class="analyst-judgement">
       <div class="aj-header">
         👤 Analyst Judgement Layer — Human Override
@@ -672,18 +1727,10 @@
       </div>
       <div id="analyst-notes-list" style="margin-top:10px;"></div>
     </div>
+    </section>
 
-    <!-- AI Draft Recommendation -->
-    <div class="rec-box">
-      <div class="rec-header">📄 AI-Drafted Credit Recommendation — Pending Analyst Sign-Off</div>
-      <div class="rec-text">
-        Helios Towers Africa presents a sub-investment grade credit (implied BB+), supported by a contracted tower-lease business model with top-tier MNO counterparties across Sub-Saharan Africa. The ~52% Adjusted EBITDA margin reflects the structural strength of the TowerCo model. Credit concerns are centred on leverage (~5.8x ND/EBITDA), FX mismatch between USD-denominated debt and local currency revenues, and a refinancing profile that warrants close monitoring. <strong>Recommended decision: Proceed with Conditions.</strong> Suggested covenant package: net leverage step-down to 5.0x by FY2026, mandatory FX hedging on ≥70% of USD obligations, and a cash sweep mechanism triggered above 6.0x leverage. Estimated headroom for additional debt on current EBITDA: USD ~140m at 5.0x covenant level.
-        <br><br>
-        <span style="font-size:12px;color:var(--amber);">⚠ This is an AI-generated draft. The analyst must verify all figures against source documents, apply professional judgement, and approve before this memo is used for any credit decision.</span>
-      </div>
-    </div>
-
-    <!-- Footer -->
+    <section id="sec-about" class="memo-section" aria-labelledby="memo-h-about">
+      <h2 id="memo-h-about" class="memo-section-title">About this output</h2>
     <div class="ai-footer">
       <div class="ai-tag">
         <div class="ai-tag-dot"></div>
@@ -692,13 +1739,1094 @@
       <div style="color:var(--amber);font-size:11px;">👤 Human-in-the-Loop — Analyst review required before publication</div>
       <div>Illustrative only · Not investment advice · Verify all figures</div>
     </div>
+    </section>
+
+    </div><!-- .memo-main -->
+  </div><!-- .memo-shell -->
 
   </div>
-</div>
+</main>
+
+<button type="button" id="memo-back-top" class="memo-back-top" hidden onclick="scrollMemoTop()" aria-label="Back to top of memo">
+  ↑ <span>Memo top</span>
+</button>
 
 <script>
+function prefersReducedMotion() {
+  return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+}
+
+function scrollBehaviorOpt() {
+  return prefersReducedMotion() ? "instant" : "smooth";
+}
+
+function scrollMemoTop() {
+  const t = document.getElementById("sec-review");
+  if (t) t.scrollIntoView({ behavior: scrollBehaviorOpt(), block: "start" });
+}
+
+function addLatestFinancials() {
+  const box = document.getElementById("financial-hint-box");
+  if (!box) return;
+  box.textContent =
+    "Latest filings require an authenticated connection to your data provider or document store (login). This page is static — hook “Add latest financials” to your API or upload flow when backend auth is available.";
+  box.classList.add("is-visible");
+}
+
+function updateMemoBackTop() {
+  const btn = document.getElementById("memo-back-top");
+  const out = document.getElementById("output");
+  if (!btn || !out) return;
+  if (getComputedStyle(out).display === "none") {
+    btn.hidden = true;
+    return;
+  }
+  const memoStart = out.getBoundingClientRect().top + window.scrollY;
+  btn.hidden = window.scrollY < memoStart + 200;
+}
+
+(function setupMemoTocSpy() {
+  const output = document.getElementById("output");
+  const toc = document.querySelector(".memo-toc");
+  const jump = document.getElementById("memo-toc-jump");
+  if (!output || !toc) return;
+
+  function sections() {
+    return [...output.querySelectorAll(".memo-section")];
+  }
+
+  function links() {
+    return [...toc.querySelectorAll('a[href^="#"]')];
+  }
+
+  function syncSectionTitlesToToc() {
+    const map = new Map();
+    links().forEach((a) => {
+      const href = a.getAttribute("href");
+      if (!href || !href.startsWith("#")) return;
+      const id = href.slice(1);
+      const label = (a.textContent || "").trim();
+      if (!id || !label) return;
+      map.set(id, label);
+    });
+
+    sections().forEach((sec) => {
+      const h2 = sec.querySelector(".memo-section-title");
+      if (!h2) return;
+      const label = map.get(sec.id);
+      if (!label) return;
+      h2.textContent = label;
+    });
+  }
+
+  function setActiveSectionId(id) {
+    links().forEach((a) => {
+      const match = a.getAttribute("href") === "#" + id;
+      a.classList.toggle("is-active", match);
+      if (match) a.setAttribute("aria-current", "location");
+      else a.removeAttribute("aria-current");
+    });
+  }
+
+  function scrollActiveChipIfNeeded() {
+    if (window.matchMedia("(min-width: 900px)").matches) return;
+    if (window.matchMedia("(max-width: 599px)").matches) return;
+    const active = toc.querySelector("a.is-active");
+    if (!active) return;
+    active.scrollIntoView({
+      inline: "center",
+      block: "nearest",
+      behavior: scrollBehaviorOpt(),
+    });
+  }
+
+  let lastActiveId = "";
+
+  window.refreshMemoTocActive = function refreshMemoTocActive() {
+    syncSectionTitlesToToc();
+    if (getComputedStyle(output).display === "none") {
+      updateMemoBackTop();
+      return;
+    }
+    const secs = sections();
+    if (!secs.length) return;
+    const margin = 96;
+    let activeId = secs[0].id;
+    for (let i = secs.length - 1; i >= 0; i--) {
+      if (secs[i].getBoundingClientRect().top <= margin) {
+        activeId = secs[i].id;
+        break;
+      }
+    }
+    const prev = lastActiveId;
+    lastActiveId = activeId;
+    setActiveSectionId(activeId);
+    if (jump && jump.offsetParent !== null) {
+      const v = "#" + activeId;
+      for (let i = 0; i < jump.options.length; i++) {
+        if (jump.options[i].value === v) {
+          jump.selectedIndex = i;
+          break;
+        }
+      }
+    }
+    if (activeId !== prev) scrollActiveChipIfNeeded();
+    updateMemoBackTop();
+  };
+
+  let ticking = false;
+  window.addEventListener(
+    "scroll",
+    () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          window.refreshMemoTocActive();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    },
+    { passive: true }
+  );
+
+  window.addEventListener("resize", () => {
+    window.refreshMemoTocActive();
+    updateMemoBackTop();
+  }, { passive: true });
+
+  toc.addEventListener("click", (e) => {
+    const a = e.target.closest('a[href^="#"]');
+    if (!a) return;
+    const id = a.getAttribute("href").slice(1);
+    window.setTimeout(() => setActiveSectionId(id), 350);
+  });
+
+  if (jump) {
+    jump.addEventListener("change", () => {
+      const v = jump.value;
+      if (!v) return;
+      const el = document.querySelector(v);
+      if (el) el.scrollIntoView({ behavior: scrollBehaviorOpt(), block: "start" });
+      window.setTimeout(() => setActiveSectionId(v.slice(1)), 80);
+    });
+  }
+})();
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+(function setupAssetTabs() {
+  function init(root) {
+    if (!root) return;
+    const tabs = Array.from(root.querySelectorAll('[role="tab"]'));
+    const panels = new Map(
+      tabs.map((t) => [t.id, document.getElementById(t.getAttribute("aria-controls"))])
+    );
+
+    function setActive(tab) {
+      tabs.forEach((t) => {
+        const isActive = t === tab;
+        t.setAttribute("aria-selected", isActive ? "true" : "false");
+        t.tabIndex = isActive ? 0 : -1;
+        const panel = document.getElementById(t.getAttribute("aria-controls"));
+        if (panel) panel.hidden = !isActive;
+      });
+      tab.focus({ preventScroll: true });
+    }
+
+    tabs.forEach((tab, idx) => {
+      tab.addEventListener("click", () => setActive(tab));
+      tab.addEventListener("keydown", (e) => {
+        const k = e.key;
+        if (!["ArrowLeft", "ArrowRight", "Home", "End"].includes(k)) return;
+        e.preventDefault();
+        const cur = tabs.indexOf(tab);
+        let nextIdx = cur;
+        if (k === "ArrowLeft") nextIdx = (cur - 1 + tabs.length) % tabs.length;
+        if (k === "ArrowRight") nextIdx = (cur + 1) % tabs.length;
+        if (k === "Home") nextIdx = 0;
+        if (k === "End") nextIdx = tabs.length - 1;
+        setActive(tabs[nextIdx]);
+      });
+
+      const panel = panels.get(tab.id);
+      if (!panel) tab.hidden = true;
+      void idx;
+    });
+  }
+
+  init(document.querySelector("[data-ca-tabs]"));
+  init(document.querySelector("[data-fa-tabs]"));
+  init(document.querySelector("[data-sales-tabs]"));
+  init(document.querySelector("[data-solv-tabs]"));
+})();
+
+(function maskFixedAssetFiguresTable() {
+  const table = document.getElementById("fa-figures-table");
+  if (!table) return;
+
+  function maskDigits(s) {
+    return String(s).replace(/[0-9]/g, "■");
+  }
+
+  const tds = Array.from(table.querySelectorAll("tbody td")).filter((td, idx) => {
+    // Skip first column (labels)
+    const isLabelCol = idx % 7 === 0;
+    if (isLabelCol) return false;
+    const txt = td.textContent || "";
+    return /[0-9]/.test(txt);
+  });
+  if (!tds.length) return;
+
+  // Randomly mask a handful of numeric cells per page load.
+  const pickCount = Math.min(5, Math.max(2, Math.floor(tds.length * 0.18)));
+  for (let i = tds.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const tmp = tds[i];
+    tds[i] = tds[j];
+    tds[j] = tmp;
+  }
+  tds.slice(0, pickCount).forEach((td) => {
+    td.textContent = maskDigits(td.textContent);
+    td.setAttribute("data-masked", "true");
+  });
+})();
+
+(function setupFixedAssetHoverAnalytics() {
+  const wrap = document.getElementById("fa-figures-wrap");
+  if (!wrap) return;
+  const table = document.getElementById("fa-figures-table");
+  if (!table) return;
+
+  const tooltip = document.getElementById("fa-hover-chart");
+  const titleEl = document.getElementById("fa-chart-title");
+  const valuesEl = document.getElementById("fa-chart-values");
+  const svg = document.getElementById("fa-chart-svg");
+  if (!tooltip || !titleEl || !valuesEl || !svg) return;
+
+  const years = ["FY2019", "FY2020", "FY2021", "FY2022", "FY2023", "FY2024"];
+
+  // Numeric series for charting (unmasked), aligned to table rows.
+  const series = {
+    faSales: [387.8, 414.0, 449.1, 560.7, 721.0, 792.0],
+    faEbitdaMargin: [55, 58, 63, 66, 58, 55],
+    faDA: [138.0, 135.4, 157.5, 165.8, 192.9, 139.2],
+    faSites: [7000, 6966, 14231, 14416, 14097, 14325],
+    faCapex: [108.7, 114.3, 334.1, 417.8, 230.7, 200.0],
+    faCapexToDA: [0.8, 0.8, 2.1, 2.5, 1.2, 1.4],
+    faSalesPerSite: [55.4, 59.4, 31.6, 41.2, 51.1, 55.3],
+  };
+
+  const units = {
+    faSales: "USD m",
+    faEbitdaMargin: "%",
+    faDA: "USD m",
+    faSites: "",
+    faCapex: "USD m",
+    faCapexToDA: "x",
+    faSalesPerSite: "$000",
+  };
+
+  function drawLine(values) {
+    // Draw into a fixed viewBox using simple coordinate mapping.
+    const vbW = 340;
+    const vbH = 130;
+    const pad = 14;
+    const innerW = vbW - pad * 2;
+    const innerH = vbH - pad * 2;
+
+    const valid = values
+      .map((v, idx) => ({ v, idx }))
+      .filter((p) => p.v !== null && p.v !== undefined && Number.isFinite(p.v));
+    if (valid.length < 2) {
+      svg.innerHTML = "";
+      return;
+    }
+
+    const yVals = valid.map((p) => p.v);
+    let minY = Math.min(...yVals);
+    let maxY = Math.max(...yVals);
+    if (minY === maxY) {
+      minY -= 1;
+      maxY += 1;
+    }
+
+    const xFor = (i) => pad + (i / (years.length - 1)) * innerW;
+    const yFor = (v) => pad + (maxY - v) / (maxY - minY) * innerH;
+
+    const pts = values.map((v, i) => (v === null || v === undefined ? null : [xFor(i), yFor(v)]));
+    const seg = pts.filter(Boolean);
+    const d = seg
+      .map((p, idx) => `${idx === 0 ? "M" : "L"} ${p[0].toFixed(1)} ${p[1].toFixed(1)}`)
+      .join(" ");
+
+    const lineColor = "rgba(0,188,212,0.95)";
+    const gridColor = "rgba(255,255,255,0.10)";
+
+    const circles = valid
+      .map((p) => {
+        const cx = xFor(p.idx);
+        const cy = yFor(p.v);
+        return `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3.6" fill="var(--teal)" stroke="rgba(0,0,0,0.25)" stroke-width="1"/>`;
+      })
+      .join("");
+
+    const gridLines = [0.25, 0.5, 0.75]
+      .map((t) => {
+        const y = pad + t * innerH;
+        return `<line x1="${pad}" y1="${y}" x2="${pad + innerW}" y2="${y}" stroke="${gridColor}" stroke-width="1"/>`;
+      })
+      .join("");
+
+    svg.setAttribute("viewBox", "0 0 340 130");
+    svg.innerHTML = `
+      ${gridLines}
+      <path d="${d}" fill="none" stroke="${lineColor}" stroke-width="2.2" stroke-linecap="round"/>
+      ${circles}
+    `;
+  }
+
+  function showForRow(row) {
+    const key = row.getAttribute("data-series");
+    const values = series[key];
+    if (!key || !values) return;
+
+    titleEl.textContent = row.querySelector("td")?.textContent.trim() || "Fixed asset figure";
+    valuesEl.innerHTML = "";
+
+    const valueTds = row.querySelectorAll("td");
+    years.forEach((yr, i) => {
+      const td = valueTds[i + 1];
+      const shown = td ? td.textContent.trim() : "—";
+      const span = document.createElement("span");
+      span.textContent = `${yr}: ${shown}`;
+      valuesEl.appendChild(span);
+    });
+
+    void units; // reserved for future formatting if needed
+    drawLine(values);
+
+    const r = row.getBoundingClientRect();
+    const tooltipW = 380;
+    const left = Math.min(window.innerWidth - tooltipW, r.right + 12);
+    const top = Math.max(16, r.top);
+    tooltip.style.left = `${left}px`;
+    tooltip.style.top = `${top}px`;
+    tooltip.classList.add("is-visible");
+    tooltip.setAttribute("aria-hidden", "false");
+  }
+
+  function hide() {
+    tooltip.classList.remove("is-visible");
+    tooltip.setAttribute("aria-hidden", "true");
+  }
+
+  const rows = wrap.querySelectorAll("tr.fa-row[data-series]");
+  rows.forEach((row) => {
+    row.addEventListener("mouseenter", () => showForRow(row));
+    row.addEventListener("mouseleave", hide);
+    row.addEventListener("focusin", () => showForRow(row));
+    row.addEventListener("focusout", hide);
+  });
+
+  // If user scrolls while visible, hide to prevent stale positioning.
+  window.addEventListener("scroll", hide, { passive: true });
+  window.addEventListener("resize", hide, { passive: true });
+})();
+
+(function maskSalesDetailedFiguresTable() {
+  const table = document.getElementById("sp-figures-table");
+  if (!table) return;
+
+  function maskDigits(s) {
+    return String(s).replace(/[0-9]/g, "■");
+  }
+
+  const tds = Array.from(table.querySelectorAll("tbody td")).filter((td, idx) => {
+    // Skip first column (labels)
+    const isLabelCol = idx % 7 === 0;
+    if (isLabelCol) return false;
+    const txt = td.textContent || "";
+    return /[0-9]/.test(txt);
+  });
+  if (!tds.length) return;
+
+  // Randomly mask a handful of numeric cells per page load.
+  const pickCount = Math.min(6, Math.max(2, Math.floor(tds.length * 0.14)));
+  for (let i = tds.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const tmp = tds[i];
+    tds[i] = tds[j];
+    tds[j] = tmp;
+  }
+  tds.slice(0, pickCount).forEach((td) => {
+    td.textContent = maskDigits(td.textContent);
+    td.setAttribute("data-masked", "true");
+  });
+})();
+
+(function setupSalesDetailedHoverAnalytics() {
+  const wrap = document.getElementById("sp-figures-wrap");
+  if (!wrap) return;
+  const table = document.getElementById("sp-figures-table");
+  if (!table) return;
+
+  const tooltip = document.getElementById("sp-hover-chart");
+  const titleEl = document.getElementById("sp-chart-title");
+  const valuesEl = document.getElementById("sp-chart-values");
+  const svg = document.getElementById("sp-chart-svg");
+  if (!tooltip || !titleEl || !valuesEl || !svg) return;
+
+  const years = ["2019", "2020", "2021", "2022", "2023", "2024"];
+
+  const series = {
+    spTotalSales: [387.8, 414.0, 449.1, 560.7, 721.0, 792.0],
+    spGrossProfit: [125.9, 147.9, 153.8, 194.8, 270.6, 383.1],
+    spNPAT: [-136.6, -36.7, -156.2, -171.4, -111.8, 27.0],
+    spSalesChg: [null, 6.8, 8.5, 24.8, 28.6, 9.8],
+    spGPM: [32.5, 35.7, 34.2, 34.7, 37.5, 48.4],
+    spEbitdaToSales: [52.9, 54.7, 53.6, 50.4, 51.2, 53.0],
+    spNPBTToSales: [-19.3, -5.0, -26.6, -29.0, -15.6, 5.6],
+  };
+
+  function drawLine(values) {
+    const vbW = 340;
+    const vbH = 130;
+    const pad = 14;
+    const innerW = vbW - pad * 2;
+    const innerH = vbH - pad * 2;
+
+    const valid = values
+      .map((v, idx) => ({ v, idx }))
+      .filter((p) => p.v !== null && p.v !== undefined && Number.isFinite(p.v));
+    if (valid.length < 2) {
+      svg.innerHTML = "";
+      return;
+    }
+
+    const yVals = valid.map((p) => p.v);
+    let minY = Math.min(...yVals);
+    let maxY = Math.max(...yVals);
+    if (minY === maxY) {
+      minY -= 1;
+      maxY += 1;
+    }
+
+    const xFor = (i) => pad + (i / (years.length - 1)) * innerW;
+    const yFor = (v) => pad + (maxY - v) / (maxY - minY) * innerH;
+
+    const pts = values.map((v, i) => (v === null || v === undefined ? null : [xFor(i), yFor(v)]));
+    const seg = pts.filter(Boolean);
+    const d = seg
+      .map((p, idx) => `${idx === 0 ? "M" : "L"} ${p[0].toFixed(1)} ${p[1].toFixed(1)}`)
+      .join(" ");
+
+    const lineColor = "rgba(0,188,212,0.95)";
+    const gridColor = "rgba(255,255,255,0.10)";
+
+    const circles = valid
+      .map((p) => {
+        const cx = xFor(p.idx);
+        const cy = yFor(p.v);
+        return `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3.6" fill="var(--teal)" stroke="rgba(0,0,0,0.25)" stroke-width="1"/>`;
+      })
+      .join("");
+
+    const gridLines = [0.25, 0.5, 0.75]
+      .map((t) => {
+        const y = pad + t * innerH;
+        return `<line x1="${pad}" y1="${y}" x2="${pad + innerW}" y2="${y}" stroke="${gridColor}" stroke-width="1"/>`;
+      })
+      .join("");
+
+    svg.setAttribute("viewBox", "0 0 340 130");
+    svg.innerHTML = `
+      ${gridLines}
+      <path d="${d}" fill="none" stroke="${lineColor}" stroke-width="2.2" stroke-linecap="round"/>
+      ${circles}
+    `;
+  }
+
+  function showForRow(row) {
+    const key = row.getAttribute("data-series");
+    const values = series[key];
+    if (!key || !values) return;
+
+    titleEl.textContent = row.querySelector("td")?.textContent.trim() || "Profitability";
+    valuesEl.innerHTML = "";
+
+    const valueTds = row.querySelectorAll("td");
+    years.forEach((yr, i) => {
+      const td = valueTds[i + 1];
+      const shown = td ? td.textContent.trim() : "—";
+      const span = document.createElement("span");
+      span.textContent = `FY${yr}: ${shown}`;
+      valuesEl.appendChild(span);
+    });
+
+    drawLine(values);
+
+    const r = row.getBoundingClientRect();
+    const tooltipW = 380;
+    const left = Math.min(window.innerWidth - tooltipW, r.right + 12);
+    const top = Math.max(16, r.top);
+    tooltip.style.left = `${left}px`;
+    tooltip.style.top = `${top}px`;
+    tooltip.classList.add("is-visible");
+    tooltip.setAttribute("aria-hidden", "false");
+  }
+
+  function hide() {
+    tooltip.classList.remove("is-visible");
+    tooltip.setAttribute("aria-hidden", "true");
+  }
+
+  const rows = wrap.querySelectorAll("tr.sp-row[data-series]");
+  rows.forEach((row) => {
+    row.addEventListener("mouseenter", () => showForRow(row));
+    row.addEventListener("mouseleave", hide);
+    row.addEventListener("focusin", () => showForRow(row));
+    row.addEventListener("focusout", hide);
+  });
+
+  window.addEventListener("scroll", hide, { passive: true });
+  window.addEventListener("resize", hide, { passive: true });
+})();
+
+(function maskSolvencyDetailedFiguresTable() {
+  const table = document.getElementById("solv-figures-table");
+  if (!table) return;
+
+  function maskDigits(s) {
+    return String(s).replace(/[0-9]/g, "■");
+  }
+
+  const tds = Array.from(table.querySelectorAll("tbody td")).filter((td, idx) => {
+    const isLabelCol = idx % 7 === 0;
+    if (isLabelCol) return false;
+    const txt = td.textContent || "";
+    return /[0-9]/.test(txt);
+  });
+  if (!tds.length) return;
+
+  const pickCount = Math.min(6, Math.max(2, Math.floor(tds.length * 0.14)));
+  for (let i = tds.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const tmp = tds[i];
+    tds[i] = tds[j];
+    tds[j] = tmp;
+  }
+  tds.slice(0, pickCount).forEach((td) => {
+    td.textContent = maskDigits(td.textContent);
+    td.setAttribute("data-masked", "true");
+  });
+})();
+
+(function maskSolvencyCfTable() {
+  const table = document.getElementById("solv-cf-table");
+  if (!table) return;
+
+  function maskDigits(s) {
+    return String(s).replace(/[0-9]/g, "■");
+  }
+
+  const tds = Array.from(table.querySelectorAll("tbody td")).filter((td, idx) => {
+    const isLabelCol = idx % 8 === 0;
+    if (isLabelCol) return false;
+    const txt = td.textContent || "";
+    return /[0-9]/.test(txt);
+  });
+  if (!tds.length) return;
+
+  const pickCount = Math.min(8, Math.max(2, Math.floor(tds.length * 0.12)));
+  for (let i = tds.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const tmp = tds[i];
+    tds[i] = tds[j];
+    tds[j] = tmp;
+  }
+  tds.slice(0, pickCount).forEach((td) => {
+    td.textContent = maskDigits(td.textContent);
+    td.setAttribute("data-masked", "true");
+  });
+})();
+
+(function setupSolvencyCfHoverAnalytics() {
+  const wrap = document.getElementById("solv-cf-wrap");
+  if (!wrap) return;
+
+  const tooltip = document.getElementById("solv-cf-hover-chart");
+  const titleEl = document.getElementById("solv-cf-chart-title");
+  const valuesEl = document.getElementById("solv-cf-chart-values");
+  const svg = document.getElementById("solv-cf-chart-svg");
+  if (!tooltip || !titleEl || !valuesEl || !svg) return;
+
+  const periodLabels = ["31/12/2019", "31/12/2020", "31/12/2021", "31/12/2022", "31/12/2023", "31/12/2024", "FY2025 Est."];
+
+  const series = {
+    solvCfNcao: [162.0, 165.6, 164.9, 218.6, 410.4, 417.7, 400],
+    solvCfCapex: [-108.7, -114.3, -157.5, -165.8, -192.9, -139.2, -150],
+    solvCfAvailDebt: [53.3, 51.3, 7.4, 52.8, 217.5, 278.5, 250],
+    solvCfInterest: [-92.9, -97.8, -129.5, -141.0, -175.2, -196.9, -200],
+    solvCfDividends: [null, null, null, null, null, null, null],
+    solvCfDebtRepay: [-39.6, -46.5, -122.1, -88.2, 42.3, 81.6, 50],
+    solvCfCpltd: [-37.0, -45.7, -26.1, -35.8, -46.7, -52.0, -57.9],
+    solvCfSubtotal: [-76.6, -92.2, -148.2, -124.0, -4.4, 29.6, -7.9],
+  };
+
+  function drawLine(values) {
+    const vbW = 340;
+    const vbH = 130;
+    const pad = 14;
+    const innerW = vbW - pad * 2;
+    const innerH = vbH - pad * 2;
+    const n = periodLabels.length;
+
+    const valid = values
+      .map((v, idx) => ({ v, idx }))
+      .filter((p) => p.v !== null && p.v !== undefined && Number.isFinite(p.v));
+    if (valid.length < 2) {
+      svg.innerHTML = "";
+      return;
+    }
+
+    const yVals = valid.map((p) => p.v);
+    let minY = Math.min(...yVals);
+    let maxY = Math.max(...yVals);
+    if (minY === maxY) {
+      minY -= 1;
+      maxY += 1;
+    }
+
+    const xFor = (i) => pad + (i / (n - 1)) * innerW;
+    const yFor = (v) => pad + (maxY - v) / (maxY - minY) * innerH;
+
+    const pts = values.map((v, i) => (v === null || v === undefined ? null : [xFor(i), yFor(v)]));
+    const seg = pts.filter(Boolean);
+    const d = seg
+      .map((p, idx) => `${idx === 0 ? "M" : "L"} ${p[0].toFixed(1)} ${p[1].toFixed(1)}`)
+      .join(" ");
+
+    const lineColor = "rgba(0,188,212,0.95)";
+    const gridColor = "rgba(255,255,255,0.10)";
+
+    const circles = valid
+      .map((p) => {
+        const cx = xFor(p.idx);
+        const cy = yFor(p.v);
+        return `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3.6" fill="var(--teal)" stroke="rgba(0,0,0,0.25)" stroke-width="1"/>`;
+      })
+      .join("");
+
+    const gridLines = [0.25, 0.5, 0.75]
+      .map((t) => {
+        const y = pad + t * innerH;
+        return `<line x1="${pad}" y1="${y}" x2="${pad + innerW}" y2="${y}" stroke="${gridColor}" stroke-width="1"/>`;
+      })
+      .join("");
+
+    svg.setAttribute("viewBox", "0 0 340 130");
+    svg.innerHTML = `
+      ${gridLines}
+      <path d="${d}" fill="none" stroke="${lineColor}" stroke-width="2.2" stroke-linecap="round"/>
+      ${circles}
+    `;
+  }
+
+  function showForRow(row) {
+    const key = row.getAttribute("data-series");
+    const values = series[key];
+    if (!key || !values) return;
+
+    titleEl.textContent = row.querySelector("td")?.textContent.trim() || "Cash flow";
+    valuesEl.innerHTML = "";
+
+    const valueTds = row.querySelectorAll("td");
+    periodLabels.forEach((lbl, i) => {
+      const td = valueTds[i + 1];
+      const shown = td ? td.textContent.trim() : "—";
+      const span = document.createElement("span");
+      span.textContent = `${lbl}: ${shown}`;
+      valuesEl.appendChild(span);
+    });
+
+    drawLine(values);
+
+    const r = row.getBoundingClientRect();
+    const tooltipW = 380;
+    const left = Math.min(window.innerWidth - tooltipW, r.right + 12);
+    const top = Math.max(16, r.top);
+    tooltip.style.left = `${left}px`;
+    tooltip.style.top = `${top}px`;
+    tooltip.classList.add("is-visible");
+    tooltip.setAttribute("aria-hidden", "false");
+  }
+
+  function hide() {
+    tooltip.classList.remove("is-visible");
+    tooltip.setAttribute("aria-hidden", "true");
+  }
+
+  wrap.querySelectorAll("tr.solv-cf-row[data-series]").forEach((row) => {
+    row.addEventListener("mouseenter", () => showForRow(row));
+    row.addEventListener("mouseleave", hide);
+    row.addEventListener("focusin", () => showForRow(row));
+    row.addEventListener("focusout", hide);
+  });
+
+  window.addEventListener("scroll", hide, { passive: true });
+  window.addEventListener("resize", hide, { passive: true });
+})();
+
+(function setupSolvencyDetailedHoverAnalytics() {
+  const wrap = document.getElementById("solv-figures-wrap");
+  if (!wrap) return;
+  const table = document.getElementById("solv-figures-table");
+  if (!table) return;
+
+  const tooltip = document.getElementById("solv-hover-chart");
+  const titleEl = document.getElementById("solv-chart-title");
+  const valuesEl = document.getElementById("solv-chart-values");
+  const svg = document.getElementById("solv-chart-svg");
+  if (!tooltip || !titleEl || !valuesEl || !svg) return;
+
+  const years = ["2019", "2020", "2021", "2022", "2023", "2024"];
+
+  const series = {
+    solvGearing: [null, 10.47, -25.0, -3.37, -3.23, -3.93],
+    solvInterestCover: [0.32, 0.75, 0.24, 0.22, 0.85, 1.33],
+    solvDebtToEbitda: [3.96, 4.95, 6.14, 6.36, 4.99, 4.52],
+    solvEbitdaToInterest: [2.21, 2.32, 1.86, 2.0, 2.11, 2.13],
+    solvSTObligations: [null, 26, 36, 54, 70, 81],
+    solvDSCR: [null, 2.01, 1.94, 1.62, 2.12, 2.09],
+  };
+
+  function drawLine(values) {
+    const vbW = 340;
+    const vbH = 130;
+    const pad = 14;
+    const innerW = vbW - pad * 2;
+    const innerH = vbH - pad * 2;
+
+    const valid = values
+      .map((v, idx) => ({ v, idx }))
+      .filter((p) => p.v !== null && p.v !== undefined && Number.isFinite(p.v));
+    if (valid.length < 2) {
+      svg.innerHTML = "";
+      return;
+    }
+
+    const yVals = valid.map((p) => p.v);
+    let minY = Math.min(...yVals);
+    let maxY = Math.max(...yVals);
+    if (minY === maxY) {
+      minY -= 1;
+      maxY += 1;
+    }
+
+    const xFor = (i) => pad + (i / (years.length - 1)) * innerW;
+    const yFor = (v) => pad + (maxY - v) / (maxY - minY) * innerH;
+
+    const pts = values.map((v, i) => (v === null || v === undefined ? null : [xFor(i), yFor(v)]));
+    const seg = pts.filter(Boolean);
+    const d = seg
+      .map((p, idx) => `${idx === 0 ? "M" : "L"} ${p[0].toFixed(1)} ${p[1].toFixed(1)}`)
+      .join(" ");
+
+    const lineColor = "rgba(0,188,212,0.95)";
+    const gridColor = "rgba(255,255,255,0.10)";
+
+    const circles = valid
+      .map((p) => {
+        const cx = xFor(p.idx);
+        const cy = yFor(p.v);
+        return `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3.6" fill="var(--teal)" stroke="rgba(0,0,0,0.25)" stroke-width="1"/>`;
+      })
+      .join("");
+
+    const gridLines = [0.25, 0.5, 0.75]
+      .map((t) => {
+        const y = pad + t * innerH;
+        return `<line x1="${pad}" y1="${y}" x2="${pad + innerW}" y2="${y}" stroke="${gridColor}" stroke-width="1"/>`;
+      })
+      .join("");
+
+    svg.setAttribute("viewBox", "0 0 340 130");
+    svg.innerHTML = `
+      ${gridLines}
+      <path d="${d}" fill="none" stroke="${lineColor}" stroke-width="2.2" stroke-linecap="round"/>
+      ${circles}
+    `;
+  }
+
+  function showForRow(row) {
+    const key = row.getAttribute("data-series");
+    const values = series[key];
+    if (!key || !values) return;
+
+    titleEl.textContent = row.querySelector("td")?.textContent.trim() || "Solvency";
+    valuesEl.innerHTML = "";
+
+    const valueTds = row.querySelectorAll("td");
+    years.forEach((yr, i) => {
+      const td = valueTds[i + 1];
+      const shown = td ? td.textContent.trim() : "—";
+      const span = document.createElement("span");
+      span.textContent = `FY${yr}: ${shown}`;
+      valuesEl.appendChild(span);
+    });
+
+    drawLine(values);
+
+    const r = row.getBoundingClientRect();
+    const tooltipW = 380;
+    const left = Math.min(window.innerWidth - tooltipW, r.right + 12);
+    const top = Math.max(16, r.top);
+    tooltip.style.left = `${left}px`;
+    tooltip.style.top = `${top}px`;
+    tooltip.classList.add("is-visible");
+    tooltip.setAttribute("aria-hidden", "false");
+  }
+
+  function hide() {
+    tooltip.classList.remove("is-visible");
+    tooltip.setAttribute("aria-hidden", "true");
+  }
+
+  const rows = wrap.querySelectorAll("tr.solv-row[data-series]");
+  rows.forEach((row) => {
+    row.addEventListener("mouseenter", () => showForRow(row));
+    row.addEventListener("mouseleave", hide);
+    row.addEventListener("focusin", () => showForRow(row));
+    row.addEventListener("focusout", hide);
+  });
+
+  window.addEventListener("scroll", hide, { passive: true });
+  window.addEventListener("resize", hide, { passive: true });
+})();
+
+(function setupCurrentAssetHoverAnalytics() {
+  const wrap = document.getElementById("nwa-table-wrap");
+  if (!wrap) return;
+
+  const tooltip = document.getElementById("nwa-hover-chart");
+  const titleEl = document.getElementById("nwa-chart-title");
+  const valuesEl = document.getElementById("nwa-chart-values");
+  const svg = document.getElementById("nwa-chart-svg");
+
+  const years = ["FY2019", "FY2020", "FY2021", "FY2022", "FY2023", "FY2024"];
+
+  // Values must align with the table rows above (USD millions). Null means dash/absent.
+  const series = {
+    netReceivables: [null, 54.2, -0.3, 2.4, -6.1, 2.0],
+    accruedRevenue: [null, -8.8, 3.6, -15.5, 12.8, 3.1],
+    contractAssets: [null, null, -17.2, -44.4, -17.5, 2.8],
+    inventory: [null, null, 0.3, -1.5, -4.1, 1.9],
+    prepayments: [null, null, -25.2, -4.0, -2.4, 5.7],
+    dueFromRelated: [null, null, -13.7, 37.1, null, 0.7],
+    deferredIncome: [null, -13.4, -5.2, -36.0, 50.8, 3.8],
+    tradePayables: [null, -5.2, 0.8, 18.5, -0.7, 6.6],
+    accrualsOtherCL: [null, 11.5, 29.6, 27.5, 16.4, -25.1],
+    adjNWA: [null, -30.3, 11.2, -54.0, 1.7, -7.5],
+    grossCFO: [186.3, 196.2, 251.8, 228.7, 370.7, 412.3],
+    nwaAdjSales: [1, 8, 5, 13, 10, 10],
+    salesGrowth: [null, 7, 8, 25, 29, 10],
+  };
+
+  const units = {
+    nwaAdjSales: "%",
+    salesGrowth: "%",
+    // Others are in USD millions or already unitless changes.
+  };
+
+  function maskDigits(s) {
+    return String(s).replace(/[0-9]/g, "■");
+  }
+
+  // Demo masking: ONLY mask a few cells in the rows shown in the screenshot.
+  // (Do not touch other rows like NWA/Sales or Sales Growth.)
+  // Indexes are 0..5 for FY2019..FY2024.
+  const maskedCells = {
+    netReceivables: new Set([3]),     // FY2022
+    accruedRevenue: new Set([4]),     // FY2023
+    contractAssets: new Set([5]),     // FY2024
+    inventory: new Set([2]),          // FY2021
+    prepayments: new Set([5]),        // FY2024
+    dueFromRelated: new Set([3]),     // FY2022
+    deferredIncome: new Set([4]),     // FY2023
+    tradePayables: new Set([3]),      // FY2022
+    accrualsOtherCL: new Set([2]),    // FY2021
+  };
+
+  function applySymbolSubstitutionToTable() {
+    const table = wrap.querySelector("table.nwa-table");
+    if (!table) return;
+    const rows = table.querySelectorAll("tbody tr.nwa-row[data-series]");
+    rows.forEach((row) => {
+      const seriesKey = row.getAttribute("data-series");
+      const idxs = maskedCells[seriesKey];
+      if (!idxs) return;
+      const tds = row.querySelectorAll("td");
+      idxs.forEach((i) => {
+        const td = tds[i + 1]; // +1 to skip label column
+        if (!td) return;
+        td.textContent = maskDigits(td.textContent);
+      });
+    });
+  }
+
+  // Apply symbol substitution to the table display (demo).
+  applySymbolSubstitutionToTable();
+
+  function fmt(v) {
+    if (v === null || v === undefined) return "—";
+    if (Math.abs(v) < 0.0001) return "0";
+    if (v < 0) return `(${Math.abs(v).toFixed(1).replace(/\\.0$/, "")})`;
+    const s = v.toFixed(1).replace(/\\.0$/, "");
+    return s;
+  }
+
+  function drawLine(values) {
+    // Draw into a fixed viewBox using simple coordinate mapping.
+    const vbW = 340;
+    const vbH = 130;
+    const pad = 14;
+    const innerW = vbW - pad * 2;
+    const innerH = vbH - pad * 2;
+
+    const pts = values.map((v, idx) => ({ idx, v }));
+    const valid = pts.filter((p) => p.v !== null && p.v !== undefined);
+    if (valid.length < 2) {
+      svg.innerHTML = "";
+      return;
+    }
+
+    const yVals = valid.map((p) => p.v);
+    let minY = Math.min(...yVals);
+    let maxY = Math.max(...yVals);
+    if (minY === maxY) {
+      minY -= 1;
+      maxY += 1;
+    }
+
+    const xFor = (i) => pad + (i / (years.length - 1)) * innerW;
+    const yFor = (v) => pad + (maxY - v) / (maxY - minY) * innerH;
+
+    // Build line segments across nulls by breaking segments when gaps appear.
+    let segs = [];
+    let seg = [];
+    for (let i = 0; i < values.length; i++) {
+      const v = values[i];
+      if (v === null || v === undefined) {
+        if (seg.length >= 2) segs.push(seg);
+        seg = [];
+        continue;
+      }
+      seg.push([xFor(i), yFor(v)]);
+    }
+    if (seg.length >= 2) segs.push(seg);
+
+    const lineColor = "rgba(0,188,212,0.95)";
+    const gridColor = "rgba(255,255,255,0.10)";
+
+    const avgX = pad;
+    void avgX; // keep eslint quiet if present
+
+    const paths = segs
+      .map((s) => {
+        const d = s
+          .map((p, idx) => `${idx === 0 ? "M" : "L"} ${p[0].toFixed(1)} ${p[1].toFixed(1)}`)
+          .join(" ");
+        return `<path d="${d}" fill="none" stroke="${lineColor}" stroke-width="2.2" stroke-linecap="round"/>`;
+      })
+      .join("");
+
+    const circles = valid
+      .map((p) => {
+        const cx = xFor(p.idx);
+        const cy = yFor(p.v);
+        return `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3.6" fill="var(--teal)" stroke="rgba(0,0,0,0.25)" stroke-width="1"/>`;
+      })
+      .join("");
+
+    // Light grid (3 horizontal lines)
+    const gridLines = [0.25, 0.5, 0.75]
+      .map((t) => {
+        const y = pad + t * innerH;
+        return `<line x1="${pad}" y1="${y}" x2="${pad + innerW}" y2="${y}" stroke="${gridColor}" stroke-width="1"/>`;
+      })
+      .join("");
+
+    svg.setAttribute("viewBox", "0 0 340 130");
+    svg.innerHTML = `
+      ${gridLines}
+      ${paths}
+      ${circles}
+    `;
+  }
+
+  function showForSeries(seriesKey, rowEl) {
+    const values = series[seriesKey];
+    if (!values) return;
+
+    // Title + values row
+    const rowLabel = rowEl ? rowEl.querySelector("td")?.textContent.trim() : seriesKey;
+    titleEl.textContent = rowLabel || "NWA change";
+
+    valuesEl.innerHTML = "";
+    years.forEach((yr, i) => {
+      const v = values[i];
+      const span = document.createElement("span");
+      const unit = units[seriesKey];
+      const fv = fmt(v);
+      const shownRaw = `${fv}${unit ? unit : ""}`;
+      const idxs = maskedCells[seriesKey];
+      const shown = idxs && idxs.has(i) ? maskDigits(shownRaw) : shownRaw;
+      span.textContent = `${yr}: ${shown}`;
+      valuesEl.appendChild(span);
+    });
+
+    // Chart
+    drawLine(values);
+
+    // Position tooltip near the row
+    const r = rowEl.getBoundingClientRect();
+    const tooltipW = 380;
+    const left = Math.min(window.innerWidth - tooltipW, r.right + 12);
+    const top = Math.max(16, r.top);
+
+    tooltip.style.left = `${left}px`;
+    tooltip.style.top = `${top}px`;
+    tooltip.classList.add("is-visible");
+    tooltip.setAttribute("aria-hidden", "false");
+  }
+
+  function hide() {
+    tooltip.classList.remove("is-visible");
+    tooltip.setAttribute("aria-hidden", "true");
+  }
+
+  // Wire row hover
+  const rows = wrap.querySelectorAll("tr.nwa-row");
+  rows.forEach((row) => {
+    const seriesKey = row.getAttribute("data-series");
+    if (!seriesKey) return;
+    row.addEventListener("mouseenter", () => showForSeries(seriesKey, row));
+    row.addEventListener("mousemove", () => showForSeries(seriesKey, row));
+    row.addEventListener("mouseleave", hide);
+
+    // Mobile fallback: tap toggles
+    row.addEventListener("click", (e) => {
+      const isVisible = tooltip.classList.contains("is-visible");
+      e.preventDefault();
+      if (isVisible) hide();
+      else showForSeries(seriesKey, row);
+    });
+  });
+})();
+
 async function runAnalysis() {
   document.getElementById("output").style.display = "none";
+  updateMemoBackTop();
   const loading = document.getElementById("loading");
   loading.style.display = "block";
 
@@ -722,9 +2850,21 @@ async function runAnalysis() {
   document.querySelector(".approve-btn").style.display = "inline-block";
   document.getElementById("review-banner").style.borderColor = "rgba(255,179,0,0.3)";
   document.getElementById("review-banner").style.background = "rgba(255,179,0,0.08)";
-}
 
-function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+  const behave = scrollBehaviorOpt();
+  requestAnimationFrame(() => {
+    requestAnimationFrame(() => {
+      const first = document.getElementById("sec-review");
+      if (first) first.scrollIntoView({ behavior: behave, block: "start" });
+      if (typeof window.refreshMemoTocActive === "function") {
+        window.refreshMemoTocActive();
+        window.setTimeout(window.refreshMemoTocActive, 450);
+        window.setTimeout(window.refreshMemoTocActive, 900);
+      }
+      updateMemoBackTop();
+    });
+  });
+}
 
 function approveMemo() {
   document.querySelector(".approve-btn").style.display = "none";
