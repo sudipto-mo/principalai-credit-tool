@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <!-- memo-revision: light-default-theme-toggle-2026-03-31 -->
-  <title>AI-Augmented Credit Analysis | Helios Towers Africa</title>
+  <!-- memo-revision: professional-svg-icons-2026-03-31 -->
+  <title>AI-Augmented Credit Memo | Analyst review</title>
   <script>
     (function () {
       try {
@@ -56,6 +56,30 @@
       min-height: 100vh;
     }
 
+    /* Inline UI icons (stroke, finance-app style — no emoji) */
+    .ui-svg {
+      display: block;
+      flex-shrink: 0;
+    }
+    .ui-svg svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+      stroke: currentColor;
+      fill: none;
+      stroke-width: 1.75;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+    .ui-svg--fill {
+      stroke: none;
+      fill: currentColor;
+    }
+    .ui-svg--fill svg {
+      stroke: none;
+      fill: currentColor;
+    }
+
     /* ── SKIP LINK (Stage 4) ── */
     .skip-link {
       position: absolute;
@@ -95,7 +119,11 @@
       background: linear-gradient(135deg, var(--blue), var(--teal));
       border-radius: 8px;
       display: flex; align-items: center; justify-content: center;
-      font-size: 16px;
+      color: #ffffff;
+    }
+    .logo-icon .ui-svg {
+      width: 18px;
+      height: 18px;
     }
     .logo-text { font-size: 15px; font-weight: 700; letter-spacing: 0.3px; }
     .logo-sub { font-size: 10px; color: var(--text-dim); letter-spacing: 1px; text-transform: uppercase; }
@@ -185,6 +213,14 @@
       align-items: center;
       gap: 8px;
     }
+    .disclaimer-banner-icon {
+      color: var(--amber);
+      flex-shrink: 0;
+    }
+    .disclaimer-banner-icon .ui-svg {
+      width: 14px;
+      height: 14px;
+    }
 
     /* ── MAIN LAYOUT ── */
     .container {
@@ -211,6 +247,21 @@
       font-size: 12px; font-weight: 600; letter-spacing: 1px;
       text-transform: uppercase; color: var(--teal);
       margin-bottom: 18px;
+    }
+    .panel-title--with-icon {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .panel-title-icon {
+      color: var(--teal);
+    }
+    .panel-title-icon--warn {
+      color: var(--amber);
+    }
+    .panel-title-icon .ui-svg {
+      width: 18px;
+      height: 18px;
     }
     .form-grid {
       display: grid;
@@ -267,6 +318,10 @@
       outline: 2px solid var(--teal);
       outline-offset: 2px;
     }
+    .btn-sec-icon .ui-svg {
+      width: 15px;
+      height: 15px;
+    }
     .financial-login-hint {
       font-size: 11px;
       color: rgba(255,179,0,0.75);
@@ -287,8 +342,8 @@
     .financial-hint-box.is-visible { display: block; }
     .analyst-note {
       display: flex;
-      align-items: center;
-      gap: 8px;
+      align-items: flex-start;
+      gap: 10px;
       background: rgba(0,188,212,0.06);
       border: 1px solid rgba(0,188,212,0.15);
       border-radius: 8px;
@@ -296,6 +351,15 @@
       margin-bottom: 20px;
       font-size: 12px;
       color: var(--text-dim);
+      line-height: 1.5;
+    }
+    .analyst-note-icon {
+      color: var(--teal);
+      margin-top: 1px;
+    }
+    .analyst-note-icon .ui-svg {
+      width: 16px;
+      height: 16px;
     }
     .demo-banner {
       display: flex;
@@ -311,6 +375,14 @@
       line-height: 1.5;
     }
     .demo-banner strong { color: var(--amber); font-weight: 700; }
+    .demo-banner-icon {
+      color: var(--amber);
+      margin-top: 1px;
+    }
+    .demo-banner-icon .ui-svg {
+      width: 16px;
+      height: 16px;
+    }
     .run-btn {
       display: flex;
       align-items: center;
@@ -328,6 +400,23 @@
     }
     .run-btn:hover { opacity: 0.9; transform: translateY(-1px); }
     .run-btn:active { transform: translateY(0); }
+    .run-btn-icon {
+      color: #ffffff;
+    }
+    .run-btn-icon .ui-svg {
+      width: 18px;
+      height: 18px;
+    }
+    .run-btn-icon > svg {
+      display: block;
+      width: 18px;
+      height: 18px;
+      color: #ffffff;
+    }
+    .run-btn-icon svg {
+      stroke: #ffffff;
+      fill: #ffffff;
+    }
 
     /* ── LOADING ── */
     #loading {
@@ -625,6 +714,77 @@
     }
     .ca-panel { margin-top: 0; }
     .ca-panel[hidden] { display: none !important; }
+    .conclusion-panel-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px 14px;
+      flex-wrap: wrap;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid var(--border);
+    }
+    .conclusion-panel-title {
+      margin: 0;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.4px;
+      text-transform: uppercase;
+      color: var(--teal);
+    }
+    .conclusion-regen-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin: 0;
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: 700;
+      font-family: inherit;
+      color: var(--teal);
+      background: rgba(0, 188, 212, 0.08);
+      border: 1px solid rgba(0, 188, 212, 0.32);
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.15s, border-color 0.15s;
+    }
+    .conclusion-regen-btn:hover:not(:disabled) {
+      background: rgba(0, 188, 212, 0.14);
+      border-color: rgba(0, 188, 212, 0.48);
+    }
+    .conclusion-regen-btn:focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 2px;
+    }
+    .conclusion-regen-btn:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+    .conclusion-regen-btn .ui-svg {
+      width: 15px;
+      height: 15px;
+    }
+    .memo-conclusion-toast {
+      position: fixed;
+      bottom: 24px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 600;
+      max-width: min(440px, calc(100vw - 32px));
+      padding: 12px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      line-height: 1.4;
+      color: var(--text);
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.22);
+    }
+    html[data-theme="light"] .memo-conclusion-toast {
+      background: #ffffff;
+      box-shadow: 0 8px 28px rgba(15, 23, 42, 0.12);
+    }
 
     /* Hover analytics for Current Asset */
     .nwa-table-wrap {
@@ -673,53 +833,104 @@
       font-size: 11px;
     }
     .nwa-row {
+      cursor: default;
+    }
+    .nwa-row--chart {
       cursor: pointer;
     }
-    .nwa-row:hover {
+    .nwa-row--chart:hover {
       background: rgba(0,188,212,0.12);
+    }
+    .fa-row {
+      cursor: default;
+    }
+    .fa-row--chart {
+      cursor: pointer;
+    }
+    .fa-row--chart:hover {
+      background: rgba(0,188,212,0.12);
+    }
+    abbr.nwa-abbr,
+    abbr.da-abbr {
+      cursor: help;
+      text-decoration: underline dotted;
+      text-underline-offset: 0.15em;
+      font-weight: inherit;
+    }
+    .nwa-abbr-def-tip {
+      position: fixed;
+      z-index: 500;
+      max-width: min(280px, calc(100vw - 24px));
+      padding: 8px 11px;
+      font-size: 12px;
+      font-weight: 600;
+      line-height: 1.35;
+      color: var(--text);
+      background: var(--navy-light);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      box-shadow: 0 8px 28px rgba(0, 0, 0, 0.22);
+      pointer-events: none;
+    }
+    html[data-theme="light"] .nwa-abbr-def-tip {
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.14);
     }
 
     
     .nwa-chart-tooltip {
       position: fixed;
-      width: 380px;
-      max-width: calc(100vw - 30px);
+      width: 320px;
+      max-width: calc(100vw - 24px);
       background: var(--navy-light);
       border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 12px 12px;
+      border-radius: 10px;
+      padding: 10px 10px;
       z-index: 250;
-      box-shadow: 0 18px 45px rgba(0,0,0,0.45);
+      box-shadow: 0 8px 28px rgba(0,0,0,0.18);
       display: none;
+      pointer-events: none;
     }
     .nwa-chart-tooltip.is-visible {
       display: block;
     }
+    html[data-theme="dark"] .nwa-chart-tooltip {
+      box-shadow: 0 10px 36px rgba(0, 0, 0, 0.5);
+    }
     .nwa-chart-title {
-      font-size: 12px;
-      font-weight: 900;
-      letter-spacing: 0.4px;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.35px;
       text-transform: uppercase;
       color: var(--teal);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
+      line-height: 1.3;
     }
     .nwa-chart-values {
-      font-size: 11px;
+      font-size: 10px;
       color: var(--text-dim);
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px 14px;
-      margin-bottom: 8px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(86px, 1fr));
+      gap: 3px 8px;
+      margin-bottom: 6px;
+      line-height: 1.35;
     }
     .nwa-chart-values span {
       white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    #nwa-hover-chart .nwa-chart-values {
+      display: none;
+    }
+    #fa-hover-chart .nwa-chart-values {
+      display: none;
     }
     .nwa-chart-svg {
       width: 100%;
-      height: 130px;
-      background: rgba(0,0,0,0.18);
+      height: 120px;
+      background: rgba(0,0,0,0.12);
       border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 10px;
+      border-radius: 8px;
     }
     .nwa-hidden-marker td {
       text-align: center;
@@ -978,7 +1189,15 @@
       padding: 16px 20px;
       margin-bottom: 20px;
     }
-    .rec-header { font-size: 11px; font-weight: 600; letter-spacing: 1px; text-transform: uppercase; color: var(--teal); margin-bottom: 8px; }
+    .rec-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px; font-weight: 600; letter-spacing: 1px;
+      text-transform: uppercase; color: var(--teal); margin-bottom: 8px;
+    }
+    .rec-header-icon { color: var(--teal); }
+    .rec-header-icon .ui-svg { width: 15px; height: 15px; }
     .rec-text { font-size: 14px; line-height: 1.6; }
 
     /* Footer */
@@ -1061,7 +1280,9 @@
 
 <header>
   <div class="logo">
-    <div class="logo-icon">📊</div>
+    <div class="logo-icon" aria-hidden="true">
+      <span class="ui-svg"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+    </div>
     <div>
       <div class="logo-text">Credit Intelligence</div>
       <div class="logo-sub">AI-Augmented Analysis</div>
@@ -1080,16 +1301,20 @@
 </header>
 
 <div class="disclaimer-banner">
-  ⚠️ &nbsp;Figures sourced from Helios Towers plc public filings (Annual Report / Investor Presentations). All outputs are AI-generated drafts — analyst review and verification required before use.
+  <span class="disclaimer-banner-icon" aria-hidden="true"><span class="ui-svg"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span></span>
+  <span>Figures are illustrative and sourced from public filings where noted in the memo. All outputs are AI-generated drafts — analyst review and verification required before use.</span>
 </div>
 
 <main id="main" class="container" tabindex="-1">
-  <div class="page-title">AI-Augmented Credit Memo — Helios Towers Africa plc</div>
-  <div class="page-sub">AI processes the filings. The analyst verifies, adjusts, and signs off. Section order follows the <strong>Helios credit deck</strong>; this page shows summary exhibits and placeholders where the full PPTX carries the narrative.</div>
+  <div class="page-title">AI-Augmented Credit Memo</div>
+  <div class="page-sub">AI structures data from the selected issuer’s materials. The analyst verifies, adjusts, and signs off. Section order follows a <strong>standard credit memo / committee deck</strong> layout; this page shows summary exhibits and placeholders where the full pack carries additional narrative.</div>
 
   <!-- Input Panel -->
   <div class="input-panel">
-    <div class="panel-title">📋 Analysis Parameters</div>
+    <div class="panel-title panel-title--with-icon">
+      <span class="panel-title-icon" aria-hidden="true"><span class="ui-svg"><svg viewBox="0 0 24 24"><rect width="8" height="4" x="8" y="2" rx="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M9 12h6"/><path d="M9 16h6"/><path d="M9 8h2"/></svg></span></span>
+      Analysis Parameters
+    </div>
     <div class="form-grid">
       <div class="form-group">
         <label>Company</label>
@@ -1105,27 +1330,29 @@
         <label>Financials</label>
         <input type="text" id="financials-range" value="Public filings · FY 2019 – FY 2024" readonly />
         <div class="financial-toolbar">
-          <button type="button" class="btn-secondary" onclick="addLatestFinancials()">+ Add latest financials</button>
+          <button type="button" class="btn-secondary" onclick="addLatestFinancials()"><span class="btn-sec-icon" aria-hidden="true"><span class="ui-svg"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></span> Add latest financials</button>
           <span class="financial-login-hint">Subscription only</span>
         </div>
         <div id="financial-hint-box" class="financial-hint-box" role="status"></div>
       </div>
     </div>
     <div class="analyst-note">
-      💡 &nbsp;The AI pipeline extracts and structures data from public filings. The analyst reviews all outputs, overrides where needed, and approves before the memo is finalised.
+      <span class="analyst-note-icon" aria-hidden="true"><span class="ui-svg"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span></span>
+      <span>The AI pipeline extracts and structures data from public filings. The analyst reviews all outputs, overrides where needed, and approves before the memo is finalised.</span>
     </div>
     <div class="demo-banner" role="note">
-      <span aria-hidden="true">🧪</span>
-      <span><strong>Demo:</strong> This page is a static showcase. <strong>Run AI-Augmented Analysis</strong> does not call a live model or your data—it runs a short UI simulation and reveals <strong>pre-generated</strong> memo content produced via <strong>Claude CoWork — Skills</strong>. Not for production credit decisions.</span>
+      <span class="demo-banner-icon" aria-hidden="true"><span class="ui-svg"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span></span>
+      <span><strong>Demo:</strong> <strong>Run Claude Agent</strong> runs a UI simulation only (no live model or your data). Memo content is <strong>pre-generated</strong> via <strong>Claude Desktop App</strong>. Not for production credit decisions.</span>
     </div>
     <button type="button" class="run-btn" onclick="runAnalysis()">
-      ▶ &nbsp;Run AI-Augmented Analysis
+      <span class="run-btn-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><polygon points="8 5 19 12 8 19 8 5" fill="currentColor" stroke="none"/></svg></span>
+      Run Claude Agent
     </button>
   </div>
 
   <!-- Loading -->
   <div id="loading">
-    <div style="font-size:15px;font-weight:600;">Running AI-Augmented Pipeline...</div>
+    <div style="font-size:15px;font-weight:600;">Running Claude Agent…</div>
     <div style="font-size:12px;color:var(--text-dim);margin-top:4px;">AI processes · Analyst reviews · Human approves</div>
     <div class="loading-steps" id="steps">
       <div class="step-item" id="s1">
@@ -1233,7 +1460,7 @@
       </div>
     </div>
     <div class="rec-box">
-      <div class="rec-header">📄 AI-drafted credit recommendation — pending analyst sign-off</div>
+      <div class="rec-header"><span class="rec-header-icon" aria-hidden="true"><span class="ui-svg"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M16 13H8"/><path d="M16 17H8"/><path d="M10 9H8"/></svg></span></span>AI-drafted credit recommendation — pending analyst sign-off</div>
       <div class="rec-text">
         Helios Towers Africa presents a sub-investment grade credit (implied BB+), supported by a contracted tower-lease business model with top-tier MNO counterparties across Sub-Saharan Africa. The ~52% Adjusted EBITDA margin reflects the structural strength of the TowerCo model. Credit concerns are centred on leverage (~5.8x ND/EBITDA), FX mismatch between USD-denominated debt and local currency revenues, and a refinancing profile that warrants close monitoring. <strong>Recommended decision: Proceed with Conditions.</strong> Suggested covenant package: net leverage step-down to 5.0x by FY2026, mandatory FX hedging on ≥70% of USD obligations, and a cash sweep mechanism triggered above 6.0x leverage. Estimated headroom for additional debt on current EBITDA: USD ~140m at 5.0x covenant level.
         <br><br>
@@ -1290,29 +1517,25 @@
 
             <div id="ca-panel-km" class="ca-panel" role="tabpanel" aria-labelledby="ca-tab-km">
               <div class="metrics-grid metrics-grid--pair" style="margin-bottom:12px;">
-                <div class="metric-card">
+                <div class="metric-card" id="ca-km-adj-nwa-card">
                   <div class="metric-source">Derived</div>
-                  <div class="metric-label">Adj. NWA change (FY2022)</div>
-                  <div class="metric-value">(54.0)</div>
+                  <div class="metric-label">Adj. <abbr class="nwa-abbr" title="Net Working Asset">NWA</abbr> change (<span id="ca-km-adj-nwa-fy">FY2024</span>)</div>
+                  <div class="metric-value" id="ca-km-adj-nwa-value">(7.5)</div>
                   <div class="metric-sub">USD m</div>
-                  <div class="metric-trend neutral">● Peak working-capital outflow year</div>
+                  <div class="metric-trend neutral">TBC AI reasoning</div>
                 </div>
-                <div class="metric-card">
+                <div class="metric-card" id="ca-km-nwa-sales-card">
                   <div class="metric-source">Derived</div>
-                  <div class="metric-label">NWA (Adj) / Sales (FY2024)</div>
-                  <div class="metric-value">10%</div>
+                  <div class="metric-label"><abbr class="nwa-abbr" title="Net Working Asset">NWA</abbr> (Adj) / Sales (<span id="ca-km-nwa-sales-fy">FY2024</span>)</div>
+                  <div class="metric-value" id="ca-km-nwa-sales-value">10%</div>
                   <div class="metric-sub">Ratio</div>
-                  <div class="metric-trend up">▲ Stabilised vs. FY2022/23 volatility</div>
+                  <div class="metric-trend neutral">TBC AI reasoning</div>
                 </div>
-              </div>
-              <div class="deck-placeholder">
-                <div class="deck-placeholder-title">What to look for</div>
-                Focus on receivables, contract assets, and deferred income drivers; validate against billing/collection dynamics and IFRS 15 movements.
               </div>
             </div>
 
             <div id="ca-panel-df" class="ca-panel" role="tabpanel" aria-labelledby="ca-tab-df" hidden>
-              <div class="deck-placeholder-title" style="margin-bottom:6px;">NWA Impact on Cash Flow</div>
+              <div class="deck-placeholder-title" style="margin-bottom:6px;"><abbr class="nwa-abbr" title="Net Working Asset">NWA</abbr> Impact on Cash Flow</div>
 
               <div class="nwa-table-wrap" id="nwa-table-wrap">
                 <div class="nwa-chart-tooltip" id="nwa-hover-chart" role="tooltip" aria-hidden="true">
@@ -1323,10 +1546,10 @@
 
                 <div class="nwa-legend"><code>■</code> (Subscription only)</div>
 
-                <table class="nwa-table" aria-label="NWA impact on cash flow table">
+                <table class="nwa-table" aria-label="Net Working Asset (NWA) impact on cash flow; amounts in USD millions">
                   <thead>
                     <tr>
-                      <th>Change in Adj. NWA (USD Millions)</th>
+                      <th>Change in Adj. <abbr class="nwa-abbr" title="Net Working Asset">NWA</abbr> (USD Millions)</th>
                       <th>FY2019</th>
                       <th>FY2020</th>
                       <th>FY2021</th>
@@ -1381,8 +1604,8 @@
                       <td>—</td><td>11.5</td><td>29.6</td><td>27.5</td><td>16.4</td><td>(25.1)</td>
                     </tr>
 
-                    <tr class="nwa-row" data-series="adjNWA">
-                      <td>Change in Adj. NWA</td>
+                    <tr class="nwa-row nwa-row--chart" data-series="adjNWA">
+                      <td>Change in Adj. <abbr class="nwa-abbr" title="Net Working Asset">NWA</abbr></td>
                       <td>—</td><td>(30.3)</td><td>11.2</td><td>(54.0)</td><td>1.7</td><td>(7.5)</td>
                     </tr>
 
@@ -1390,17 +1613,17 @@
                       <td colspan="7"></td>
                     </tr>
 
-                    <tr class="nwa-row" data-series="grossCFO">
+                    <tr class="nwa-row nwa-row--chart" data-series="grossCFO">
                       <td><b>Gross Cash from Operations</b></td>
                       <td>186.3</td><td>196.2</td><td>251.8</td><td>228.7</td><td>370.7</td><td>412.3</td>
                     </tr>
 
-                    <tr class="nwa-row" data-series="nwaAdjSales">
-                      <td><b>NWA (Adj) / Sales*</b></td>
+                    <tr class="nwa-row nwa-row--chart" data-series="nwaAdjSales">
+                      <td><b><abbr class="nwa-abbr" title="Net Working Asset">NWA</abbr> (Adj) / Sales*</b></td>
                       <td>1% [P]</td><td>8%</td><td>5%</td><td>13%</td><td>10%</td><td>10%</td>
                     </tr>
 
-                    <tr class="nwa-row" data-series="salesGrowth">
+                    <tr class="nwa-row nwa-row--chart" data-series="salesGrowth">
                       <td><b>Sales Growth (%) *</b></td>
                       <td>—</td><td>7%</td><td>8%</td><td>25%</td><td>29%</td><td>10%</td>
                     </tr>
@@ -1410,9 +1633,16 @@
             </div>
 
             <div id="ca-panel-conclusion" class="ca-panel" role="tabpanel" aria-labelledby="ca-tab-conclusion" hidden>
+              <div class="conclusion-panel-head">
+                <h3 class="conclusion-panel-title" id="ca-concl-heading">Conclusion</h3>
+                <button type="button" class="conclusion-regen-btn" data-conclusion-context="current-asset" aria-describedby="ca-concl-heading" aria-label="Regenerate conclusion with AI (demo)">
+                  <span class="ui-svg" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.937A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4M22 5h-4M4 17v2M5 19H3"/></svg></span>
+                  Regenerate
+                </button>
+              </div>
               <ul class="bm-list">
-                <li><span class="bm-li-label">Deferred income + related party receivables:</span> kept early NWA low; then unwound as FY2019→FY2024 progressed.</li>
-                <li><span class="bm-li-label">Contract assets:</span> IFRS 15 amplifier; the build/unwind drove the biggest swings in NWA.</li>
+                <li><span class="bm-li-label">Deferred income + related party receivables:</span> kept early <abbr class="nwa-abbr" title="Net Working Asset">NWA</abbr> low; then unwound as FY2019→FY2024 progressed.</li>
+                <li><span class="bm-li-label">Contract assets:</span> IFRS 15 amplifier; the build/unwind drove the biggest swings in <abbr class="nwa-abbr" title="Net Working Asset">NWA</abbr>.</li>
                 <li><span class="bm-li-label">Accruals &amp; other CL:</span> generally acted as a headwind in FY2024 (offsetting contract asset benefit).</li>
                 <li><span class="bm-li-label">Receivables:</span> structurally the drag (collection cycles lengthening even when advances exist).</li>
                 <li><span class="bm-li-label">NWCC context:</span> advance payments (and deferred income) partially offset trade exposure.</li>
@@ -1438,24 +1668,20 @@
 
             <div id="fa-panel-km" class="ca-panel" role="tabpanel" aria-labelledby="fa-tab-km">
               <div class="metrics-grid metrics-grid--pair" style="margin-bottom:12px;">
-                <div class="metric-card">
+                <div class="metric-card" id="fa-km-capex-da-card">
                   <div class="metric-source">Derived</div>
-                  <div class="metric-label">Capex / Total D&amp;A (FY2024)</div>
-                  <div class="metric-value">1.4x</div>
+                  <div class="metric-label">Capex / Total <abbr class="da-abbr" title="Depreciation &amp; Amortization">D&amp;A</abbr> (<span id="fa-km-capex-da-fy">FY2024</span>)</div>
+                  <div class="metric-value" id="fa-km-capex-da-value">1.4x</div>
                   <div class="metric-sub">Intensity</div>
-                  <div class="metric-trend neutral">● Normalised from acquisition peak</div>
+                  <div class="metric-trend neutral">TBC AI reasoning</div>
                 </div>
-                <div class="metric-card">
+                <div class="metric-card" id="fa-km-sps-card">
                   <div class="metric-source">Derived</div>
-                  <div class="metric-label">Sales per Site (FY2024)</div>
-                  <div class="metric-value">55.3</div>
+                  <div class="metric-label">Sales per Site (<span id="fa-km-sps-fy">FY2024</span>)</div>
+                  <div class="metric-value" id="fa-km-sps-value">55.3</div>
                   <div class="metric-sub">$000</div>
-                  <div class="metric-trend up">▲ Back to pre-M&amp;A baseline</div>
+                  <div class="metric-trend neutral">TBC AI reasoning</div>
                 </div>
-              </div>
-              <div class="deck-placeholder">
-                <div class="deck-placeholder-title">What to look for</div>
-                Track capex mix (maintenance vs growth), funding coverage after interest/amortisation, and efficiency vs peers (turnover, capex/sales).
               </div>
             </div>
 
@@ -1490,22 +1716,22 @@
                       <td>55%</td><td>58%</td><td>63%</td><td>66%</td><td>58%</td><td>55% [E]</td>
                     </tr>
                     <tr class="fa-row" data-series="faDA">
-                      <td>D&amp;A — Total (USD m)</td>
+                      <td><abbr class="da-abbr" title="Depreciation &amp; Amortization">D&amp;A</abbr> — Total (USD m)</td>
                       <td>138.0</td><td>135.4</td><td>157.5</td><td>165.8</td><td>192.9</td><td>139.2</td>
                     </tr>
                     <tr class="fa-row" data-series="faSites">
                       <td>Total Sites</td>
                       <td>7,000 [A]</td><td>6,966</td><td>14,231 [A]</td><td>14,416 [A]</td><td>14,097</td><td>14,325</td>
                     </tr>
-                    <tr class="fa-row" data-series="faCapex">
+                    <tr class="fa-row fa-row--chart" data-series="faCapex">
                       <td><b>Chg in Net Fixed Assets (CAPEX)</b></td>
                       <td><b>108.7</b></td><td><b>114.3</b></td><td><b>334.1</b></td><td><b>417.8</b></td><td><b>230.7</b></td><td><b>200.0</b></td>
                     </tr>
-                    <tr class="fa-row" data-series="faCapexToDA">
-                      <td><b>Capex / Total D&amp;A (x)</b></td>
+                    <tr class="fa-row fa-row--chart" data-series="faCapexToDA">
+                      <td><b>Capex / Total <abbr class="da-abbr" title="Depreciation &amp; Amortization">D&amp;A</abbr> (x)</b></td>
                       <td><b>0.8x</b></td><td><b>0.8x</b></td><td><b>2.1x</b></td><td><b>2.5x</b></td><td><b>1.2x</b></td><td><b>1.4x</b></td>
                     </tr>
-                    <tr class="fa-row" data-series="faSalesPerSite">
+                    <tr class="fa-row fa-row--chart" data-series="faSalesPerSite">
                       <td><b>Sales per Site ($000)</b></td>
                       <td><b>55.4</b></td><td><b>59.4</b></td><td><b>31.6</b></td><td><b>41.2</b></td><td><b>51.1</b></td><td><b>55.3</b></td>
                     </tr>
@@ -1515,8 +1741,15 @@
             </div>
 
             <div id="fa-panel-conclusion" class="ca-panel" role="tabpanel" aria-labelledby="fa-tab-conclusion" hidden>
+              <div class="conclusion-panel-head">
+                <h3 class="conclusion-panel-title" id="fa-concl-heading">Conclusion</h3>
+                <button type="button" class="conclusion-regen-btn" data-conclusion-context="fixed-asset" aria-describedby="fa-concl-heading" aria-label="Regenerate conclusion with AI (demo)">
+                  <span class="ui-svg" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.937A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4M22 5h-4M4 17v2M5 19H3"/></svg></span>
+                  Regenerate
+                </button>
+              </div>
               <ul class="bm-list">
-                <li><span class="bm-li-label">CAPEX Trajectory — Acquisitive to Organic:</span> CAPEX/D&amp;A peaked at 2.5x (FY2022) during the DRC, South Africa, Senegal and Malawi acquisition program (FY2021–22, ~7,000+ towers added). Management formally pivoted to organic-only in 2023: +544 sites (FY2023), +228 sites (FY2024). CAPEX/D&amp;A has moderated to 1.4x (FY2024), appropriate for maintenance + organic build. Note: the ratio is flattered by the South Africa disposal which reduced total D&amp;A sharply from 192.9 (FY2023) to 139.2 (FY2024) — watch for re-acceleration in FY2025+.</li>
+                <li><span class="bm-li-label">CAPEX Trajectory — Acquisitive to Organic:</span> CAPEX/<abbr class="da-abbr" title="Depreciation &amp; Amortization">D&amp;A</abbr> peaked at 2.5x (FY2022) during the DRC, South Africa, Senegal and Malawi acquisition program (FY2021–22, ~7,000+ towers added). Management formally pivoted to organic-only in 2023: +544 sites (FY2023), +228 sites (FY2024). CAPEX/<abbr class="da-abbr" title="Depreciation &amp; Amortization">D&amp;A</abbr> has moderated to 1.4x (FY2024), appropriate for maintenance + organic build. Note: the ratio is flattered by the South Africa disposal which reduced total <abbr class="da-abbr" title="Depreciation &amp; Amortization">D&amp;A</abbr> sharply from 192.9 (FY2023) to 139.2 (FY2024) — watch for re-acceleration in FY2025+.</li>
                 <li><span class="bm-li-label">CAPEX Affordability — Structural Turning Point in FY2023/24:</span> NCAO improved from $165–219M (FY2020–22) to $410–418M (FY2023–24) as tenancy growth drove operating leverage. NCAO/CAPEX recovered from 0.5x (FY2021–22) to 2.1x (FY2024): Helios now self-funds all CAPEX from operations for the first time. CASH AFTER DEBT AMORTIZATION (168.8M, FY2024) falls marginally short of total CAPEX (200.0M), still requiring modest external funding for growth — but the gap vs. prior years (CADA was only 9.3M in FY2021) represents a step-change improvement.</li>
                 <li><span class="bm-li-label">Investment Payoff — Confirmed by Operational KPIs:</span> Tenancy ratio reached 2.07x (FY2024), confirmed from annual report, up from ~1.30x pre-acquisition: the internal 2.0x investment thesis has been delivered. Sales per site fully recovered to $55.3k (FY2024), matching the FY2019 pre-M&amp;A baseline of $55.4k despite near-doubling of site count (7,000 → 14,325). EBITDA/site also recovered to $30.2k (FY2024) vs $30.6k (FY2019). The dilution from acquiring lower-utilisation towers has been fully absorbed.</li>
                 <li><span class="bm-li-label">Leverage and Affordability Risk:</span> Interest expense (196.9M, FY2024) consumes 47% of NCAO, leaving CASH AFTER FINANCING COSTS of 220.8M. CPLTD of 52.0M (CPLTD Bond 16.5M + Finance Leases CP 35.5M) then reduces CADA to 168.8M. While improved vs FY2021 (CADA: 9.3M), any NCAO reversal — driven by SSA FX devaluation (TZS, GHS, CDF) or energy cost spikes — would quickly erode CAPEX coverage. Bond refinancing risk remains the key overhang, given elevated net leverage.</li>
@@ -1613,12 +1846,19 @@
         </div>
 
         <div id="sp-panel-conc" class="ca-panel" role="tabpanel" aria-labelledby="sp-tab-conc" hidden>
+          <div class="conclusion-panel-head">
+            <h3 class="conclusion-panel-title" id="sp-concl-heading">Conclusion</h3>
+            <button type="button" class="conclusion-regen-btn" data-conclusion-context="sales-profitability" aria-describedby="sp-concl-heading" aria-label="Regenerate conclusion with AI (demo)">
+              <span class="ui-svg" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.937A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4M22 5h-4M4 17v2M5 19H3"/></svg></span>
+              Regenerate
+            </button>
+          </div>
           <ul class="bm-list">
             <li><span class="bm-li-label">Revenue: strong USD growth, FX the persistent headwind:</span> Sales expanded from $414m (FY2020) to $792m (FY2024) — a 91% increase over four years, underpinned by tower additions, tenancy ratio gains, and contracted CPI-linked escalators. USD growth peaked at +29% (FY2023) before moderating to +10% (FY2024) as SSA currency devaluations increasingly compress reported USD revenue. Tanzania ($270m, 34%) and DRC ($118m, 15%) are the dominant markets — together ~49% of FY2024 revenue — with Ghana ($127m, 16%) adding further FX exposure; collectively ~65% of revenue is in high-FX-risk jurisdictions (TZS, CDF, GHS). Senegal and South Africa provide growing but subscale offsets.</li>
             <li><span class="bm-li-label">GP margin step-change in FY2024: IFRS 16 rolloff, not cash improvement:</span> Gross Profit margin from trading jumped 10.8pp to 48.4% in FY2024 (from 37.5% in FY2023). The primary driver was IFRS 16 ROU depreciation rolling off acquired lease towers (+9.2pp), a non-cash accounting release; incremental cash COS efficiency contributed only +1.7pp. The EBITDA(CF) margin improved modestly from 51% to 53% (FY2023→FY2024), confirming the bulk of the GP uplift is non-cash. EBITDA(CF) grew from $227m (FY2020) to $420m (FY2024) — an 85% increase at 17% CAGR — reflecting genuine operating leverage on the tower network.</li>
             <li><span class="bm-li-label">FY2024: first profit since IPO, but interest &amp; FX costs remain elevated:</span> EBIT reached $263m (FY2024), driving the first positive NPBT (+$44.2m) and NPAT (+$27m) since listing. However, gross interest expense compounded at ~16% p.a. to $197m (FY2024), and FX translation losses on non-USD debt added a further $22m — total interest and FX cost of $219m absorbed the majority of EBIT. FY2022/FY2023 FX losses ($52m/$66m) severely suppressed NPBT in those years. Structural profitability requires both continued EBITDA expansion and FX stabilisation across the SSA portfolio.</li>
             <li><span class="bm-li-label">Divisional: Tanzania and DRC core, but no segment EBITDA disclosed:</span> Tanzania ($270m, +9% YoY) and DRC ($118m, +10%) are the earnings engine, growing steadily despite currency pressure. South Africa delivered the fastest growth at +10% to $87m as the build-out matures. Ghana ($127m) and Senegal ($71m) are broadly stable. The Group reports only segment revenue — no divisional EBITDA or margin data is disclosed, limiting the ability to assess profitability distribution and cross-subsidy risk across the six markets.</li>
-            <li><span class="bm-li-label">Cash generation: step-change in FY2024; interest coverage improving:</span> Derived GCFO reached $440m (FY2024), more than doubling from $197m (FY2021), as EBITDA(CF) expanded and NWA reversed — releasing $20m in FY2024 after absorbing $44–54m annually in FY2021–FY2023. NCAO of $418m (FY2024) covers cash interest of $197m at 2.1x (FY2019: 1.7x). CACF (post-interest) improved to $221m, providing meaningful headroom for debt service and growth CAPEX. Est. FY2025 NCAO ~$400m [E] — stable-to-slight decline as the FY2023 tax credit unwinds and FX/other costs normalise.</li>
+            <li><span class="bm-li-label">Cash generation: step-change in FY2024; interest coverage improving:</span> Derived GCFO reached $440m (FY2024), more than doubling from $197m (FY2021), as EBITDA(CF) expanded and <abbr class="nwa-abbr" title="Net Working Asset">NWA</abbr> reversed — releasing $20m in FY2024 after absorbing $44–54m annually in FY2021–FY2023. NCAO of $418m (FY2024) covers cash interest of $197m at 2.1x (FY2019: 1.7x). CACF (post-interest) improved to $221m, providing meaningful headroom for debt service and growth CAPEX. Est. FY2025 NCAO ~$400m [E] — stable-to-slight decline as the FY2023 tax credit unwinds and FX/other costs normalise.</li>
           </ul>
         </div>
       </div>
@@ -1660,7 +1900,7 @@
           </div>
 
           <div class="panel">
-            <div class="panel-title">⚠️ Risk flags — AI identified · analyst to verify</div>
+            <div class="panel-title panel-title--with-icon"><span class="panel-title-icon panel-title-icon--warn" aria-hidden="true"><span class="ui-svg"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span></span>Risk flags — AI identified · analyst to verify</div>
             <div class="risk-item">
               <div class="risk-dot risk-high"></div>
               <div>
@@ -1814,7 +2054,13 @@
         </div>
 
         <div id="solv-panel-conc" class="ca-panel" role="tabpanel" aria-labelledby="solv-tab-conc" hidden>
-          <div class="deck-placeholder-title" style="margin-bottom:12px;">Solvency</div>
+          <div class="conclusion-panel-head">
+            <h3 class="conclusion-panel-title" id="solv-concl-heading">Conclusion</h3>
+            <button type="button" class="conclusion-regen-btn" data-conclusion-context="solvency" aria-describedby="solv-concl-heading" aria-label="Regenerate conclusion with AI (demo)">
+              <span class="ui-svg" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.937A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4M22 5h-4M4 17v2M5 19H3"/></svg></span>
+              Regenerate
+            </button>
+          </div>
           <ul class="bm-list">
             <li><span class="bm-li-label">Financial risk assessment — Elevated / high:</span> Helios Towers operates with a structurally leveraged balance sheet built to fund an aggressive acquisition-led growth strategy.</li>
             <li><span class="bm-li-label">Liquidity — Moderate risk:</span> Approximately $581m in known sources versus $323m in near-term uses implies a surplus; however, growth capex (~$165–180m p.a.) and limited visibility on undrawn facilities absorb most of that buffer.</li>
@@ -1830,7 +2076,7 @@
 
     <section id="sec-fin-funding" class="memo-section" aria-labelledby="memo-h-fin-funding">
     <div class="panel">
-        <div class="panel-title" id="memo-h-fin-funding">📊 Debt capacity waterfall (USD m) — AI estimate</div>
+        <div class="panel-title panel-title--with-icon" id="memo-h-fin-funding"><span class="panel-title-icon" aria-hidden="true"><span class="ui-svg"><svg viewBox="0 0 24 24"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span></span>Debt capacity waterfall (USD m) — AI estimate</div>
         <div style="font-size:11px;color:var(--amber);margin-bottom:12px;">⚠ Indicative only — analyst to verify against actual debt schedule</div>
         <div class="waterfall">
           <div class="wf-row">
@@ -1884,6 +2130,8 @@
   ↑ <span>Memo top</span>
 </button>
 
+<div id="memo-conclusion-toast" class="memo-conclusion-toast" role="status" aria-live="polite" hidden></div>
+
 <script>
 function prefersReducedMotion() {
   return window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -1896,6 +2144,280 @@ function scrollBehaviorOpt() {
 function memoChartGridColor() {
   var v = getComputedStyle(document.documentElement).getPropertyValue("--chart-grid");
   return (v && v.trim()) || "rgba(255,255,255,0.10)";
+}
+
+function memoChartLabelFill() {
+  var v = getComputedStyle(document.documentElement).getPropertyValue("--text-dim");
+  return (v && v.trim()) || "#64748b";
+}
+
+function memoEscapeSvgText(s) {
+  return String(s)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;");
+}
+
+function memoMaskDigits(s) {
+  return String(s).replace(/[0-9]/g, "■");
+}
+
+/** Same visual language across memo tables: letters and digits → ■ (spaces & punctuation kept). */
+function memoMaskLettersAndDigits(s) {
+  return String(s).replace(/[A-Za-z0-9]/g, "■");
+}
+
+function memoMaskLabelCellPreserveMarkup(labelEl) {
+  var original = labelEl.textContent.trim();
+  if (original) labelEl.setAttribute("aria-label", original);
+  function walk(node) {
+    if (node.nodeType === Node.TEXT_NODE) {
+      node.textContent = memoMaskLettersAndDigits(node.textContent);
+    } else {
+      for (var c = 0; c < node.childNodes.length; c++) {
+        walk(node.childNodes[c]);
+      }
+    }
+  }
+  walk(labelEl);
+}
+
+/**
+ * Compact bar chart for row hover tooltips (zero baseline; +/− fills).
+ * Optional chartOpts: { xLabels[], xAxisTitle, yAxisTitle, formatYTick(n) }
+ */
+function memoDrawHoverBars(svg, values, periodCount, chartOpts) {
+  if (!svg || !periodCount) return;
+  chartOpts = chartOpts || {};
+  var xLabels = chartOpts.xLabels;
+  var labeled =
+    Array.isArray(xLabels) && xLabels.length === periodCount && periodCount > 0;
+  var xAxisTitle = chartOpts.xAxisTitle || "";
+  var yAxisTitle = chartOpts.yAxisTitle || "";
+  var formatYTick =
+    typeof chartOpts.formatYTick === "function"
+      ? chartOpts.formatYTick
+      : function (n) {
+          var r = Math.round(n * 100) / 100;
+          if (Math.abs(r - Math.round(r)) < 1e-5) return String(Math.round(r));
+          return String(Math.round(r * 10) / 10);
+        };
+
+  var labelFill = memoChartLabelFill();
+  var vbW = labeled ? 308 : 300;
+  var vbH = labeled ? 130 : 82;
+  var padL = labeled ? 46 : 16;
+  var padR = labeled ? 10 : 10;
+  var plotTop = labeled ? 12 : 4;
+  var plotBottom = labeled ? vbH - 28 : vbH - 10;
+  var innerW = vbW - padL - padR;
+  var innerH = Math.max(18, plotBottom - plotTop);
+  var n = periodCount;
+
+  var finite = values
+    .map(function (v, idx) {
+      return { v: v, idx: idx };
+    })
+    .filter(function (p) {
+      return p.v !== null && p.v !== undefined && Number.isFinite(p.v);
+    });
+  if (finite.length === 0) {
+    svg.innerHTML = "";
+    return;
+  }
+
+  var minV = Math.min.apply(
+    Math,
+    [0].concat(finite.map(function (p) {
+      return p.v;
+    }))
+  );
+  var maxV = Math.max.apply(
+    Math,
+    [0].concat(finite.map(function (p) {
+      return p.v;
+    }))
+  );
+  if (minV === maxV) {
+    minV -= 1;
+    maxV += 1;
+  }
+
+  function yFor(v) {
+    return plotTop + ((maxV - v) / (maxV - minV)) * innerH;
+  }
+  var baselineY = yFor(0);
+
+  var slotW = innerW / n;
+  var barW = labeled ? Math.min(18, Math.max(4, slotW * 0.38)) : Math.min(20, Math.max(4, slotW * 0.4));
+
+  var posFill = "rgba(0, 188, 212, 0.7)";
+  var negFill = "rgba(180, 83, 9, 0.55)";
+  var gridColor = memoChartGridColor();
+
+  var yTicks = [];
+  function pushTick(t) {
+    for (var ti = 0; ti < yTicks.length; ti++) {
+      if (Math.abs(yTicks[ti] - t) < 1e-5) return;
+    }
+    yTicks.push(t);
+  }
+  pushTick(maxV);
+  if (minV < 0 && maxV > 0) pushTick(0);
+  pushTick(minV);
+  yTicks.sort(function (a, b) {
+    return b - a;
+  });
+
+  var parts = [];
+  var ff = "system-ui,Segoe UI,sans-serif";
+
+  if (labeled) {
+    yTicks.forEach(function (t) {
+      var gy = yFor(t);
+      parts.push(
+        '<line x1="' +
+          padL +
+          '" y1="' +
+          gy.toFixed(1) +
+          '" x2="' +
+          (vbW - padR) +
+          '" y2="' +
+          gy.toFixed(1) +
+          '" stroke="' +
+          gridColor +
+          '" stroke-width="0.75" opacity="0.35"/>'
+      );
+    });
+  }
+
+  parts.push(
+    '<line x1="' +
+      padL +
+      '" y1="' +
+      baselineY.toFixed(1) +
+      '" x2="' +
+      (vbW - padR) +
+      '" y2="' +
+      baselineY.toFixed(1) +
+      '" stroke="' +
+      gridColor +
+      '" stroke-width="1" opacity="0.85"/>'
+  );
+
+  for (var i = 0; i < n; i++) {
+    var v = values[i];
+    if (v === null || v === undefined || !Number.isFinite(v)) continue;
+    var cx = padL + i * slotW + slotW / 2;
+    var x = cx - barW / 2;
+    var yV = yFor(v);
+    var y0 = baselineY;
+    var top = Math.min(yV, y0);
+    var h = Math.max(1.5, Math.abs(yV - y0));
+    var fill = v >= 0 ? posFill : negFill;
+    parts.push(
+      '<rect x="' +
+        x.toFixed(1) +
+        '" y="' +
+        top.toFixed(1) +
+        '" width="' +
+        barW.toFixed(1) +
+        '" height="' +
+        h.toFixed(1) +
+        '" rx="1.5" fill="' +
+        fill +
+        '"/>'
+    );
+  }
+
+  if (labeled) {
+    yTicks.forEach(function (t) {
+      var y = yFor(t);
+      parts.push(
+        '<text x="' +
+          (padL - 5) +
+          '" y="' +
+          (y + 3.2).toFixed(1) +
+          '" text-anchor="end" font-size="8.5" font-family="' +
+          ff +
+          '" fill="' +
+          labelFill +
+          '">' +
+          memoEscapeSvgText(formatYTick(t)) +
+          "</text>"
+      );
+    });
+    if (yAxisTitle) {
+      var cy = plotTop + innerH / 2;
+      parts.push(
+        '<text transform="translate(12,' +
+          cy.toFixed(1) +
+          ') rotate(-90)" text-anchor="middle" font-size="9" font-weight="600" font-family="' +
+          ff +
+          '" fill="' +
+          labelFill +
+          '">' +
+          memoEscapeSvgText(yAxisTitle) +
+          "</text>"
+      );
+    }
+    for (var xi = 0; xi < n; xi++) {
+      var cx2 = padL + xi * slotW + slotW / 2;
+      parts.push(
+        '<text x="' +
+          cx2.toFixed(1) +
+          '" y="' +
+          (plotBottom + 13).toFixed(1) +
+          '" text-anchor="middle" font-size="8.5" font-family="' +
+          ff +
+          '" fill="' +
+          labelFill +
+          '">' +
+          memoEscapeSvgText(xLabels[xi]) +
+          "</text>"
+      );
+    }
+    if (xAxisTitle) {
+      parts.push(
+        '<text x="' +
+          ((padL + (vbW - padR)) / 2).toFixed(1) +
+          '" y="' +
+          (vbH - 4).toFixed(1) +
+          '" text-anchor="middle" font-size="8.5" font-weight="600" font-family="' +
+          ff +
+          '" fill="' +
+          labelFill +
+          '">' +
+          memoEscapeSvgText(xAxisTitle) +
+          "</text>"
+      );
+    }
+  }
+
+  svg.setAttribute("viewBox", "0 0 " + vbW + " " + vbH);
+  svg.setAttribute("preserveAspectRatio", "xMidYMid meet");
+  svg.innerHTML = parts.join("");
+}
+
+/** Place tooltip under the row when possible so table cells stay visible. */
+function memoPositionRowTooltip(tooltip, rowRect) {
+  if (!tooltip || !rowRect) return;
+  var w = 320;
+  var margin = 12;
+  function place() {
+    var h = tooltip.offsetHeight > 40 ? tooltip.offsetHeight : 220;
+    var left = Math.max(margin, Math.min(rowRect.left, window.innerWidth - w - margin));
+    var top = rowRect.bottom + 8;
+    if (top + h > window.innerHeight - margin) {
+      top = Math.max(margin, rowRect.top - h - 8);
+    }
+    tooltip.style.left = left + "px";
+    tooltip.style.top = top + "px";
+    tooltip.style.width = w + "px";
+  }
+  place();
+  requestAnimationFrame(place);
 }
 
 (function setupAppearanceToggle() {
@@ -2128,37 +2650,6 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
   init(document.querySelector("[data-solv-tabs]"));
 })();
 
-(function maskFixedAssetFiguresTable() {
-  const table = document.getElementById("fa-figures-table");
-  if (!table) return;
-
-  function maskDigits(s) {
-    return String(s).replace(/[0-9]/g, "■");
-  }
-
-  const tds = Array.from(table.querySelectorAll("tbody td")).filter((td, idx) => {
-    // Skip first column (labels)
-    const isLabelCol = idx % 7 === 0;
-    if (isLabelCol) return false;
-    const txt = td.textContent || "";
-    return /[0-9]/.test(txt);
-  });
-  if (!tds.length) return;
-
-  // Randomly mask a handful of numeric cells per page load.
-  const pickCount = Math.min(5, Math.max(2, Math.floor(tds.length * 0.18)));
-  for (let i = tds.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    const tmp = tds[i];
-    tds[i] = tds[j];
-    tds[j] = tmp;
-  }
-  tds.slice(0, pickCount).forEach((td) => {
-    td.textContent = maskDigits(td.textContent);
-    td.setAttribute("data-masked", "true");
-  });
-})();
-
 (function setupFixedAssetHoverAnalytics() {
   const wrap = document.getElementById("fa-figures-wrap");
   if (!wrap) return;
@@ -2172,6 +2663,8 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
   if (!tooltip || !titleEl || !valuesEl || !svg) return;
 
   const years = ["FY2019", "FY2020", "FY2021", "FY2022", "FY2023", "FY2024"];
+  const FA_CHART_KEYS = new Set(["faCapex", "faCapexToDA", "faSalesPerSite"]);
+  const xLabelsShort = years.map((y) => "FY" + String(y).slice(-2));
 
   // Numeric series for charting (unmasked), aligned to table rows.
   const series = {
@@ -2184,103 +2677,90 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
     faSalesPerSite: [55.4, 59.4, 31.6, 41.2, 51.1, 55.3],
   };
 
-  const units = {
-    faSales: "USD m",
-    faEbitdaMargin: "%",
-    faDA: "USD m",
-    faSites: "",
-    faCapex: "USD m",
-    faCapexToDA: "x",
-    faSalesPerSite: "$000",
+  // Demo masking: fixed FY columns per row + random row labels (non-chart rows only), same rules as NWA.
+  const faMaskedCells = {
+    faSales: new Set([3]),
+    faEbitdaMargin: new Set([4]),
+    faDA: new Set([2]),
+    faSites: new Set([5]),
   };
 
-  function drawLine(values) {
-    // Draw into a fixed viewBox using simple coordinate mapping.
-    const vbW = 340;
-    const vbH = 130;
-    const pad = 14;
-    const innerW = vbW - pad * 2;
-    const innerH = vbH - pad * 2;
-
-    const valid = values
-      .map((v, idx) => ({ v, idx }))
-      .filter((p) => p.v !== null && p.v !== undefined && Number.isFinite(p.v));
-    if (valid.length < 2) {
-      svg.innerHTML = "";
-      return;
+  function applyFaSymbolSubstitutionToTable() {
+    const rows = Array.from(table.querySelectorAll("tbody tr.fa-row[data-series]"));
+    const keysEligibleForLabelMask = rows
+      .map((r) => r.getAttribute("data-series"))
+      .filter(Boolean)
+      .filter((k) => !FA_CHART_KEYS.has(k));
+    const nElig = keysEligibleForLabelMask.length;
+    let pickCount = 0;
+    if (nElig > 0) {
+      const maxMask = Math.floor(nElig * 0.6);
+      if (maxMask > 0) {
+        const minMask = Math.min(maxMask, Math.max(1, Math.ceil(nElig * 0.33)));
+        pickCount = minMask + Math.floor(Math.random() * (maxMask - minMask + 1));
+      }
     }
+    const shuffled = keysEligibleForLabelMask.slice().sort(() => Math.random() - 0.5);
+    const maskLabelKeys = new Set(shuffled.slice(0, pickCount));
 
-    const yVals = valid.map((p) => p.v);
-    let minY = Math.min(...yVals);
-    let maxY = Math.max(...yVals);
-    if (minY === maxY) {
-      minY -= 1;
-      maxY += 1;
-    }
-
-    const xFor = (i) => pad + (i / (years.length - 1)) * innerW;
-    const yFor = (v) => pad + (maxY - v) / (maxY - minY) * innerH;
-
-    const pts = values.map((v, i) => (v === null || v === undefined ? null : [xFor(i), yFor(v)]));
-    const seg = pts.filter(Boolean);
-    const d = seg
-      .map((p, idx) => `${idx === 0 ? "M" : "L"} ${p[0].toFixed(1)} ${p[1].toFixed(1)}`)
-      .join(" ");
-
-    const lineColor = "rgba(0,188,212,0.95)";
-    const gridColor = memoChartGridColor();
-
-    const circles = valid
-      .map((p) => {
-        const cx = xFor(p.idx);
-        const cy = yFor(p.v);
-        return `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3.6" fill="var(--teal)" stroke="rgba(0,0,0,0.25)" stroke-width="1"/>`;
-      })
-      .join("");
-
-    const gridLines = [0.25, 0.5, 0.75]
-      .map((t) => {
-        const y = pad + t * innerH;
-        return `<line x1="${pad}" y1="${y}" x2="${pad + innerW}" y2="${y}" stroke="${gridColor}" stroke-width="1"/>`;
-      })
-      .join("");
-
-    svg.setAttribute("viewBox", "0 0 340 130");
-    svg.innerHTML = `
-      ${gridLines}
-      <path d="${d}" fill="none" stroke="${lineColor}" stroke-width="2.2" stroke-linecap="round"/>
-      ${circles}
-    `;
+    rows.forEach((row) => {
+      const seriesKey = row.getAttribute("data-series");
+      const idxs = faMaskedCells[seriesKey];
+      if (idxs) {
+        const tds = row.querySelectorAll("td");
+        idxs.forEach((i) => {
+          const td = tds[i + 1];
+          if (!td) return;
+          td.textContent = memoMaskDigits(td.textContent);
+        });
+      }
+      if (seriesKey && !FA_CHART_KEYS.has(seriesKey) && maskLabelKeys.has(seriesKey)) {
+        const labelTd = row.querySelector("td:first-child");
+        if (labelTd) memoMaskLabelCellPreserveMarkup(labelTd);
+      }
+    });
   }
 
-  function showForRow(row) {
-    const key = row.getAttribute("data-series");
-    const values = series[key];
-    if (!key || !values) return;
+  applyFaSymbolSubstitutionToTable();
 
-    titleEl.textContent = row.querySelector("td")?.textContent.trim() || "Fixed asset figure";
+  function fmtFaUsdTick(n) {
+    const r = Math.round(n * 10) / 10;
+    if (Math.abs(r - Math.round(r)) < 1e-5) return String(Math.round(r));
+    return r.toFixed(1);
+  }
+
+  function fmtFaRatioTick(n) {
+    const r = Math.round(n * 100) / 100;
+    if (Math.abs(r - Math.round(r)) < 1e-5) return String(Math.round(r));
+    return r.toFixed(1).replace(/\.0$/, "");
+  }
+
+  const faChartMeta = {
+    faCapex: { yAxisTitle: "USD m", formatYTick: fmtFaUsdTick },
+    faCapexToDA: { yAxisTitle: "Times (x)", formatYTick: fmtFaRatioTick },
+    faSalesPerSite: { yAxisTitle: "$000", formatYTick: fmtFaUsdTick },
+  };
+
+  function showForSeries(seriesKey, rowEl) {
+    if (!FA_CHART_KEYS.has(seriesKey)) return;
+    const values = series[seriesKey];
+    if (!values) return;
+
+    titleEl.textContent = rowEl.querySelector("td")?.textContent.trim() || "Fixed asset figure";
     valuesEl.innerHTML = "";
 
-    const valueTds = row.querySelectorAll("td");
-    years.forEach((yr, i) => {
-      const td = valueTds[i + 1];
-      const shown = td ? td.textContent.trim() : "—";
-      const span = document.createElement("span");
-      span.textContent = `${yr}: ${shown}`;
-      valuesEl.appendChild(span);
+    const meta = faChartMeta[seriesKey];
+    memoDrawHoverBars(svg, values, years.length, {
+      xLabels: xLabelsShort,
+      xAxisTitle: "Fiscal year",
+      yAxisTitle: meta.yAxisTitle,
+      formatYTick: meta.formatYTick,
     });
 
-    void units; // reserved for future formatting if needed
-    drawLine(values);
-
-    const r = row.getBoundingClientRect();
-    const tooltipW = 380;
-    const left = Math.min(window.innerWidth - tooltipW, r.right + 12);
-    const top = Math.max(16, r.top);
-    tooltip.style.left = `${left}px`;
-    tooltip.style.top = `${top}px`;
+    const r = rowEl.getBoundingClientRect();
     tooltip.classList.add("is-visible");
     tooltip.setAttribute("aria-hidden", "false");
+    memoPositionRowTooltip(tooltip, r);
   }
 
   function hide() {
@@ -2288,15 +2768,55 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
     tooltip.setAttribute("aria-hidden", "true");
   }
 
-  const rows = wrap.querySelectorAll("tr.fa-row[data-series]");
-  rows.forEach((row) => {
-    row.addEventListener("mouseenter", () => showForRow(row));
+  function syncFixedAssetKeyMetricsLatestFY() {
+    const lastIdx = years.length - 1;
+    const lastFY = years[lastIdx];
+
+    const capexFy = document.getElementById("fa-km-capex-da-fy");
+    const capexVal = document.getElementById("fa-km-capex-da-value");
+    if (capexFy) capexFy.textContent = lastFY;
+    if (capexVal) {
+      const v = series.faCapexToDA[lastIdx];
+      if (v === null || v === undefined || !Number.isFinite(v)) capexVal.textContent = "—";
+      else {
+        const s =
+          Math.abs(v - Math.round(v)) < 1e-6
+            ? String(Math.round(v))
+            : v.toFixed(1).replace(/\.0$/, "");
+        capexVal.textContent = s + "x";
+      }
+    }
+
+    const spsFy = document.getElementById("fa-km-sps-fy");
+    const spsVal = document.getElementById("fa-km-sps-value");
+    if (spsFy) spsFy.textContent = lastFY;
+    if (spsVal) {
+      const v = series.faSalesPerSite[lastIdx];
+      if (v === null || v === undefined || !Number.isFinite(v)) spsVal.textContent = "—";
+      else {
+        spsVal.textContent =
+          Math.abs(v - Math.round(v)) < 1e-6 ? String(Math.round(v)) : v.toFixed(1).replace(/\.0$/, "");
+      }
+    }
+  }
+
+  syncFixedAssetKeyMetricsLatestFY();
+
+  wrap.querySelectorAll("tr.fa-row--chart[data-series]").forEach((row) => {
+    const seriesKey = row.getAttribute("data-series");
+    if (!seriesKey) return;
+    row.addEventListener("mouseenter", () => showForSeries(seriesKey, row));
     row.addEventListener("mouseleave", hide);
-    row.addEventListener("focusin", () => showForRow(row));
+    row.addEventListener("focusin", () => showForSeries(seriesKey, row));
     row.addEventListener("focusout", hide);
+    row.addEventListener("click", (e) => {
+      const isVisible = tooltip.classList.contains("is-visible");
+      e.preventDefault();
+      if (isVisible) hide();
+      else showForSeries(seriesKey, row);
+    });
   });
 
-  // If user scrolls while visible, hide to prevent stale positioning.
   window.addEventListener("scroll", hide, { passive: true });
   window.addEventListener("resize", hide, { passive: true });
 })();
@@ -2356,64 +2876,6 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
     spNPBTToSales: [-19.3, -5.0, -26.6, -29.0, -15.6, 5.6],
   };
 
-  function drawLine(values) {
-    const vbW = 340;
-    const vbH = 130;
-    const pad = 14;
-    const innerW = vbW - pad * 2;
-    const innerH = vbH - pad * 2;
-
-    const valid = values
-      .map((v, idx) => ({ v, idx }))
-      .filter((p) => p.v !== null && p.v !== undefined && Number.isFinite(p.v));
-    if (valid.length < 2) {
-      svg.innerHTML = "";
-      return;
-    }
-
-    const yVals = valid.map((p) => p.v);
-    let minY = Math.min(...yVals);
-    let maxY = Math.max(...yVals);
-    if (minY === maxY) {
-      minY -= 1;
-      maxY += 1;
-    }
-
-    const xFor = (i) => pad + (i / (years.length - 1)) * innerW;
-    const yFor = (v) => pad + (maxY - v) / (maxY - minY) * innerH;
-
-    const pts = values.map((v, i) => (v === null || v === undefined ? null : [xFor(i), yFor(v)]));
-    const seg = pts.filter(Boolean);
-    const d = seg
-      .map((p, idx) => `${idx === 0 ? "M" : "L"} ${p[0].toFixed(1)} ${p[1].toFixed(1)}`)
-      .join(" ");
-
-    const lineColor = "rgba(0,188,212,0.95)";
-    const gridColor = memoChartGridColor();
-
-    const circles = valid
-      .map((p) => {
-        const cx = xFor(p.idx);
-        const cy = yFor(p.v);
-        return `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3.6" fill="var(--teal)" stroke="rgba(0,0,0,0.25)" stroke-width="1"/>`;
-      })
-      .join("");
-
-    const gridLines = [0.25, 0.5, 0.75]
-      .map((t) => {
-        const y = pad + t * innerH;
-        return `<line x1="${pad}" y1="${y}" x2="${pad + innerW}" y2="${y}" stroke="${gridColor}" stroke-width="1"/>`;
-      })
-      .join("");
-
-    svg.setAttribute("viewBox", "0 0 340 130");
-    svg.innerHTML = `
-      ${gridLines}
-      <path d="${d}" fill="none" stroke="${lineColor}" stroke-width="2.2" stroke-linecap="round"/>
-      ${circles}
-    `;
-  }
-
   function showForRow(row) {
     const key = row.getAttribute("data-series");
     const values = series[key];
@@ -2431,16 +2893,12 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
       valuesEl.appendChild(span);
     });
 
-    drawLine(values);
+    memoDrawHoverBars(svg, values, years.length);
 
     const r = row.getBoundingClientRect();
-    const tooltipW = 380;
-    const left = Math.min(window.innerWidth - tooltipW, r.right + 12);
-    const top = Math.max(16, r.top);
-    tooltip.style.left = `${left}px`;
-    tooltip.style.top = `${top}px`;
     tooltip.classList.add("is-visible");
     tooltip.setAttribute("aria-hidden", "false");
+    memoPositionRowTooltip(tooltip, r);
   }
 
   function hide() {
@@ -2541,65 +2999,6 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
     solvCfSubtotal: [-76.6, -92.2, -148.2, -124.0, -4.4, 29.6, -7.9],
   };
 
-  function drawLine(values) {
-    const vbW = 340;
-    const vbH = 130;
-    const pad = 14;
-    const innerW = vbW - pad * 2;
-    const innerH = vbH - pad * 2;
-    const n = periodLabels.length;
-
-    const valid = values
-      .map((v, idx) => ({ v, idx }))
-      .filter((p) => p.v !== null && p.v !== undefined && Number.isFinite(p.v));
-    if (valid.length < 2) {
-      svg.innerHTML = "";
-      return;
-    }
-
-    const yVals = valid.map((p) => p.v);
-    let minY = Math.min(...yVals);
-    let maxY = Math.max(...yVals);
-    if (minY === maxY) {
-      minY -= 1;
-      maxY += 1;
-    }
-
-    const xFor = (i) => pad + (i / (n - 1)) * innerW;
-    const yFor = (v) => pad + (maxY - v) / (maxY - minY) * innerH;
-
-    const pts = values.map((v, i) => (v === null || v === undefined ? null : [xFor(i), yFor(v)]));
-    const seg = pts.filter(Boolean);
-    const d = seg
-      .map((p, idx) => `${idx === 0 ? "M" : "L"} ${p[0].toFixed(1)} ${p[1].toFixed(1)}`)
-      .join(" ");
-
-    const lineColor = "rgba(0,188,212,0.95)";
-    const gridColor = memoChartGridColor();
-
-    const circles = valid
-      .map((p) => {
-        const cx = xFor(p.idx);
-        const cy = yFor(p.v);
-        return `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3.6" fill="var(--teal)" stroke="rgba(0,0,0,0.25)" stroke-width="1"/>`;
-      })
-      .join("");
-
-    const gridLines = [0.25, 0.5, 0.75]
-      .map((t) => {
-        const y = pad + t * innerH;
-        return `<line x1="${pad}" y1="${y}" x2="${pad + innerW}" y2="${y}" stroke="${gridColor}" stroke-width="1"/>`;
-      })
-      .join("");
-
-    svg.setAttribute("viewBox", "0 0 340 130");
-    svg.innerHTML = `
-      ${gridLines}
-      <path d="${d}" fill="none" stroke="${lineColor}" stroke-width="2.2" stroke-linecap="round"/>
-      ${circles}
-    `;
-  }
-
   function showForRow(row) {
     const key = row.getAttribute("data-series");
     const values = series[key];
@@ -2617,16 +3016,12 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
       valuesEl.appendChild(span);
     });
 
-    drawLine(values);
+    memoDrawHoverBars(svg, values, periodLabels.length);
 
     const r = row.getBoundingClientRect();
-    const tooltipW = 380;
-    const left = Math.min(window.innerWidth - tooltipW, r.right + 12);
-    const top = Math.max(16, r.top);
-    tooltip.style.left = `${left}px`;
-    tooltip.style.top = `${top}px`;
     tooltip.classList.add("is-visible");
     tooltip.setAttribute("aria-hidden", "false");
+    memoPositionRowTooltip(tooltip, r);
   }
 
   function hide() {
@@ -2668,64 +3063,6 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
     solvDSCR: [null, 2.01, 1.94, 1.62, 2.12, 2.09],
   };
 
-  function drawLine(values) {
-    const vbW = 340;
-    const vbH = 130;
-    const pad = 14;
-    const innerW = vbW - pad * 2;
-    const innerH = vbH - pad * 2;
-
-    const valid = values
-      .map((v, idx) => ({ v, idx }))
-      .filter((p) => p.v !== null && p.v !== undefined && Number.isFinite(p.v));
-    if (valid.length < 2) {
-      svg.innerHTML = "";
-      return;
-    }
-
-    const yVals = valid.map((p) => p.v);
-    let minY = Math.min(...yVals);
-    let maxY = Math.max(...yVals);
-    if (minY === maxY) {
-      minY -= 1;
-      maxY += 1;
-    }
-
-    const xFor = (i) => pad + (i / (years.length - 1)) * innerW;
-    const yFor = (v) => pad + (maxY - v) / (maxY - minY) * innerH;
-
-    const pts = values.map((v, i) => (v === null || v === undefined ? null : [xFor(i), yFor(v)]));
-    const seg = pts.filter(Boolean);
-    const d = seg
-      .map((p, idx) => `${idx === 0 ? "M" : "L"} ${p[0].toFixed(1)} ${p[1].toFixed(1)}`)
-      .join(" ");
-
-    const lineColor = "rgba(0,188,212,0.95)";
-    const gridColor = memoChartGridColor();
-
-    const circles = valid
-      .map((p) => {
-        const cx = xFor(p.idx);
-        const cy = yFor(p.v);
-        return `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3.6" fill="var(--teal)" stroke="rgba(0,0,0,0.25)" stroke-width="1"/>`;
-      })
-      .join("");
-
-    const gridLines = [0.25, 0.5, 0.75]
-      .map((t) => {
-        const y = pad + t * innerH;
-        return `<line x1="${pad}" y1="${y}" x2="${pad + innerW}" y2="${y}" stroke="${gridColor}" stroke-width="1"/>`;
-      })
-      .join("");
-
-    svg.setAttribute("viewBox", "0 0 340 130");
-    svg.innerHTML = `
-      ${gridLines}
-      <path d="${d}" fill="none" stroke="${lineColor}" stroke-width="2.2" stroke-linecap="round"/>
-      ${circles}
-    `;
-  }
-
   function showForRow(row) {
     const key = row.getAttribute("data-series");
     const values = series[key];
@@ -2743,16 +3080,12 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
       valuesEl.appendChild(span);
     });
 
-    drawLine(values);
+    memoDrawHoverBars(svg, values, years.length);
 
     const r = row.getBoundingClientRect();
-    const tooltipW = 380;
-    const left = Math.min(window.innerWidth - tooltipW, r.right + 12);
-    const top = Math.max(16, r.top);
-    tooltip.style.left = `${left}px`;
-    tooltip.style.top = `${top}px`;
     tooltip.classList.add("is-visible");
     tooltip.setAttribute("aria-hidden", "false");
+    memoPositionRowTooltip(tooltip, r);
   }
 
   function hide() {
@@ -2780,8 +3113,34 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
   const titleEl = document.getElementById("nwa-chart-title");
   const valuesEl = document.getElementById("nwa-chart-values");
   const svg = document.getElementById("nwa-chart-svg");
+  if (!tooltip || !titleEl || !valuesEl || !svg) return;
 
   const years = ["FY2019", "FY2020", "FY2021", "FY2022", "FY2023", "FY2024"];
+  const NWA_CHART_KEYS = new Set(["adjNWA", "grossCFO", "nwaAdjSales", "salesGrowth"]);
+  const xLabelsShort = years.map((y) => "FY" + String(y).slice(-2));
+
+  function fmtUsdAxisTick(n) {
+    var r = Math.round(n * 10) / 10;
+    if (Math.abs(r - Math.round(r)) < 1e-5) return String(Math.round(r));
+    return r.toFixed(1);
+  }
+
+  const nwaChartMeta = {
+    adjNWA: { yAxisTitle: "USD m", formatYTick: fmtUsdAxisTick },
+    grossCFO: { yAxisTitle: "USD m", formatYTick: fmtUsdAxisTick },
+    nwaAdjSales: {
+      yAxisTitle: "%",
+      formatYTick: function (n) {
+        return String(Math.round(n));
+      },
+    },
+    salesGrowth: {
+      yAxisTitle: "%",
+      formatYTick: function (n) {
+        return String(Math.round(n));
+      },
+    },
+  };
 
   // Values must align with the table rows above (USD millions). Null means dash/absent.
   const series = {
@@ -2799,16 +3158,6 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
     nwaAdjSales: [1, 8, 5, 13, 10, 10],
     salesGrowth: [null, 7, 8, 25, 29, 10],
   };
-
-  const units = {
-    nwaAdjSales: "%",
-    salesGrowth: "%",
-    // Others are in USD millions or already unitless changes.
-  };
-
-  function maskDigits(s) {
-    return String(s).replace(/[0-9]/g, "■");
-  }
 
   // Demo masking: ONLY mask a few cells in the rows shown in the screenshot.
   // (Do not touch other rows like NWA/Sales or Sales Growth.)
@@ -2828,144 +3177,95 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
   function applySymbolSubstitutionToTable() {
     const table = wrap.querySelector("table.nwa-table");
     if (!table) return;
-    const rows = table.querySelectorAll("tbody tr.nwa-row[data-series]");
+    const rows = Array.from(table.querySelectorAll("tbody tr.nwa-row[data-series]"));
+    const keysEligibleForLabelMask = rows
+      .map((r) => r.getAttribute("data-series"))
+      .filter(Boolean)
+      .filter((k) => !NWA_CHART_KEYS.has(k));
+    const nElig = keysEligibleForLabelMask.length;
+    let pickCount = 0;
+    if (nElig > 0) {
+      const maxMask = Math.floor(nElig * 0.6);
+      if (maxMask > 0) {
+        const minMask = Math.min(maxMask, Math.max(1, Math.ceil(nElig * 0.33)));
+        pickCount = minMask + Math.floor(Math.random() * (maxMask - minMask + 1));
+      }
+    }
+    const shuffled = keysEligibleForLabelMask.slice().sort(() => Math.random() - 0.5);
+    const maskLabelKeys = new Set(shuffled.slice(0, pickCount));
+
     rows.forEach((row) => {
       const seriesKey = row.getAttribute("data-series");
       const idxs = maskedCells[seriesKey];
-      if (!idxs) return;
-      const tds = row.querySelectorAll("td");
-      idxs.forEach((i) => {
-        const td = tds[i + 1]; // +1 to skip label column
-        if (!td) return;
-        td.textContent = maskDigits(td.textContent);
-      });
+      if (idxs) {
+        const tds = row.querySelectorAll("td");
+        idxs.forEach((i) => {
+          const td = tds[i + 1]; // +1 to skip label column
+          if (!td) return;
+          td.textContent = memoMaskDigits(td.textContent);
+        });
+      }
+      if (seriesKey && !NWA_CHART_KEYS.has(seriesKey) && maskLabelKeys.has(seriesKey)) {
+        const labelTd = row.querySelector("td:first-child");
+        if (labelTd) memoMaskLabelCellPreserveMarkup(labelTd);
+      }
     });
   }
 
   // Apply symbol substitution to the table display (demo).
   applySymbolSubstitutionToTable();
 
-  function fmt(v) {
-    if (v === null || v === undefined) return "—";
-    if (Math.abs(v) < 0.0001) return "0";
-    if (v < 0) return `(${Math.abs(v).toFixed(1).replace(/\\.0$/, "")})`;
-    const s = v.toFixed(1).replace(/\\.0$/, "");
-    return s;
+  function fmtKeyMetricAdjNwa(v) {
+    if (v === null || v === undefined || !Number.isFinite(v)) return "—";
+    const a = Math.abs(v);
+    const num =
+      Math.abs(a - Math.round(a)) < 1e-6 ? String(Math.round(a)) : a.toFixed(1).replace(/\.0$/, "");
+    return v < 0 ? "(" + num + ")" : num;
   }
 
-  function drawLine(values) {
-    // Draw into a fixed viewBox using simple coordinate mapping.
-    const vbW = 340;
-    const vbH = 130;
-    const pad = 14;
-    const innerW = vbW - pad * 2;
-    const innerH = vbH - pad * 2;
+  function syncCurrentAssetKeyMetricsLatestFY() {
+    const lastIdx = years.length - 1;
+    const lastFY = years[lastIdx];
 
-    const pts = values.map((v, idx) => ({ idx, v }));
-    const valid = pts.filter((p) => p.v !== null && p.v !== undefined);
-    if (valid.length < 2) {
-      svg.innerHTML = "";
-      return;
+    const adjFy = document.getElementById("ca-km-adj-nwa-fy");
+    const adjVal = document.getElementById("ca-km-adj-nwa-value");
+    if (adjFy) adjFy.textContent = lastFY;
+    if (adjVal) adjVal.textContent = fmtKeyMetricAdjNwa(series.adjNWA[lastIdx]);
+
+    const salesFy = document.getElementById("ca-km-nwa-sales-fy");
+    const salesVal = document.getElementById("ca-km-nwa-sales-value");
+    if (salesFy) salesFy.textContent = lastFY;
+    if (salesVal) {
+      const r = series.nwaAdjSales[lastIdx];
+      salesVal.textContent =
+        r === null || r === undefined || !Number.isFinite(r) ? "—" : Math.round(r) + "%";
     }
-
-    const yVals = valid.map((p) => p.v);
-    let minY = Math.min(...yVals);
-    let maxY = Math.max(...yVals);
-    if (minY === maxY) {
-      minY -= 1;
-      maxY += 1;
-    }
-
-    const xFor = (i) => pad + (i / (years.length - 1)) * innerW;
-    const yFor = (v) => pad + (maxY - v) / (maxY - minY) * innerH;
-
-    // Build line segments across nulls by breaking segments when gaps appear.
-    let segs = [];
-    let seg = [];
-    for (let i = 0; i < values.length; i++) {
-      const v = values[i];
-      if (v === null || v === undefined) {
-        if (seg.length >= 2) segs.push(seg);
-        seg = [];
-        continue;
-      }
-      seg.push([xFor(i), yFor(v)]);
-    }
-    if (seg.length >= 2) segs.push(seg);
-
-    const lineColor = "rgba(0,188,212,0.95)";
-    const gridColor = memoChartGridColor();
-
-    const avgX = pad;
-    void avgX; // keep eslint quiet if present
-
-    const paths = segs
-      .map((s) => {
-        const d = s
-          .map((p, idx) => `${idx === 0 ? "M" : "L"} ${p[0].toFixed(1)} ${p[1].toFixed(1)}`)
-          .join(" ");
-        return `<path d="${d}" fill="none" stroke="${lineColor}" stroke-width="2.2" stroke-linecap="round"/>`;
-      })
-      .join("");
-
-    const circles = valid
-      .map((p) => {
-        const cx = xFor(p.idx);
-        const cy = yFor(p.v);
-        return `<circle cx="${cx.toFixed(1)}" cy="${cy.toFixed(1)}" r="3.6" fill="var(--teal)" stroke="rgba(0,0,0,0.25)" stroke-width="1"/>`;
-      })
-      .join("");
-
-    // Light grid (3 horizontal lines)
-    const gridLines = [0.25, 0.5, 0.75]
-      .map((t) => {
-        const y = pad + t * innerH;
-        return `<line x1="${pad}" y1="${y}" x2="${pad + innerW}" y2="${y}" stroke="${gridColor}" stroke-width="1"/>`;
-      })
-      .join("");
-
-    svg.setAttribute("viewBox", "0 0 340 130");
-    svg.innerHTML = `
-      ${gridLines}
-      ${paths}
-      ${circles}
-    `;
   }
+
+  syncCurrentAssetKeyMetricsLatestFY();
 
   function showForSeries(seriesKey, rowEl) {
+    if (!NWA_CHART_KEYS.has(seriesKey)) return;
     const values = series[seriesKey];
     if (!values) return;
 
-    // Title + values row
     const rowLabel = rowEl ? rowEl.querySelector("td")?.textContent.trim() : seriesKey;
     titleEl.textContent = rowLabel || "NWA change";
 
     valuesEl.innerHTML = "";
-    years.forEach((yr, i) => {
-      const v = values[i];
-      const span = document.createElement("span");
-      const unit = units[seriesKey];
-      const fv = fmt(v);
-      const shownRaw = `${fv}${unit ? unit : ""}`;
-      const idxs = maskedCells[seriesKey];
-      const shown = idxs && idxs.has(i) ? maskDigits(shownRaw) : shownRaw;
-      span.textContent = `${yr}: ${shown}`;
-      valuesEl.appendChild(span);
+
+    const meta = nwaChartMeta[seriesKey];
+    memoDrawHoverBars(svg, values, years.length, {
+      xLabels: xLabelsShort,
+      xAxisTitle: "Fiscal year",
+      yAxisTitle: meta.yAxisTitle,
+      formatYTick: meta.formatYTick,
     });
 
-    // Chart
-    drawLine(values);
-
-    // Position tooltip near the row
     const r = rowEl.getBoundingClientRect();
-    const tooltipW = 380;
-    const left = Math.min(window.innerWidth - tooltipW, r.right + 12);
-    const top = Math.max(16, r.top);
-
-    tooltip.style.left = `${left}px`;
-    tooltip.style.top = `${top}px`;
     tooltip.classList.add("is-visible");
     tooltip.setAttribute("aria-hidden", "false");
+    memoPositionRowTooltip(tooltip, r);
   }
 
   function hide() {
@@ -2973,21 +3273,125 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
     tooltip.setAttribute("aria-hidden", "true");
   }
 
-  // Wire row hover
-  const rows = wrap.querySelectorAll("tr.nwa-row");
-  rows.forEach((row) => {
+  wrap.querySelectorAll("tr.nwa-row--chart[data-series]").forEach((row) => {
     const seriesKey = row.getAttribute("data-series");
     if (!seriesKey) return;
     row.addEventListener("mouseenter", () => showForSeries(seriesKey, row));
-    row.addEventListener("mousemove", () => showForSeries(seriesKey, row));
     row.addEventListener("mouseleave", hide);
+    row.addEventListener("focusin", () => showForSeries(seriesKey, row));
+    row.addEventListener("focusout", hide);
 
-    // Mobile fallback: tap toggles
     row.addEventListener("click", (e) => {
       const isVisible = tooltip.classList.contains("is-visible");
       e.preventDefault();
       if (isVisible) hide();
       else showForSeries(seriesKey, row);
+    });
+  });
+
+  window.addEventListener("scroll", hide, { passive: true });
+  window.addEventListener("resize", hide, { passive: true });
+})();
+
+(function setupNwaAbbrDefinitionTips() {
+  var DEFAULT_TIP = "Net Working Asset";
+  var tip = document.getElementById("nwa-abbr-def-tip");
+  if (!tip) {
+    tip = document.createElement("div");
+    tip.id = "nwa-abbr-def-tip";
+    tip.className = "nwa-abbr-def-tip";
+    tip.setAttribute("role", "tooltip");
+    tip.hidden = true;
+    document.body.appendChild(tip);
+  }
+
+  var activeAbbr = null;
+  var hideTimer = null;
+
+  function hideDefTip() {
+    activeAbbr = null;
+    tip.hidden = true;
+    tip.textContent = "";
+  }
+
+  function positionDefTip(abbr) {
+    var text = abbr.getAttribute("title") || DEFAULT_TIP;
+    tip.textContent = text;
+    tip.hidden = false;
+    requestAnimationFrame(function () {
+      if (activeAbbr !== abbr) return;
+      var r = abbr.getBoundingClientRect();
+      var tw = tip.offsetWidth;
+      var th = tip.offsetHeight;
+      var margin = 10;
+      var left = r.left + r.width / 2 - tw / 2;
+      left = Math.max(margin, Math.min(left, window.innerWidth - tw - margin));
+      var top = r.top - th - margin;
+      if (top < margin) top = r.bottom + margin;
+      tip.style.left = left + "px";
+      tip.style.top = top + "px";
+    });
+  }
+
+  function bindAbbr(abbr) {
+    if (!abbr.getAttribute("title")) abbr.setAttribute("title", DEFAULT_TIP);
+    abbr.addEventListener("mouseenter", function () {
+      clearTimeout(hideTimer);
+      activeAbbr = abbr;
+      positionDefTip(abbr);
+    });
+    abbr.addEventListener("mouseleave", function () {
+      hideTimer = setTimeout(function () {
+        if (activeAbbr === abbr) hideDefTip();
+      }, 80);
+    });
+  }
+
+  document.querySelectorAll("abbr.nwa-abbr, abbr.da-abbr").forEach(bindAbbr);
+
+  window.addEventListener(
+    "scroll",
+    function () {
+      hideDefTip();
+    },
+    { passive: true, capture: true }
+  );
+  window.addEventListener("resize", hideDefTip, { passive: true });
+})();
+
+(function setupConclusionRegenerateDemo() {
+  var toast = document.getElementById("memo-conclusion-toast");
+  var labels = {
+    "current-asset": "Current asset",
+    "fixed-asset": "Fixed asset",
+    "sales-profitability": "Sales & profitability",
+    solvency: "Solvency",
+  };
+  var hideTimer;
+
+  function showToast(message) {
+    if (!toast) return;
+    toast.textContent = message;
+    toast.hidden = false;
+    clearTimeout(hideTimer);
+    hideTimer = setTimeout(function () {
+      toast.hidden = true;
+    }, 3800);
+  }
+
+  document.querySelectorAll(".conclusion-regen-btn").forEach(function (btn) {
+    btn.addEventListener("click", function () {
+      var ctx = btn.getAttribute("data-conclusion-context") || "this section";
+      var name = labels[ctx] || ctx;
+      showToast(
+        "AI regenerate requested for " +
+          name +
+          " — demo only; no model call yet. Analyst review still required."
+      );
+      btn.disabled = true;
+      setTimeout(function () {
+        btn.disabled = false;
+      }, 1600);
     });
   });
 })();

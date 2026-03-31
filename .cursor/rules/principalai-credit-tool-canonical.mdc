@@ -15,9 +15,10 @@ alwaysApply: true
 ## Workflow
 
 - Run locally (static): `cd` to repo root, then `./serve.sh` (serves on **port 8080**) or `python3 -m http.server 8080`.
-- When the user asks to update GitHub or the live site: **commit and push to `origin main`** on **this** repo.
+- **Do not `git push` (or push to GitHub) unless the user explicitly asks to push.** You may prepare commits locally only when that helps; still wait for an explicit push instruction unless they say otherwise.
+- When they **do** ask to update GitHub / the live site: **commit and push to `origin main`** on **this** repo.
 - **`principalai-app`** may contain a copy under `public/credit-memo/index.html` for the Next.js demo; treat it as **secondary** unless the user explicitly asks to sync that repo.
 
 ## Deploy
 
-- Production follows **Vercel** deployments from **`main`** on **`principalai-credit-tool`**. After substantive HTML changes, push `main` and confirm a new deployment in Vercel.
+- Production follows **Vercel** deployments from **`main`** on **`principalai-credit-tool`**. After substantive HTML changes, the user (or an explicit “push” request) triggers **`git push`** and then confirm deployment in Vercel.
