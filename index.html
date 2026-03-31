@@ -374,18 +374,6 @@
       font-weight: 600;
       letter-spacing: 0.2px;
     }
-    .financial-hint-box {
-      margin-top: 10px;
-      padding: 10px 12px;
-      border-radius: 8px;
-      font-size: 12px;
-      line-height: 1.45;
-      color: var(--text-dim);
-      background: rgba(255,179,0,0.06);
-      border: 1px solid rgba(255,179,0,0.2);
-      display: none;
-    }
-    .financial-hint-box.is-visible { display: block; }
     .analyst-note {
       display: flex;
       align-items: flex-start;
@@ -810,28 +798,12 @@
       width: 15px;
       height: 15px;
     }
-    .memo-conclusion-toast {
-      position: fixed;
-      bottom: 24px;
-      left: 50%;
-      transform: translateX(-50%);
-      z-index: 600;
-      max-width: min(440px, calc(100vw - 32px));
-      padding: 12px 16px;
-      font-size: 13px;
-      font-weight: 600;
-      line-height: 1.4;
-      color: var(--text);
-      background: var(--navy-light);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.22);
+    .conclusion-regen-toolbar {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 12px 16px;
     }
-    html[data-theme="light"] .memo-conclusion-toast {
-      background: #ffffff;
-      box-shadow: 0 8px 28px rgba(15, 23, 42, 0.12);
-    }
-
     /* Hover analytics for Current Asset */
     .nwa-table-wrap {
       margin-top: 10px;
@@ -1636,10 +1608,9 @@
         <label>Financials</label>
         <input type="text" id="financials-range" value="Public filings · FY 2019 – FY 2024" readonly />
         <div class="financial-toolbar">
-          <button type="button" class="btn-secondary" onclick="addLatestFinancials()"><span class="btn-sec-icon" aria-hidden="true"><span class="ui-svg"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></span> Add latest financials</button>
-          <span class="financial-login-hint">Subscription only</span>
+          <button type="button" class="btn-secondary" onclick="showAddLatestFinancialsSubscriptionHint()"><span class="btn-sec-icon" aria-hidden="true"><span class="ui-svg"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></span></span> Add latest financials</button>
+          <span id="financial-subscription-hint" class="financial-login-hint" hidden>Subscription only</span>
         </div>
-        <div id="financial-hint-box" class="financial-hint-box" role="status"></div>
       </div>
     </div>
     <div class="analyst-note">
@@ -2006,10 +1977,13 @@
             <div id="ca-panel-conclusion" class="ca-panel" role="tabpanel" aria-labelledby="ca-tab-conclusion" hidden>
               <div class="conclusion-panel-head">
                 <h3 class="conclusion-panel-title" id="ca-concl-heading">Conclusion</h3>
-                <button type="button" class="conclusion-regen-btn" data-conclusion-context="current-asset" aria-describedby="ca-concl-heading" aria-label="Regenerate conclusion with AI (demo)">
-                  <span class="ui-svg" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.937A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4M22 5h-4M4 17v2M5 19H3"/></svg></span>
-                  Regenerate
-                </button>
+                <div class="conclusion-regen-toolbar">
+                  <button type="button" class="conclusion-regen-btn" data-conclusion-context="current-asset" aria-describedby="ca-concl-heading" aria-label="Regenerate conclusion with AI (demo)">
+                    <span class="ui-svg" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.937A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4M22 5h-4M4 17v2M5 19H3"/></svg></span>
+                    Regenerate
+                  </button>
+                  <span class="financial-login-hint" hidden>Subscription only</span>
+                </div>
               </div>
               <ul class="bm-list">
                 <li><span class="bm-li-label">Deferred income + related party receivables:</span> kept early adjusted working capital low; then unwound as FY2019→FY2024 progressed.</li>
@@ -2114,10 +2088,13 @@
             <div id="fa-panel-conclusion" class="ca-panel" role="tabpanel" aria-labelledby="fa-tab-conclusion" hidden>
               <div class="conclusion-panel-head">
                 <h3 class="conclusion-panel-title" id="fa-concl-heading">Conclusion</h3>
-                <button type="button" class="conclusion-regen-btn" data-conclusion-context="fixed-asset" aria-describedby="fa-concl-heading" aria-label="Regenerate conclusion with AI (demo)">
-                  <span class="ui-svg" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.937A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4M22 5h-4M4 17v2M5 19H3"/></svg></span>
-                  Regenerate
-                </button>
+                <div class="conclusion-regen-toolbar">
+                  <button type="button" class="conclusion-regen-btn" data-conclusion-context="fixed-asset" aria-describedby="fa-concl-heading" aria-label="Regenerate conclusion with AI (demo)">
+                    <span class="ui-svg" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.937A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4M22 5h-4M4 17v2M5 19H3"/></svg></span>
+                    Regenerate
+                  </button>
+                  <span class="financial-login-hint" hidden>Subscription only</span>
+                </div>
               </div>
               <ul class="bm-list">
                 <li><span class="bm-li-label">CAPEX Trajectory — Acquisitive to Organic:</span> CAPEX/<abbr class="da-abbr" title="Depreciation &amp; Amortization">D&amp;A</abbr> peaked at 2.5x (FY2022) during the DRC, South Africa, Senegal and Malawi acquisition program (FY2021–22, ~7,000+ towers added). Management formally pivoted to organic-only in 2023: +544 sites (FY2023), +228 sites (FY2024). CAPEX/<abbr class="da-abbr" title="Depreciation &amp; Amortization">D&amp;A</abbr> has moderated to 1.4x (FY2024), appropriate for maintenance + organic build. Note: the ratio is flattered by the South Africa disposal which reduced total <abbr class="da-abbr" title="Depreciation &amp; Amortization">D&amp;A</abbr> sharply from 192.9 (FY2023) to 139.2 (FY2024) — watch for re-acceleration in FY2025+.</li>
@@ -2219,10 +2196,13 @@
         <div id="sp-panel-conc" class="ca-panel" role="tabpanel" aria-labelledby="sp-tab-conc" hidden>
           <div class="conclusion-panel-head">
             <h3 class="conclusion-panel-title" id="sp-concl-heading">Conclusion</h3>
-            <button type="button" class="conclusion-regen-btn" data-conclusion-context="sales-profitability" aria-describedby="sp-concl-heading" aria-label="Regenerate conclusion with AI (demo)">
-              <span class="ui-svg" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.937A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4M22 5h-4M4 17v2M5 19H3"/></svg></span>
-              Regenerate
-            </button>
+            <div class="conclusion-regen-toolbar">
+              <button type="button" class="conclusion-regen-btn" data-conclusion-context="sales-profitability" aria-describedby="sp-concl-heading" aria-label="Regenerate conclusion with AI (demo)">
+                <span class="ui-svg" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.937A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4M22 5h-4M4 17v2M5 19H3"/></svg></span>
+                Regenerate
+              </button>
+              <span class="financial-login-hint" hidden>Subscription only</span>
+            </div>
           </div>
           <ul class="bm-list">
             <li><span class="bm-li-label">Revenue: strong USD growth, FX the persistent headwind:</span> Sales expanded from $414m (FY2020) to $792m (FY2024) — a 91% increase over four years, underpinned by tower additions, tenancy ratio gains, and contracted CPI-linked escalators. USD growth peaked at +29% (FY2023) before moderating to +10% (FY2024) as SSA currency devaluations increasingly compress reported USD revenue. Tanzania ($270m, 34%) and DRC ($118m, 15%) are the dominant markets — together ~49% of FY2024 revenue — with Ghana ($127m, 16%) adding further FX exposure; collectively ~65% of revenue is in high-FX-risk jurisdictions (TZS, CDF, GHS). Senegal and South Africa provide growing but subscale offsets.</li>
@@ -2379,10 +2359,13 @@
         <div id="solv-panel-conc" class="ca-panel" role="tabpanel" aria-labelledby="solv-tab-conc" hidden>
           <div class="conclusion-panel-head">
             <h3 class="conclusion-panel-title" id="solv-concl-heading">Conclusion</h3>
-            <button type="button" class="conclusion-regen-btn" data-conclusion-context="solvency" aria-describedby="solv-concl-heading" aria-label="Regenerate conclusion with AI (demo)">
-              <span class="ui-svg" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.937A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4M22 5h-4M4 17v2M5 19H3"/></svg></span>
-              Regenerate
-            </button>
+            <div class="conclusion-regen-toolbar">
+              <button type="button" class="conclusion-regen-btn" data-conclusion-context="solvency" aria-describedby="solv-concl-heading" aria-label="Regenerate conclusion with AI (demo)">
+                <span class="ui-svg" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.937A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .962 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4M22 5h-4M4 17v2M5 19H3"/></svg></span>
+                Regenerate
+              </button>
+              <span class="financial-login-hint" hidden>Subscription only</span>
+            </div>
           </div>
           <ul class="bm-list">
             <li><span class="bm-li-label">Financial risk assessment — Elevated / high:</span> Helios Towers operates with a structurally leveraged balance sheet built to fund an aggressive acquisition-led growth strategy.</li>
@@ -2406,8 +2389,6 @@
 <button type="button" id="memo-back-top" class="memo-back-top no-print" hidden onclick="scrollMemoTop()" aria-label="Back to top of memo">
   ↑ <span>Memo top</span>
 </button>
-
-<div id="memo-conclusion-toast" class="memo-conclusion-toast no-print" role="status" aria-live="polite" hidden></div>
 
 <script>
 function prefersReducedMotion() {
@@ -2732,12 +2713,9 @@ function scrollMemoTop() {
   if (t) t.scrollIntoView({ behavior: scrollBehaviorOpt(), block: "start" });
 }
 
-function addLatestFinancials() {
-  const box = document.getElementById("financial-hint-box");
-  if (!box) return;
-  box.textContent =
-    "Latest filings require an authenticated connection to your data provider or document store (login). This page is static — hook “Add latest financials” to your API or upload flow when backend auth is available.";
-  box.classList.add("is-visible");
+function showAddLatestFinancialsSubscriptionHint() {
+  const el = document.getElementById("financial-subscription-hint");
+  if (el) el.removeAttribute("hidden");
 }
 
 function updateMemoBackTop() {
@@ -3832,107 +3810,11 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 })();
 
 (function setupConclusionRegenerate() {
-  var toast = document.getElementById("memo-conclusion-toast");
-  var labels = {
-    "current-asset": "Current asset",
-    "fixed-asset": "Fixed asset",
-    "sales-profitability": "Sales & profitability",
-    solvency: "Solvency",
-  };
-  var hideTimer;
-
-  function showToast(message, ms) {
-    if (!toast) return;
-    toast.textContent = message;
-    toast.hidden = false;
-    clearTimeout(hideTimer);
-    hideTimer = setTimeout(function () {
-      toast.hidden = true;
-    }, ms != null ? ms : 4500);
-  }
-
-  function renderConclusionList(ul, items) {
-    ul.innerHTML = "";
-    items.forEach(function (row) {
-      var li = document.createElement("li");
-      var span = document.createElement("span");
-      span.className = "bm-li-label";
-      span.textContent = row.label || "";
-      li.appendChild(span);
-      li.appendChild(document.createTextNode(row.body != null ? row.body : ""));
-      ul.appendChild(li);
-    });
-  }
-
-  function postRegenerate(context, sourceText) {
-    return fetch("/api/regenerate-conclusion", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ context: context, sourceText: sourceText }),
-    }).then(function (r) {
-      return r.text().then(function (text) {
-        var data = {};
-        if (text) {
-          try {
-            data = JSON.parse(text);
-          } catch (e) {
-            throw new Error(
-              r.status === 404
-                ? "Conclusion API not found. Use Vercel (or run `vercel dev`) so /api/regenerate-conclusion is available."
-                : "Invalid response from server."
-            );
-          }
-        }
-        if (!r.ok) {
-          if (r.status === 403 && data.code === "subscription_only") {
-            var subErr = new Error("Subscription only");
-            subErr.subscriptionOnly = true;
-            throw subErr;
-          }
-          throw new Error(data.error || data.detail || "Request failed (" + r.status + ")");
-        }
-        return data;
-      });
-    });
-  }
-
   document.querySelectorAll(".conclusion-regen-btn").forEach(function (btn) {
     btn.addEventListener("click", function () {
-      var ctx = btn.getAttribute("data-conclusion-context") || "";
-      var name = labels[ctx] || ctx;
-      var panel = btn.closest(".ca-panel");
-      var ul = panel && panel.querySelector("ul.bm-list");
-      if (!ul) {
-        showToast("Could not find conclusion list in this panel.");
-        return;
-      }
-
-      var sourceText = ul.innerText || "";
-      btn.disabled = true;
-      ul.setAttribute("aria-busy", "true");
-
-      postRegenerate(ctx, sourceText)
-        .then(function (data) {
-          if (!data.items || !data.items.length) {
-            throw new Error("No items returned");
-          }
-          renderConclusionList(ul, data.items);
-          showToast(
-            "Conclusion regenerated for " + name + " — review required before use.",
-            5000
-          );
-        })
-        .catch(function (err) {
-          if (err && err.subscriptionOnly) {
-            showToast("Subscription only", 5000);
-          } else {
-            showToast((err && err.message) || String(err), 6000);
-          }
-        })
-        .then(function () {
-          btn.disabled = false;
-          ul.removeAttribute("aria-busy");
-        });
+      var toolbar = btn.closest(".conclusion-regen-toolbar");
+      var hint = toolbar && toolbar.querySelector(".financial-login-hint");
+      if (hint) hint.removeAttribute("hidden");
     });
   });
 })();
