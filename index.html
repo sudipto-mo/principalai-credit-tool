@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <!-- memo-revision: professional-svg-icons-2026-03-31 -->
+  <!-- draft-revision: professional-svg-icons-2026-03-31 -->
   <title>Credit Brief | AI generated drafts</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -11,7 +11,7 @@
   <script>
     (function () {
       try {
-        var t = localStorage.getItem("credit-memo-theme");
+        var t = localStorage.getItem("credit-draft-theme");
         if (t === "dark" || t === "light") document.documentElement.setAttribute("data-theme", t);
       } catch (e) {}
     })();
@@ -541,26 +541,26 @@
     /* ── OUTPUT ── */
     #output { display: none; }
 
-    /* ── MEMO SECTIONS + TOC (Stage 1) ── */
+    /* ── DRAFT SECTIONS + TOC (Stage 1) ── */
     html { scroll-behavior: smooth; }
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       .wf-bar { transition: none; }
       .step-item { transition: none; }
     }
-    .memo-shell {
+    .draft-shell {
       display: flex;
       flex-direction: column;
       gap: 20px;
       align-items: stretch;
     }
-    .memo-toc {
+    .draft-toc {
       padding: 14px 16px;
       background: var(--navy-light);
       border: 1px solid var(--border);
       border-radius: 12px;
     }
-    .memo-toc-title {
+    .draft-toc-title {
       font-size: 11px;
       font-weight: 600;
       letter-spacing: 1px;
@@ -568,7 +568,7 @@
       color: var(--text-dim);
       margin-bottom: 10px;
     }
-    .memo-toc ul {
+    .draft-toc ul {
       list-style: none;
       display: flex;
       flex-wrap: nowrap;
@@ -578,11 +578,11 @@
       -webkit-overflow-scrolling: touch;
       scrollbar-width: thin;
     }
-    .memo-toc-jump-wrap {
+    .draft-toc-jump-wrap {
       display: none;
       margin-bottom: 4px;
     }
-    .memo-toc-jump-label {
+    .draft-toc-jump-label {
       display: block;
       font-size: 10px;
       font-weight: 600;
@@ -591,7 +591,7 @@
       color: var(--text-dim);
       margin-bottom: 8px;
     }
-    .memo-toc-select {
+    .draft-toc-select {
       width: 100%;
       background: var(--navy);
       border: 1px solid rgba(255,255,255,0.12);
@@ -604,11 +604,11 @@
       cursor: pointer;
       outline: none;
     }
-    .memo-toc-select:focus {
+    .draft-toc-select:focus {
       border-color: rgba(0,188,212,0.45);
       box-shadow: 0 0 0 2px rgba(0,188,212,0.15);
     }
-    .memo-toc a {
+    .draft-toc a {
       display: flex;
       align-items: center;
       white-space: nowrap;
@@ -623,25 +623,25 @@
       background: var(--card);
       transition: color 0.15s, border-color 0.15s, background 0.15s;
     }
-    .memo-toc a:hover {
+    .draft-toc a:hover {
       color: var(--text);
       border-color: rgba(0,188,212,0.35);
       background: rgba(0,188,212,0.06);
     }
-    .memo-toc a:focus-visible {
+    .draft-toc a:focus-visible {
       outline: 2px solid var(--teal);
       outline-offset: 2px;
     }
-    .memo-toc a.is-active {
+    .draft-toc a.is-active {
       color: var(--teal);
       border-color: rgba(0,188,212,0.45);
       background: rgba(0,188,212,0.12);
     }
-    .memo-main { min-width: 0; }
-    .memo-section {
+    .draft-main { min-width: 0; }
+    .draft-section {
       scroll-margin-top: 20px;
     }
-    .memo-section-title {
+    .draft-section-title {
       font-size: 12px;
       font-weight: 600;
       letter-spacing: 1px;
@@ -996,24 +996,24 @@
       .bm-grid { grid-template-columns: 1fr; }
     }
     @media (min-width: 900px) {
-      .memo-shell {
+      .draft-shell {
         display: grid;
         grid-template-columns: 200px minmax(0, 1fr);
         gap: 28px;
         align-items: start;
       }
-      .memo-toc {
+      .draft-toc {
         position: sticky;
         top: 16px;
         padding: 16px 14px;
       }
-      .memo-toc ul {
+      .draft-toc ul {
         flex-direction: column;
         flex-wrap: nowrap;
         overflow-x: visible;
         gap: 4px;
       }
-      .memo-toc a {
+      .draft-toc a {
         white-space: normal;
         padding: 8px 10px;
         border: none;
@@ -1021,10 +1021,10 @@
         border-radius: 6px;
         line-height: 1.35;
       }
-      .memo-toc a:hover {
+      .draft-toc a:hover {
         background: rgba(0,188,212,0.08);
       }
-      .memo-toc a.is-active {
+      .draft-toc a.is-active {
         border-left: 3px solid var(--teal);
         padding-left: 7px;
         margin-left: -3px;
@@ -1036,13 +1036,13 @@
 
     /* Narrow phones: dropdown instead of chip row (Stage 4) */
     @media (max-width: 599px) {
-      .memo-toc-jump-wrap { display: block; }
-      .memo-toc-title { display: none; }
-      .memo-toc ul { display: none; }
+      .draft-toc-jump-wrap { display: block; }
+      .draft-toc-title { display: none; }
+      .draft-toc ul { display: none; }
     }
 
     /* ── BACK TO TOP (Stage 3) ── */
-    .memo-back-top {
+    .draft-back-top {
       position: fixed;
       right: 20px;
       bottom: 24px;
@@ -1062,14 +1062,14 @@
       box-shadow: 0 8px 24px rgba(0,0,0,0.35);
       transition: opacity 0.2s, transform 0.15s;
     }
-    .memo-back-top:hover { opacity: 0.92; transform: translateY(-2px); }
-    .memo-back-top:focus-visible {
+    .draft-back-top:hover { opacity: 0.92; transform: translateY(-2px); }
+    .draft-back-top:focus-visible {
       outline: 2px solid var(--teal);
       outline-offset: 3px;
     }
-    .memo-back-top[hidden] { display: none !important; }
+    .draft-back-top[hidden] { display: none !important; }
     @media (prefers-reduced-motion: reduce) {
-      .memo-back-top { transition: none; }
+      .draft-back-top { transition: none; }
     }
 
     /* Score Banner */
@@ -1359,12 +1359,12 @@
       border-color: rgba(15, 23, 42, 0.12);
       color: var(--text);
     }
-    html[data-theme="light"] .memo-toc-select {
+    html[data-theme="light"] .draft-toc-select {
       background: #ffffff;
       border-color: rgba(15, 23, 42, 0.12);
       color: var(--text);
     }
-    html[data-theme="light"] .memo-toc-select:focus {
+    html[data-theme="light"] .draft-toc-select:focus {
       border-color: rgba(0, 124, 145, 0.45);
       box-shadow: 0 0 0 2px rgba(0, 124, 145, 0.12);
     }
@@ -1385,7 +1385,7 @@
       background: rgba(15, 23, 42, 0.05);
       border-color: rgba(15, 23, 42, 0.1);
     }
-    html[data-theme="light"] .memo-back-top {
+    html[data-theme="light"] .draft-back-top {
       color: #ffffff;
     }
     html[data-theme="light"] .aj-override input[type="text"] {
@@ -1395,7 +1395,7 @@
     }
 
     /* Light: report-style section bands, tables, hero — Morningstar-adjacent */
-    html[data-theme="light"] .memo-section-title {
+    html[data-theme="light"] .draft-section-title {
       font-weight: 800;
       letter-spacing: 0.11em;
       padding-bottom: 10px;
@@ -1432,7 +1432,7 @@
     }
     html[data-theme="light"] .metric-card,
     html[data-theme="light"] .bm-col,
-    html[data-theme="light"] .memo-toc,
+    html[data-theme="light"] .draft-toc,
     html[data-theme="light"] .input-panel,
     html[data-theme="light"] #loading {
       box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
@@ -1467,12 +1467,12 @@
     html[data-theme="light"] .rec-header {
       color: var(--teal);
     }
-    html[data-theme="light"] .memo-toc a.is-active {
+    html[data-theme="light"] .draft-toc a.is-active {
       color: var(--teal);
       border-color: var(--border);
       background: var(--navy-mid);
     }
-    html[data-theme="light"] .memo-toc a:hover {
+    html[data-theme="light"] .draft-toc a:hover {
       border-color: var(--border);
       background: rgba(26, 54, 93, 0.06);
     }
@@ -1480,7 +1480,7 @@
       background: rgba(26, 54, 93, 0.1);
       color: var(--teal);
     }
-    html[data-theme="light"] .memo-toc-select:focus {
+    html[data-theme="light"] .draft-toc-select:focus {
       border-color: rgba(26, 54, 93, 0.45);
       box-shadow: 0 0 0 2px rgba(26, 54, 93, 0.1);
     }
@@ -1490,7 +1490,7 @@
     html[data-theme="light"] .run-btn {
       background: linear-gradient(180deg, #1e4976, #152a45);
     }
-    html[data-theme="light"] .memo-back-top {
+    html[data-theme="light"] .draft-back-top {
       background: #1e4976;
       border-color: rgba(26, 54, 93, 0.45);
       box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
@@ -1525,7 +1525,7 @@
       color: var(--text);
     }
 
-    /* Print / Save as PDF — hide chrome; show memo body */
+    /* Print / Save as PDF — hide chrome; show draft body */
     @media print {
       * {
         -webkit-print-color-adjust: exact;
@@ -1545,10 +1545,10 @@
       #output {
         display: block !important;
       }
-      .memo-shell {
+      .draft-shell {
         display: block !important;
       }
-      .memo-main {
+      .draft-main {
         min-width: 0 !important;
       }
       a[href^="#"] {
@@ -1562,7 +1562,7 @@
       .nwa-table td {
         padding: 4px 6px !important;
       }
-      .memo-section {
+      .draft-section {
         break-inside: avoid;
       }
       button {
@@ -1607,7 +1607,7 @@
     </div>
   </div>
   <div class="header-actions no-print">
-    <button type="button" class="header-print-btn" onclick="memoPrintReport()" title="Opens the print dialog — choose Save as PDF to download" aria-label="Print or save memo as PDF">
+    <button type="button" class="header-print-btn" onclick="draftPrintReport()" title="Opens the print dialog — choose Save as PDF to download" aria-label="Print or save draft as PDF">
       <span class="ui-svg" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg></span>
       Print report
     </button>
@@ -1624,7 +1624,7 @@
 
 <div class="disclaimer-banner no-print">
   <span class="disclaimer-banner-icon" aria-hidden="true"><span class="ui-svg"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span></span>
-  <span>Figures are illustrative and sourced from public filings where noted in the memo. All outputs are AI-generated drafts — analyst review and verification required before use.</span>
+  <span>Figures are illustrative and sourced from public filings where noted in the draft. All outputs are AI-generated drafts — analyst review and verification required before use.</span>
 </div>
 
 <main id="main" class="container" tabindex="-1">
@@ -1659,11 +1659,11 @@
     </div>
     <div class="analyst-note">
       <span class="analyst-note-icon" aria-hidden="true"><span class="ui-svg"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 16v-4"/><path d="M12 8h.01"/></svg></span></span>
-      <span>The AI pipeline extracts and structures data from public filings. The analyst reviews all outputs, overrides where needed, and approves before the memo is finalised.</span>
+      <span>The AI pipeline extracts and structures data from public filings. The analyst reviews all outputs, overrides where needed, and approves before the draft is finalised.</span>
     </div>
     <div class="demo-banner" role="note">
       <span class="demo-banner-icon" aria-hidden="true"><span class="ui-svg"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span></span>
-      <span><strong>Demo:</strong> <strong>Run Claude Agent</strong> runs a UI simulation only (no live model or your data). Memo content is <strong>pre-generated</strong> via <strong>Claude Desktop App</strong>. Not for production credit decisions.</span>
+      <span><strong>Demo:</strong> <strong>Run Claude Agent</strong> runs a UI simulation only (no live model or your data). Draft content is <strong>pre-generated</strong> via <strong>Claude Desktop App</strong>. Not for production credit decisions.</span>
     </div>
     <button type="button" class="run-btn" onclick="runAnalysis()">
       <span class="run-btn-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><polygon points="8 5 19 12 8 19 8 5" fill="currentColor" stroke="none"/></svg></span>
@@ -1706,12 +1706,12 @@
   <!-- Output -->
   <div id="output">
 
-  <div class="memo-shell">
-    <nav class="memo-toc no-print" aria-label="Credit brief sections">
-      <div class="memo-toc-title">Credit brief</div>
-      <div class="memo-toc-jump-wrap">
-        <label for="memo-toc-jump" class="memo-toc-jump-label">Jump to section</label>
-        <select id="memo-toc-jump" class="memo-toc-select">
+  <div class="draft-shell">
+    <nav class="draft-toc no-print" aria-label="Credit brief sections">
+      <div class="draft-toc-title">Credit brief</div>
+      <div class="draft-toc-jump-wrap">
+        <label for="draft-toc-jump" class="draft-toc-jump-label">Jump to section</label>
+        <select id="draft-toc-jump" class="draft-toc-select">
           <option value="" selected disabled>Select section…</option>
           <option value="#sec-review">Review &amp; sign-off</option>
           <option value="#sec-cover">Rating Summary</option>
@@ -1731,10 +1731,10 @@
       </ul>
     </nav>
 
-    <div class="memo-main">
+    <div class="draft-main">
 
-    <section id="sec-review" class="memo-section" aria-labelledby="memo-h-review">
-      <h2 id="memo-h-review" class="memo-section-title">Review &amp; sign-off</h2>
+    <section id="sec-review" class="draft-section" aria-labelledby="draft-h-review">
+      <h2 id="draft-h-review" class="draft-section-title">Review &amp; sign-off</h2>
     <div class="analyst-judgement">
       <div class="aj-header">
         👤 Analyst Judgement Layer — Human Override
@@ -1755,15 +1755,15 @@
         <b>Analyst Review Required</b> — AI draft complete. Please review all figures against source documents before approving.
       </div>
       <div class="review-banner-actions">
-        <button type="button" class="approve-btn" onclick="showApproveMemoSubscriptionHint()">Review Brief</button>
-        <span id="approve-memo-subscription-hint" class="financial-login-hint" hidden>Subscription only</span>
+        <button type="button" class="approve-btn" onclick="showApproveDraftSubscriptionHint()">Review Brief</button>
+        <span id="approve-draft-subscription-hint" class="financial-login-hint" hidden>Subscription only</span>
       </div>
       <div class="approved-tag" id="approved-tag">✓ Analyst Approved</div>
     </div>
     </section>
 
-    <section id="sec-cover" class="memo-section" aria-labelledby="memo-h-cover">
-      <h2 id="memo-h-cover" class="memo-section-title">Rating Summary</h2>
+    <section id="sec-cover" class="draft-section" aria-labelledby="draft-h-cover">
+      <h2 id="draft-h-cover" class="draft-section-title">Rating Summary</h2>
     <div class="score-banner">
       <div class="score-left">
         <p class="company-title">Helios Towers Africa plc</p>
@@ -1797,7 +1797,7 @@
         <div class="rec-section">
           <h3 class="rec-section-title">Credit Concerns</h3>
           <ul>
-            <li>Elevated leverage (~4.5x Debt/EBITDA FY2024; verify Net Debt/Adj. EBITDA per memo tables)</li>
+            <li>Elevated leverage (~4.5x Debt/EBITDA FY2024; verify Net Debt/Adj. EBITDA per draft tables)</li>
             <li>FX mismatch: USD-denominated debt vs. local currency revenues</li>
             <li>Refinancing profile requires close monitoring</li>
           </ul>
@@ -1818,7 +1818,7 @@
           <h3 class="rec-section-title">Debt Capacity</h3>
           <p>Estimated headroom for additional debt: USD ~140m at 5.0x covenant level (on current EBITDA base)</p>
         </div>
-        <span class="rec-text-footnote">⚠ This is an AI-generated draft. The analyst must verify all figures against source documents, apply professional judgement, and approve before this memo is used for any credit decision.</span>
+        <span class="rec-text-footnote">⚠ This is an AI-generated draft. The analyst must verify all figures against source documents, apply professional judgement, and approve before this draft is used for any credit decision.</span>
       </div>
 
       <div class="rec-risk-panel">
@@ -1888,8 +1888,8 @@
     </div>
     </section>
 
-    <section id="sec-biz-overview" class="memo-section" aria-labelledby="memo-h-biz-overview">
-      <h2 id="memo-h-biz-overview" class="memo-section-title">Business Model</h2>
+    <section id="sec-biz-overview" class="draft-section" aria-labelledby="draft-h-biz-overview">
+      <h2 id="draft-h-biz-overview" class="draft-section-title">Business Model</h2>
       <div class="bm-grid">
         <div class="bm-col">
           <div class="bm-heading">Activities &amp; Products</div>
@@ -1922,8 +1922,8 @@
       </div>
     </section>
 
-    <section id="sec-biz-asset" class="memo-section" aria-labelledby="memo-h-biz-asset">
-      <h2 id="memo-h-biz-asset" class="memo-section-title">Asset management</h2>
+    <section id="sec-biz-asset" class="draft-section" aria-labelledby="draft-h-biz-asset">
+      <h2 id="draft-h-biz-asset" class="draft-section-title">Asset management</h2>
       <div class="bm-grid bm-grid--single">
         <div class="bm-col">
           <div class="bm-heading">Current Asset</div>
@@ -1968,7 +1968,7 @@
                 <table class="nwa-table" id="nwa-figures-table" aria-label="Adjusted working capital impact on cash flow; amounts in USD millions">
                   <thead>
                     <tr>
-                      <th>Change in adjusted working capital (USD Millions)</th>
+                      <th>( USD Million )</th>
                       <th>FY2019</th>
                       <th>FY2020</th>
                       <th>FY2021</th>
@@ -2076,8 +2076,8 @@
       </div>
     </section>
 
-    <section id="sec-biz-asset-fixed" class="memo-section" aria-labelledby="memo-h-biz-asset-fixed">
-      <h2 id="memo-h-biz-asset-fixed" class="memo-section-title">Fixed Asset</h2>
+    <section id="sec-biz-asset-fixed" class="draft-section" aria-labelledby="draft-h-biz-asset-fixed">
+      <h2 id="draft-h-biz-asset-fixed" class="draft-section-title">Fixed Asset</h2>
       <div class="bm-grid bm-grid--single">
         <div class="bm-col">
           <div class="bm-heading">Fixed Asset</div>
@@ -2119,7 +2119,7 @@
                 <table class="nwa-table" id="fa-figures-table" aria-label="Fixed asset figures table">
                   <thead>
                     <tr>
-                      <th>Helios Towers · USD Millions unless stated</th>
+                      <th>( USD Million )</th>
                       <th>FY2019</th>
                       <th>FY2020</th>
                       <th>FY2021</th>
@@ -2186,8 +2186,8 @@
       </div>
     </section>
 
-    <section id="sec-biz-sales" class="memo-section" aria-labelledby="memo-h-biz-sales">
-      <h2 id="memo-h-biz-sales" class="memo-section-title">Sales &amp; Profitability</h2>
+    <section id="sec-biz-sales" class="draft-section" aria-labelledby="draft-h-biz-sales">
+      <h2 id="draft-h-biz-sales" class="draft-section-title">Sales &amp; Profitability</h2>
       <div class="ca-tabs" data-sales-tabs>
         <div class="ca-tablist" role="tablist" aria-label="Sales and profitability panels">
           <button class="ca-tab" type="button" role="tab" id="sp-tab-km" aria-controls="sp-panel-km" aria-selected="true" tabindex="0">Key metrics</button>
@@ -2227,7 +2227,7 @@
             <table class="nwa-table" id="sp-figures-table" aria-label="Sales and profitability detailed figures table">
               <thead>
                 <tr>
-                  <th>Profitability</th>
+                  <th>( USD Million )</th>
                   <th>31/12/2019</th>
                   <th>31/12/2020</th>
                   <th>31/12/2021</th>
@@ -2292,12 +2292,12 @@
       </div>
     </section>
 
-    <section id="sec-fin-agent" class="memo-section" aria-labelledby="memo-h-fin-agent">
-      <h2 id="memo-h-fin-agent" class="memo-section-title">Financial Risk</h2>
+    <section id="sec-fin-agent" class="draft-section" aria-labelledby="draft-h-fin-agent">
+      <h2 id="draft-h-fin-agent" class="draft-section-title">Financial Risk</h2>
     </section>
 
-    <section id="sec-fin-solvency" class="memo-section" aria-labelledby="memo-h-fin-solvency">
-      <h2 id="memo-h-fin-solvency" class="memo-section-title">Solvency</h2>
+    <section id="sec-fin-solvency" class="draft-section" aria-labelledby="draft-h-fin-solvency">
+      <h2 id="draft-h-fin-solvency" class="draft-section-title">Solvency</h2>
       <div class="ca-tabs" data-solv-tabs>
         <div class="ca-tablist" role="tablist" aria-label="Solvency panels">
           <button class="ca-tab" type="button" role="tab" id="solv-tab-km" aria-controls="solv-panel-km" aria-selected="true" tabindex="0">Key metrics</button>
@@ -2336,7 +2336,7 @@
             <table class="nwa-table" id="solv-figures-table" aria-label="Solvency detailed figures: debt protection">
               <thead>
                 <tr>
-                  <th>Debt protection (Total Debt incl. Finance Leases)</th>
+                  <th>( USD Million )</th>
                   <th>31/12/2019</th>
                   <th>31/12/2020</th>
                   <th>31/12/2021</th>
@@ -2385,7 +2385,7 @@
             <table class="nwa-table" id="solv-cf-table" aria-label="Solvency cash flow available for debt service">
               <thead>
                 <tr>
-                  <th>USD Millions</th>
+                  <th>( USD Million )</th>
                   <th>31/12/2019</th>
                   <th>31/12/2020</th>
                   <th>31/12/2021</th>
@@ -2457,14 +2457,14 @@
       </div>
     </section>
 
-    </div><!-- .memo-main -->
-  </div><!-- .memo-shell -->
+    </div><!-- .draft-main -->
+  </div><!-- .draft-shell -->
 
   </div>
 </main>
 
-<button type="button" id="memo-back-top" class="memo-back-top no-print" hidden onclick="scrollMemoTop()" aria-label="Back to top of memo">
-  ↑ <span>Memo top</span>
+<button type="button" id="draft-back-top" class="draft-back-top no-print" hidden onclick="scrollDraftTop()" aria-label="Back to top of draft">
+  ↑ <span>Draft top</span>
 </button>
 
 <script>
@@ -2476,17 +2476,17 @@ function scrollBehaviorOpt() {
   return prefersReducedMotion() ? "instant" : "smooth";
 }
 
-function memoChartGridColor() {
+function draftChartGridColor() {
   var v = getComputedStyle(document.documentElement).getPropertyValue("--chart-grid");
   return (v && v.trim()) || "rgba(255,255,255,0.10)";
 }
 
-function memoChartLabelFill() {
+function draftChartLabelFill() {
   var v = getComputedStyle(document.documentElement).getPropertyValue("--text-dim");
   return (v && v.trim()) || "#64748b";
 }
 
-function memoEscapeSvgText(s) {
+function draftEscapeSvgText(s) {
   return String(s)
     .replace(/&/g, "&amp;")
     .replace(/</g, "&lt;")
@@ -2494,21 +2494,21 @@ function memoEscapeSvgText(s) {
     .replace(/"/g, "&quot;");
 }
 
-function memoMaskDigits(s) {
+function draftMaskDigits(s) {
   return String(s).replace(/[0-9]/g, "■");
 }
 
-/** Same visual language across memo tables: letters and digits → ■ (spaces & punctuation kept). */
-function memoMaskLettersAndDigits(s) {
+/** Same visual language across draft tables: letters and digits → ■ (spaces & punctuation kept). */
+function draftMaskLettersAndDigits(s) {
   return String(s).replace(/[A-Za-z0-9]/g, "■");
 }
 
-function memoMaskLabelCellPreserveMarkup(labelEl) {
+function draftMaskLabelCellPreserveMarkup(labelEl) {
   var original = labelEl.textContent.trim();
   if (original) labelEl.setAttribute("aria-label", original);
   function walk(node) {
     if (node.nodeType === Node.TEXT_NODE) {
-      node.textContent = memoMaskLettersAndDigits(node.textContent);
+      node.textContent = draftMaskLettersAndDigits(node.textContent);
     } else {
       for (var c = 0; c < node.childNodes.length; c++) {
         walk(node.childNodes[c]);
@@ -2522,7 +2522,7 @@ function memoMaskLabelCellPreserveMarkup(labelEl) {
  * Compact bar chart for row hover tooltips (zero baseline; +/− fills).
  * Optional chartOpts: { xLabels[], xAxisTitle, yAxisTitle, formatYTick(n) }
  */
-function memoDrawHoverBars(svg, values, periodCount, chartOpts) {
+function draftDrawHoverBars(svg, values, periodCount, chartOpts) {
   if (!svg || !periodCount) return;
   chartOpts = chartOpts || {};
   var xLabels = chartOpts.xLabels;
@@ -2539,7 +2539,7 @@ function memoDrawHoverBars(svg, values, periodCount, chartOpts) {
           return String(Math.round(r * 10) / 10);
         };
 
-  var labelFill = memoChartLabelFill();
+  var labelFill = draftChartLabelFill();
   var vbW = labeled ? 308 : 300;
   var vbH = labeled ? 130 : 82;
   var padL = labeled ? 46 : 16;
@@ -2589,7 +2589,7 @@ function memoDrawHoverBars(svg, values, periodCount, chartOpts) {
 
   var posFill = "rgba(0, 188, 212, 0.7)";
   var negFill = "rgba(180, 83, 9, 0.55)";
-  var gridColor = memoChartGridColor();
+  var gridColor = draftChartGridColor();
 
   var yTicks = [];
   function pushTick(t) {
@@ -2679,7 +2679,7 @@ function memoDrawHoverBars(svg, values, periodCount, chartOpts) {
           '" fill="' +
           labelFill +
           '">' +
-          memoEscapeSvgText(formatYTick(t)) +
+          draftEscapeSvgText(formatYTick(t)) +
           "</text>"
       );
     });
@@ -2693,7 +2693,7 @@ function memoDrawHoverBars(svg, values, periodCount, chartOpts) {
           '" fill="' +
           labelFill +
           '">' +
-          memoEscapeSvgText(yAxisTitle) +
+          draftEscapeSvgText(yAxisTitle) +
           "</text>"
       );
     }
@@ -2709,7 +2709,7 @@ function memoDrawHoverBars(svg, values, periodCount, chartOpts) {
           '" fill="' +
           labelFill +
           '">' +
-          memoEscapeSvgText(xLabels[xi]) +
+          draftEscapeSvgText(xLabels[xi]) +
           "</text>"
       );
     }
@@ -2724,7 +2724,7 @@ function memoDrawHoverBars(svg, values, periodCount, chartOpts) {
           '" fill="' +
           labelFill +
           '">' +
-          memoEscapeSvgText(xAxisTitle) +
+          draftEscapeSvgText(xAxisTitle) +
           "</text>"
       );
     }
@@ -2736,7 +2736,7 @@ function memoDrawHoverBars(svg, values, periodCount, chartOpts) {
 }
 
 /** Place tooltip under the row when possible so table cells stay visible. */
-function memoPositionRowTooltip(tooltip, rowRect) {
+function draftPositionRowTooltip(tooltip, rowRect) {
   if (!tooltip || !rowRect) return;
   var w = 320;
   var margin = 12;
@@ -2756,7 +2756,7 @@ function memoPositionRowTooltip(tooltip, rowRect) {
 }
 
 (function setupAppearanceToggle() {
-  var KEY = "credit-memo-theme";
+  var KEY = "credit-draft-theme";
   var lightBtn = document.getElementById("theme-light");
   var darkBtn = document.getElementById("theme-dark");
   if (!lightBtn || !darkBtn) return;
@@ -2785,7 +2785,7 @@ function memoPositionRowTooltip(tooltip, rowRect) {
   apply(current());
 })();
 
-function scrollMemoTop() {
+function scrollDraftTop() {
   const t = document.getElementById("sec-review");
   if (t) t.scrollIntoView({ behavior: scrollBehaviorOpt(), block: "start" });
 }
@@ -2800,31 +2800,31 @@ function showAnalystAddNoteSubscriptionHint() {
   if (el) el.removeAttribute("hidden");
 }
 
-function showApproveMemoSubscriptionHint() {
-  const el = document.getElementById("approve-memo-subscription-hint");
+function showApproveDraftSubscriptionHint() {
+  const el = document.getElementById("approve-draft-subscription-hint");
   if (el) el.removeAttribute("hidden");
 }
 
-function updateMemoBackTop() {
-  const btn = document.getElementById("memo-back-top");
+function updateDraftBackTop() {
+  const btn = document.getElementById("draft-back-top");
   const out = document.getElementById("output");
   if (!btn || !out) return;
   if (getComputedStyle(out).display === "none") {
     btn.hidden = true;
     return;
   }
-  const memoStart = out.getBoundingClientRect().top + window.scrollY;
-  btn.hidden = window.scrollY < memoStart + 200;
+  const draftStart = out.getBoundingClientRect().top + window.scrollY;
+  btn.hidden = window.scrollY < draftStart + 200;
 }
 
-(function setupMemoTocSpy() {
+(function setupDraftTocSpy() {
   const output = document.getElementById("output");
-  const toc = document.querySelector(".memo-toc");
-  const jump = document.getElementById("memo-toc-jump");
+  const toc = document.querySelector(".draft-toc");
+  const jump = document.getElementById("draft-toc-jump");
   if (!output || !toc) return;
 
   function sections() {
-    return [...output.querySelectorAll(".memo-section")];
+    return [...output.querySelectorAll(".draft-section")];
   }
 
   function links() {
@@ -2843,7 +2843,7 @@ function updateMemoBackTop() {
     });
 
     sections().forEach((sec) => {
-      const h2 = sec.querySelector(".memo-section-title");
+      const h2 = sec.querySelector(".draft-section-title");
       if (!h2) return;
       const label = map.get(sec.id);
       if (!label) return;
@@ -2874,10 +2874,10 @@ function updateMemoBackTop() {
 
   let lastActiveId = "";
 
-  window.refreshMemoTocActive = function refreshMemoTocActive() {
+  window.refreshDraftTocActive = function refreshDraftTocActive() {
     syncSectionTitlesToToc();
     if (getComputedStyle(output).display === "none") {
-      updateMemoBackTop();
+      updateDraftBackTop();
       return;
     }
     const secs = sections();
@@ -2903,7 +2903,7 @@ function updateMemoBackTop() {
       }
     }
     if (activeId !== prev) scrollActiveChipIfNeeded();
-    updateMemoBackTop();
+    updateDraftBackTop();
   };
 
   let ticking = false;
@@ -2912,7 +2912,7 @@ function updateMemoBackTop() {
     () => {
       if (!ticking) {
         requestAnimationFrame(() => {
-          window.refreshMemoTocActive();
+          window.refreshDraftTocActive();
           ticking = false;
         });
         ticking = true;
@@ -2922,8 +2922,8 @@ function updateMemoBackTop() {
   );
 
   window.addEventListener("resize", () => {
-    window.refreshMemoTocActive();
-    updateMemoBackTop();
+    window.refreshDraftTocActive();
+    updateDraftBackTop();
   }, { passive: true });
 
   toc.addEventListener("click", (e) => {
@@ -3053,12 +3053,12 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
         idxs.forEach((i) => {
           const td = tds[i + 1];
           if (!td) return;
-          td.textContent = memoMaskDigits(td.textContent);
+          td.textContent = draftMaskDigits(td.textContent);
         });
       }
       if (seriesKey && !FA_CHART_KEYS.has(seriesKey) && maskLabelKeys.has(seriesKey)) {
         const labelTd = row.querySelector("td:first-child");
-        if (labelTd) memoMaskLabelCellPreserveMarkup(labelTd);
+        if (labelTd) draftMaskLabelCellPreserveMarkup(labelTd);
       }
     });
   }
@@ -3092,7 +3092,7 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
     valuesEl.innerHTML = "";
 
     const meta = faChartMeta[seriesKey];
-    memoDrawHoverBars(svg, values, years.length, {
+    draftDrawHoverBars(svg, values, years.length, {
       xLabels: xLabelsShort,
       xAxisTitle: "Fiscal year",
       yAxisTitle: meta.yAxisTitle,
@@ -3102,7 +3102,7 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
     const r = rowEl.getBoundingClientRect();
     tooltip.classList.add("is-visible");
     tooltip.setAttribute("aria-hidden", "false");
-    memoPositionRowTooltip(tooltip, r);
+    draftPositionRowTooltip(tooltip, r);
   }
 
   function hide() {
@@ -3223,12 +3223,12 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
         idxs.forEach((i) => {
           const td = tds[i + 1];
           if (!td) return;
-          td.textContent = memoMaskDigits(td.textContent);
+          td.textContent = draftMaskDigits(td.textContent);
         });
       }
       if (seriesKey && !SP_CHART_KEYS.has(seriesKey) && maskLabelKeys.has(seriesKey)) {
         const labelTd = row.querySelector("td:first-child");
-        if (labelTd) memoMaskLabelCellPreserveMarkup(labelTd);
+        if (labelTd) draftMaskLabelCellPreserveMarkup(labelTd);
       }
     });
   }
@@ -3260,7 +3260,7 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
     valuesEl.innerHTML = "";
 
     const meta = spChartMeta[seriesKey];
-    memoDrawHoverBars(svg, values, years.length, {
+    draftDrawHoverBars(svg, values, years.length, {
       xLabels: xLabelsShort,
       xAxisTitle: "Fiscal year",
       yAxisTitle: meta.yAxisTitle,
@@ -3270,7 +3270,7 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
     const r = rowEl.getBoundingClientRect();
     tooltip.classList.add("is-visible");
     tooltip.setAttribute("aria-hidden", "false");
-    memoPositionRowTooltip(tooltip, r);
+    draftPositionRowTooltip(tooltip, r);
   }
 
   function hide() {
@@ -3419,12 +3419,12 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
         idxs.forEach((i) => {
           const td = tds[i + 1];
           if (!td) return;
-          td.textContent = memoMaskDigits(td.textContent);
+          td.textContent = draftMaskDigits(td.textContent);
         });
       }
       if (seriesKey && !SOLV_CF_CHART_KEYS.has(seriesKey) && maskLabelKeys.has(seriesKey)) {
         const labelTd = row.querySelector("td:first-child");
-        if (labelTd) memoMaskLabelCellPreserveMarkup(labelTd);
+        if (labelTd) draftMaskLabelCellPreserveMarkup(labelTd);
       }
     });
   }
@@ -3445,7 +3445,7 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
     titleEl.textContent = rowEl.querySelector("td")?.textContent.trim() || "Cash flow";
     valuesEl.innerHTML = "";
 
-    memoDrawHoverBars(svg, values, periodCount, {
+    draftDrawHoverBars(svg, values, periodCount, {
       xLabels: xLabelsShort,
       xAxisTitle: "Period",
       yAxisTitle: "USD m",
@@ -3455,7 +3455,7 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
     const r = rowEl.getBoundingClientRect();
     tooltip.classList.add("is-visible");
     tooltip.setAttribute("aria-hidden", "false");
-    memoPositionRowTooltip(tooltip, r);
+    draftPositionRowTooltip(tooltip, r);
   }
 
   function hide() {
@@ -3539,12 +3539,12 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
         idxs.forEach((i) => {
           const td = tds[i + 1];
           if (!td) return;
-          td.textContent = memoMaskDigits(td.textContent);
+          td.textContent = draftMaskDigits(td.textContent);
         });
       }
       if (seriesKey && !SOLV_CHART_KEYS.has(seriesKey) && maskLabelKeys.has(seriesKey)) {
         const labelTd = row.querySelector("td:first-child");
-        if (labelTd) memoMaskLabelCellPreserveMarkup(labelTd);
+        if (labelTd) draftMaskLabelCellPreserveMarkup(labelTd);
       }
     });
   }
@@ -3605,7 +3605,7 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
     valuesEl.innerHTML = "";
 
     const meta = solvChartMeta[seriesKey];
-    memoDrawHoverBars(svg, values, years.length, {
+    draftDrawHoverBars(svg, values, years.length, {
       xLabels: xLabelsShort,
       xAxisTitle: "Fiscal year",
       yAxisTitle: meta.yAxisTitle,
@@ -3615,7 +3615,7 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
     const r = rowEl.getBoundingClientRect();
     tooltip.classList.add("is-visible");
     tooltip.setAttribute("aria-hidden", "false");
-    memoPositionRowTooltip(tooltip, r);
+    draftPositionRowTooltip(tooltip, r);
   }
 
   function hide() {
@@ -3739,12 +3739,12 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
         idxs.forEach((i) => {
           const td = tds[i + 1]; // +1 to skip label column
           if (!td) return;
-          td.textContent = memoMaskDigits(td.textContent);
+          td.textContent = draftMaskDigits(td.textContent);
         });
       }
       if (seriesKey && !NWA_CHART_KEYS.has(seriesKey) && maskLabelKeys.has(seriesKey)) {
         const labelTd = row.querySelector("td:first-child");
-        if (labelTd) memoMaskLabelCellPreserveMarkup(labelTd);
+        if (labelTd) draftMaskLabelCellPreserveMarkup(labelTd);
       }
     });
   }
@@ -3792,7 +3792,7 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
     valuesEl.innerHTML = "";
 
     const meta = nwaChartMeta[seriesKey];
-    memoDrawHoverBars(svg, values, years.length, {
+    draftDrawHoverBars(svg, values, years.length, {
       xLabels: xLabelsShort,
       xAxisTitle: "Fiscal year",
       yAxisTitle: meta.yAxisTitle,
@@ -3802,7 +3802,7 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
     const r = rowEl.getBoundingClientRect();
     tooltip.classList.add("is-visible");
     tooltip.setAttribute("aria-hidden", "false");
-    memoPositionRowTooltip(tooltip, r);
+    draftPositionRowTooltip(tooltip, r);
   }
 
   function hide() {
@@ -3908,7 +3908,7 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
 
 async function runAnalysis() {
   document.getElementById("output").style.display = "none";
-  updateMemoBackTop();
+  updateDraftBackTop();
   const loading = document.getElementById("loading");
   loading.style.display = "block";
 
@@ -3930,7 +3930,7 @@ async function runAnalysis() {
   document.getElementById("output").style.display = "block";
   document.getElementById("approved-tag").style.display = "none";
   document.querySelector(".approve-btn").style.display = "inline-block";
-  var approveSubHint = document.getElementById("approve-memo-subscription-hint");
+  var approveSubHint = document.getElementById("approve-draft-subscription-hint");
   if (approveSubHint) approveSubHint.setAttribute("hidden", "");
   document.getElementById("review-banner").style.borderColor = "rgba(255,179,0,0.3)";
   document.getElementById("review-banner").style.background = "rgba(255,179,0,0.08)";
@@ -3943,21 +3943,21 @@ async function runAnalysis() {
     requestAnimationFrame(() => {
       const first = document.getElementById("sec-review");
       if (first) first.scrollIntoView({ behavior: behave, block: "start" });
-      if (typeof window.refreshMemoTocActive === "function") {
-        window.refreshMemoTocActive();
-        window.setTimeout(window.refreshMemoTocActive, 450);
-        window.setTimeout(window.refreshMemoTocActive, 900);
+      if (typeof window.refreshDraftTocActive === "function") {
+        window.refreshDraftTocActive();
+        window.setTimeout(window.refreshDraftTocActive, 450);
+        window.setTimeout(window.refreshDraftTocActive, 900);
       }
-      updateMemoBackTop();
+      updateDraftBackTop();
     });
   });
 }
 
-function memoPrintReport() {
+function draftPrintReport() {
   window.print();
 }
 
-(function setupMemoPrintExpandTabPanels() {
+(function setupDraftPrintExpandTabPanels() {
   var printHiddenPanels = [];
   window.addEventListener("beforeprint", function () {
     printHiddenPanels = [];

@@ -64,9 +64,9 @@ module.exports = async (req, res) => {
   const clipped = sourceText.length > 14000 ? sourceText.slice(0, 14000) + "\n…" : sourceText;
 
   const system =
-    "You are a senior credit analyst drafting committee memo conclusions. Use clear, professional English. Output JSON only — no markdown fences, no commentary.";
+    "You are a senior credit analyst drafting committee draft conclusions. Use clear, professional English. Output JSON only — no markdown fences, no commentary.";
 
-  const user = `Regenerate the "${sectionTitle}" conclusion of a credit memo. Match the style: bullet list where each item starts with a short label (like a subheading) followed by narrative.
+  const user = `Regenerate the "${sectionTitle}" conclusion of a credit draft. Match the style: bullet list where each item starts with a short label (like a subheading) followed by narrative.
 
 Current conclusion (reference for facts, tone, and structure — improve clarity; do not invent specific numbers not implied by the text):
 ---
