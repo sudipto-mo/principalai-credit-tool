@@ -5,7 +5,6 @@
  * Optional: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY — logs sign-ins to table linkedin_sign_ins
  */
 
-const url = require("url");
 const {
   SESSION_COOKIE,
   STATE_COOKIE,
@@ -30,6 +29,20 @@ function trimEnv(s) {
   return typeof s === "string" ? s.trim() : "";
 }
 
+/** Query object from req.url (path + search only) — WHATWG URL, not legacy url.parse. */
+function queryFromReqUrl(reqUrl) {
+  try {
+    const u = new URL(reqUrl || "/", "https://localhost");
+    const q = Object.create(null);
+    for (const [k, v] of u.searchParams) {
+      q[k] = v;
+    }
+    return q;
+  } catch {
+    return Object.create(null);
+  }
+}
+
 module.exports = async (req, res) => {
   if (req.method !== "GET") {
     res.setHeader("Allow", "GET");
@@ -50,8 +63,7 @@ module.exports = async (req, res) => {
     return res.redirect(302, "/?linkedin_auth=missing_config");
   }
 
-  const parsed = url.parse(req.url, true);
-  const q = parsed.query || {};
+  const q = queryFromReqUrl(req.url);
 
   if (q.error) {
     res.setHeader("Set-Cookie", clearState);
