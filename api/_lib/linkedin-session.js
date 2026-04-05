@@ -55,9 +55,14 @@ function verifySession(token, secret) {
 }
 
 function buildSetCookie(name, value, opts) {
-  const parts = [`${name}=${value}`, "Path=/", "HttpOnly", "SameSite=Lax"];
+  const enc = value === "" ? "" : encodeURIComponent(value);
+  const parts = [`${name}=${enc}`, "Path=/", "HttpOnly", "SameSite=Lax"];
   if (opts.maxAge != null) parts.push("Max-Age=" + opts.maxAge);
   if (opts.secure) parts.push("Secure");
+  const domain = (process.env.SESSION_COOKIE_DOMAIN || "").trim().replace(/^\./, "");
+  if (domain && /^[a-z0-9][a-z0-9.-]*\.[a-z]{2,}$/i.test(domain)) {
+    parts.push("Domain=" + domain);
+  }
   return parts.join("; ");
 }
 

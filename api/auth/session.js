@@ -12,11 +12,11 @@ module.exports = async (req, res) => {
     return res.status(405).json({ error: "Method not allowed" });
   }
 
-  const secret = process.env.AUTH_SECRET;
+  const secret = (process.env.AUTH_SECRET || "").trim();
   const configured = !!(
-    process.env.LINKEDIN_CLIENT_ID &&
-    process.env.LINKEDIN_CLIENT_SECRET &&
-    process.env.LINKEDIN_REDIRECT_URI &&
+    (process.env.LINKEDIN_CLIENT_ID || "").trim() &&
+    (process.env.LINKEDIN_CLIENT_SECRET || "").trim() &&
+    (process.env.LINKEDIN_REDIRECT_URI || "").trim() &&
     secret
   );
 

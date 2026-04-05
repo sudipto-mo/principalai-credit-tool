@@ -13,17 +13,33 @@ const {
   buildSetCookie,
 } = require("../../_lib/linkedin-session");
 
+function decodeJwtPayload(jwt) {
+  if (!jwt || typeof jwt !== "string") return null;
+  const parts = jwt.split(".");
+  if (parts.length < 2) return null;
+  try {
+    return JSON.parse(Buffer.from(parts[1], "base64url").toString("utf8"));
+  } catch {
+    return null;
+  }
+}
+
+function trimEnv(s) {
+  return typeof s === "string" ? s.trim() : "";
+}
+
 module.exports = async (req, res) => {
   if (req.method !== "GET") {
     res.setHeader("Allow", "GET");
     return res.status(405).send("Method Not Allowed");
   }
 
-  const clientId = process.env.LINKEDIN_CLIENT_ID;
-  const clientSecret = process.env.LINKEDIN_CLIENT_SECRET;
-  const redirectUri = process.env.LINKEDIN_REDIRECT_URI;
-  const authSecret = process.env.AUTH_SECRET;
-  const secure = req.headers["x-forwarded-proto"] === "https";
+  const clientId = trimEnv(process.env.LINKEDIN_CLIENT_ID);
+  const clientSecret = trimEnv(process.env.LINKEDIN_CLIENT_SECRET);
+  const redirectUri = trimEnv(process.env.LINKEDIN_REDIRECT_URI);
+  const authSecret = trimEnv(process.env.AUTH_SECRET);
+  const xf = (req.headers["x-forwarded-proto"] || "").split(",")[0].trim();
+  const secure = xf === "https";
 
   const clearState = buildSetCookie(STATE_COOKIE, "", { maxAge: 0, secure });
 
@@ -47,7 +63,13 @@ module.exports = async (req, res) => {
 
   if (!code || !state || !saved || state !== saved) {
     res.setHeader("Set-Cookie", clearState);
-    return res.redirect(302, "/?linkedin_auth=error&reason=" + encodeURIComponent("Invalid OAuth state"));
+    return res.redirect(
+      302,
+      "/?linkedin_auth=error&reason=" +
+        encodeURIComponent(
+          "Invalid OAuth state (cookie missing or mismatch). Common fix: use one site URL (www OR apex), match LINKEDIN_REDIRECT_URI + LinkedIn redirect, or set SESSION_COOKIE_DOMAIN=yourdomain.com in Vercel."
+        )
+    );
   }
 
   let tokenRes;
@@ -81,30 +103,42 @@ module.exports = async (req, res) => {
 
   if (!tokenRes.ok || !tokenJson.access_token) {
     res.setHeader("Set-Cookie", clearState);
-    return res.redirect(302, "/?linkedin_auth=error&reason=" + encodeURIComponent("Token exchange failed"));
+    const liErr =
+      trimEnv(tokenJson.error_description) ||
+      trimEnv(tokenJson.error) ||
+      tokenText.replace(/\s+/g, " ").slice(0, 280).trim() ||
+      "Token exchange failed";
+    return res.redirect(302, "/?linkedin_auth=error&reason=" + encodeURIComponent(liErr));
   }
 
+  let profile = {};
   let profileRes;
   try {
     profileRes = await fetch("https://api.linkedin.com/v2/userinfo", {
       headers: { Authorization: "Bearer " + tokenJson.access_token },
     });
-  } catch {
-    res.setHeader("Set-Cookie", clearState);
-    return res.redirect(302, "/?linkedin_auth=error&reason=" + encodeURIComponent("Profile request failed"));
-  }
-
-  const profileText = await profileRes.text();
-  let profile;
-  try {
-    profile = JSON.parse(profileText);
+    const profileText = await profileRes.text();
+    try {
+      profile = JSON.parse(profileText);
+    } catch {
+      profile = {};
+    }
   } catch {
     profile = {};
   }
 
-  if (!profileRes.ok || !profile.sub) {
+  if (!profile.sub && typeof tokenJson.id_token === "string") {
+    const claims = decodeJwtPayload(tokenJson.id_token);
+    if (claims && claims.sub) profile = claims;
+  }
+
+  if (!profile.sub) {
     res.setHeader("Set-Cookie", clearState);
-    return res.redirect(302, "/?linkedin_auth=error&reason=" + encodeURIComponent("Profile unavailable"));
+    const detail =
+      profileRes && !profileRes.ok
+        ? "userinfo " + profileRes.status + " (enable OpenID product + openid profile email scopes)"
+        : "No subject in profile or id_token";
+    return res.redirect(302, "/?linkedin_auth=error&reason=" + encodeURIComponent(detail));
   }
 
   const now = Math.floor(Date.now() / 1000);

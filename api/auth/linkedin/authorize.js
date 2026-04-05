@@ -13,16 +13,17 @@ module.exports = async (req, res) => {
     return res.status(405).send("Method Not Allowed");
   }
 
-  const clientId = process.env.LINKEDIN_CLIENT_ID;
-  const redirectUri = process.env.LINKEDIN_REDIRECT_URI;
-  const authSecret = process.env.AUTH_SECRET;
+  const clientId = (process.env.LINKEDIN_CLIENT_ID || "").trim();
+  const redirectUri = (process.env.LINKEDIN_REDIRECT_URI || "").trim();
+  const authSecret = (process.env.AUTH_SECRET || "").trim();
 
   if (!clientId || !redirectUri || !authSecret) {
     return res.redirect(302, "/?linkedin_auth=missing_config");
   }
 
   const state = crypto.randomBytes(24).toString("hex");
-  const secure = req.headers["x-forwarded-proto"] === "https";
+  const xf = (req.headers["x-forwarded-proto"] || "").split(",")[0].trim();
+  const secure = xf === "https";
   res.setHeader("Set-Cookie", buildSetCookie(STATE_COOKIE, state, { maxAge: 600, secure }));
 
   const url = new URL("https://www.linkedin.com/oauth/v2/authorization");
