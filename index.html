@@ -236,38 +236,6 @@
       background: rgba(255,82,82,0.08);
       border-bottom-color: rgba(255,82,82,0.25);
     }
-    .full-report-callout {
-      display: flex;
-      align-items: flex-start;
-      gap: 12px;
-      background: rgba(10,102,194,0.08);
-      border: 1px solid rgba(10,102,194,0.22);
-      border-radius: 8px;
-      padding: 12px 14px;
-      margin-bottom: 14px;
-      font-size: 12px;
-      line-height: 1.5;
-      color: var(--text-dim);
-    }
-    html.full-report-unlocked .full-report-callout {
-      background: rgba(46, 160, 67, 0.08);
-      border-color: rgba(46, 160, 67, 0.28);
-    }
-    .full-report-callout strong { color: var(--text); }
-    .full-report-callout .btn-linkedin { margin-top: 8px; }
-    .full-report-missing-env {
-      display: block;
-      margin-top: 10px;
-      padding: 8px 10px;
-      background: rgba(255,179,0,0.12);
-      border: 1px solid rgba(255,179,0,0.28);
-      border-radius: 6px;
-      font-size: 11px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
-      color: var(--text);
-      line-height: 1.45;
-    }
-
     /* Appearance: Light (default) / Dark — finance-friendly */
     .header-actions {
       display: flex;
@@ -1804,27 +1772,6 @@
       <span class="demo-banner-icon" aria-hidden="true"><span class="ui-svg"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span></span>
       <span><strong>Demo:</strong> Sample brief text is <strong>AI-assisted</strong>. <strong>Run draft workflow</strong> plays a fixed animation only (no live engine and no use of your data). Not for production credit decisions.</span>
     </div>
-    <div class="full-report-callout no-print" id="full-report-callout">
-      <div id="full-report-callout-inner">
-        <div id="full-report-panel-off" hidden>
-          <strong>Full report</strong> — Latest financials, analyst notes, review actions, and conclusion tools are gated behind LinkedIn sign-in (demo). Use <strong>Sign in for full report</strong> in the header.
-        </div>
-        <div id="full-report-panel-on" hidden>
-          <strong>Full report (demo)</strong> — You are signed in with LinkedIn. Gated actions below show a production-style message instead of “Subscription only”. Use <strong>Sign out</strong> in the header to end this session.
-        </div>
-        <div id="full-report-panel-noserver" hidden>
-          <strong>Full report</strong> — LinkedIn sign-in is served by <code style="font-size:11px;">/api/auth</code> on the deployed app (<strong>Vercel</strong>) or <code style="font-size:11px;">vercel dev</code>. A plain static server (e.g. port 8080) will not run OAuth here.
-        </div>
-        <div id="full-report-panel-env" hidden>
-          <strong>Full report</strong> — LinkedIn OAuth is not configured on this deployment yet. In Vercel → <strong>Settings → Environment Variables</strong>, add all four keys for <strong>Production</strong> (exact spelling), then <strong>Redeploy</strong>. See <code style="font-size:11px;">.env.example</code>.
-          <span id="full-report-missing-env" class="full-report-missing-env" hidden></span>
-        </div>
-        <a href="/api/auth/linkedin/authorize" class="btn-linkedin" id="full-report-linkedin-signin" hidden>
-          <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          Sign in with LinkedIn
-        </a>
-      </div>
-    </div>
     <button type="button" class="run-btn" onclick="runAnalysis()">
       <span class="run-btn-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><polygon points="8 5 19 12 8 19 8 5" fill="currentColor" stroke="none"/></svg></span>
       Run draft workflow
@@ -2993,41 +2940,31 @@ async function refreshFullReportSession() {
   const root = document.documentElement;
   const unconf = document.getElementById("header-auth-unconfigured");
   const signinHeader = document.getElementById("header-linkedin-signin");
-  const signinCallout = document.getElementById("full-report-linkedin-signin");
   const out = document.getElementById("header-auth-out");
   const inn = document.getElementById("header-auth-in");
   const userLabel = document.getElementById("header-auth-user-label");
-  const panelOff = document.getElementById("full-report-panel-off");
-  const panelOn = document.getElementById("full-report-panel-on");
-  const panelNs = document.getElementById("full-report-panel-noserver");
-  const panelEnv = document.getElementById("full-report-panel-env");
-
-  function setPanels(configured, authenticated, serverReachable) {
-    [panelOff, panelOn, panelNs, panelEnv].forEach(function (p) {
-      if (p) p.hidden = true;
-    });
-    if (!serverReachable) {
-      if (panelNs) panelNs.hidden = false;
-      if (signinCallout) signinCallout.hidden = true;
-      return;
-    }
-    if (!configured && !authenticated) {
-      if (panelEnv) panelEnv.hidden = false;
-      if (signinCallout) signinCallout.hidden = true;
-      return;
-    }
-    if (authenticated) {
-      if (panelOn) panelOn.hidden = false;
-    } else if (panelOff) panelOff.hidden = false;
-    if (signinCallout) signinCallout.hidden = !(configured && !authenticated);
-  }
+  var unconfDefaultHtml =
+    'LinkedIn sign-in is not configured on this host (use the deployed site or <code style="font-size:10px;">vercel dev</code>).';
 
   try {
     const r = await fetch("/api/auth/session", { credentials: "include" });
     if (!r.ok) throw new Error("bad status");
     const data = await r.json();
     root.classList.toggle("full-report-unlocked", !!data.authenticated);
-    if (unconf) unconf.hidden = !!data.configured;
+    if (unconf) {
+      unconf.hidden = !!data.configured;
+      if (!data.configured && data.missingKeys && data.missingKeys.length) {
+        unconf.innerHTML =
+          "OAuth env incomplete — add in Vercel (Production): <code style=\"font-size:10px;\">" +
+          data.missingKeys.join(", ") +
+          '</code> · see <code style="font-size:10px;">.env.example</code>';
+      } else if (!data.configured) {
+        unconf.innerHTML =
+          'LinkedIn OAuth is not set for this deployment. Add <code style="font-size:10px;">LINKEDIN_*</code> and <code style="font-size:10px;">AUTH_SECRET</code> in Vercel (Production), then redeploy.';
+      } else {
+        unconf.innerHTML = unconfDefaultHtml;
+      }
+    }
     if (signinHeader) signinHeader.hidden = !data.configured;
     if (out) out.classList.toggle("header-auth-out--disabled", !data.configured);
     if (data.authenticated) {
@@ -3041,33 +2978,18 @@ async function refreshFullReportSession() {
       if (inn) inn.hidden = true;
       resetAllSubscriptionHintsHidden();
     }
-    var missEl = document.getElementById("full-report-missing-env");
-    if (missEl) {
-      if (data.missingKeys && data.missingKeys.length) {
-        missEl.hidden = false;
-        missEl.textContent =
-          "This deployment reports these as missing or empty: " + data.missingKeys.join(", ") + ".";
-      } else {
-        missEl.hidden = true;
-        missEl.textContent = "";
-      }
-    }
-    setPanels(!!data.configured, !!data.authenticated, true);
   } catch (e) {
     root.classList.remove("full-report-unlocked");
-    if (unconf) unconf.hidden = false;
+    if (unconf) {
+      unconf.hidden = false;
+      unconf.innerHTML = unconfDefaultHtml;
+    }
     if (signinHeader) signinHeader.hidden = true;
     if (out) {
       out.classList.add("header-auth-out--disabled");
       out.hidden = false;
     }
     if (inn) inn.hidden = true;
-    var missElCatch = document.getElementById("full-report-missing-env");
-    if (missElCatch) {
-      missElCatch.hidden = true;
-      missElCatch.textContent = "";
-    }
-    setPanels(false, false, false);
   }
 }
 
