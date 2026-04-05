@@ -2,6 +2,7 @@
  * GET /api/auth/linkedin/callback — OAuth redirect handler (exchange code, set session cookie).
  *
  * Env: LINKEDIN_CLIENT_ID, LINKEDIN_CLIENT_SECRET, LINKEDIN_REDIRECT_URI, AUTH_SECRET
+ * Optional: SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY — logs sign-ins to table linkedin_sign_ins
  */
 
 const url = require("url");
@@ -12,6 +13,7 @@ const {
   signSession,
   buildSetCookie,
 } = require("../../_lib/linkedin-session");
+const { logLinkedInSignIn } = require("../../_lib/supabase-signin-log");
 
 function decodeJwtPayload(jwt) {
   if (!jwt || typeof jwt !== "string") return null;
@@ -150,6 +152,16 @@ module.exports = async (req, res) => {
     iat: now,
     exp: exp,
   };
+
+  const fwdFor = trimEnv(req.headers["x-forwarded-for"]);
+  const clientIp = fwdFor ? fwdFor.split(",")[0].trim() : trimEnv(req.headers["x-real-ip"]);
+  await logLinkedInSignIn({
+    sub: payload.sub,
+    email: payload.email,
+    name: payload.name,
+    userAgent: typeof req.headers["user-agent"] === "string" ? req.headers["user-agent"] : "",
+    ip: clientIp,
+  });
 
   const sessionToken = signSession(payload, authSecret);
   const sessionCookie = buildSetCookie(SESSION_COOKIE, sessionToken, {
