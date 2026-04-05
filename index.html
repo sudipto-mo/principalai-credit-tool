@@ -147,6 +147,111 @@
       color: var(--teal);
     }
 
+    .header-auth {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    .header-auth-user {
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--text-dim);
+      max-width: 200px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .btn-linkedin {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #0a66c2;
+      color: #fff !important;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+      padding: 8px 14px;
+      border-radius: 8px;
+      border: 1px solid rgba(0,0,0,0.08);
+      transition: background 0.15s, transform 0.1s;
+    }
+    .btn-linkedin:hover {
+      background: #004182;
+      color: #fff !important;
+    }
+    .btn-linkedin:focus-visible {
+      outline: 2px solid var(--teal);
+      outline-offset: 2px;
+    }
+    .btn-linkedin svg {
+      width: 16px;
+      height: 16px;
+      flex-shrink: 0;
+    }
+    .header-logout-btn {
+      appearance: none;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-dim);
+      font-family: inherit;
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 6px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .header-logout-btn:hover {
+      color: var(--text);
+      border-color: rgba(0,188,212,0.35);
+    }
+    .header-auth-hint {
+      font-size: 11px;
+      color: var(--text-dim);
+      max-width: 220px;
+      line-height: 1.35;
+    }
+    .header-auth-out--disabled .btn-linkedin {
+      display: none;
+    }
+    .auth-flash {
+      background: rgba(0,188,212,0.1);
+      border-bottom: 1px solid rgba(0,188,212,0.25);
+      padding: 10px 32px;
+      font-size: 13px;
+      color: var(--text);
+    }
+    .auth-flash.auth-flash--warn {
+      background: rgba(255,179,0,0.1);
+      border-bottom-color: rgba(255,179,0,0.28);
+    }
+    .auth-flash.auth-flash--err {
+      background: rgba(255,82,82,0.08);
+      border-bottom-color: rgba(255,82,82,0.25);
+    }
+    .full-report-callout {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      background: rgba(10,102,194,0.08);
+      border: 1px solid rgba(10,102,194,0.22);
+      border-radius: 8px;
+      padding: 12px 14px;
+      margin-bottom: 14px;
+      font-size: 12px;
+      line-height: 1.5;
+      color: var(--text-dim);
+    }
+    html.full-report-unlocked .full-report-callout {
+      background: rgba(46, 160, 67, 0.08);
+      border-color: rgba(46, 160, 67, 0.28);
+    }
+    .full-report-callout strong { color: var(--text); }
+    .full-report-callout .btn-linkedin { margin-top: 8px; }
+
     /* Appearance: Light (default) / Dark — finance-friendly */
     .header-actions {
       display: flex;
@@ -1607,6 +1712,19 @@
     </div>
   </div>
   <div class="header-actions no-print">
+    <div class="header-auth" id="header-auth" aria-label="Full report sign-in">
+      <div class="header-auth-logged-out" id="header-auth-out">
+        <a href="/api/auth/linkedin/authorize" class="btn-linkedin" id="header-linkedin-signin">
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          Sign in for full report
+        </a>
+        <span class="header-auth-hint" id="header-auth-unconfigured" hidden>LinkedIn sign-in is not configured on this host (use the deployed site or <code style="font-size:10px;">vercel dev</code>).</span>
+      </div>
+      <div class="header-auth-logged-in" id="header-auth-in" hidden>
+        <span class="header-auth-user" id="header-auth-user-label"></span>
+        <button type="button" class="header-logout-btn" id="header-linkedin-logout">Sign out</button>
+      </div>
+    </div>
     <button type="button" class="header-print-btn" onclick="draftPrintReport()" title="Opens the print dialog — choose Save as PDF to download" aria-label="Print or save draft as PDF">
       <span class="ui-svg" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8" rx="1"/></svg></span>
       Print report
@@ -1626,6 +1744,8 @@
   <span class="disclaimer-banner-icon" aria-hidden="true"><span class="ui-svg"><svg viewBox="0 0 24 24"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></span></span>
   <span>Figures are illustrative and sourced from public filings where noted in the draft. On-screen brief text is <strong>AI-assisted draft material</strong> — analyst review and verification required before use.</span>
 </div>
+
+<div class="auth-flash no-print" id="auth-flash" hidden role="status"></div>
 
 <main id="main" class="container" tabindex="-1">
   <div class="page-title">Credit Brief | Draft (demo)</div>
@@ -1664,6 +1784,26 @@
     <div class="demo-banner" role="note">
       <span class="demo-banner-icon" aria-hidden="true"><span class="ui-svg"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></span></span>
       <span><strong>Demo:</strong> Sample brief text is <strong>AI-assisted</strong>. <strong>Run draft workflow</strong> plays a fixed animation only (no live engine and no use of your data). Not for production credit decisions.</span>
+    </div>
+    <div class="full-report-callout no-print" id="full-report-callout">
+      <div id="full-report-callout-inner">
+        <div id="full-report-panel-off" hidden>
+          <strong>Full report</strong> — Latest financials, analyst notes, review actions, and conclusion tools are gated behind LinkedIn sign-in (demo). Use <strong>Sign in for full report</strong> in the header.
+        </div>
+        <div id="full-report-panel-on" hidden>
+          <strong>Full report (demo)</strong> — You are signed in with LinkedIn. Gated actions below show a production-style message instead of “Subscription only”.
+        </div>
+        <div id="full-report-panel-noserver" hidden>
+          <strong>Full report</strong> — LinkedIn sign-in is served by <code style="font-size:11px;">/api/auth</code> on the deployed app (<strong>Vercel</strong>) or <code style="font-size:11px;">vercel dev</code>. A plain static server (e.g. port 8080) will not run OAuth here.
+        </div>
+        <div id="full-report-panel-env" hidden>
+          <strong>Full report</strong> — LinkedIn OAuth is not configured on this deployment yet. Set <code style="font-size:11px;">LINKEDIN_*</code> and <code style="font-size:11px;">AUTH_SECRET</code> in Vercel (see <code style="font-size:11px;">.env.example</code>).
+        </div>
+        <a href="/api/auth/linkedin/authorize" class="btn-linkedin" id="full-report-linkedin-signin" hidden>
+          <svg viewBox="0 0 24 24" aria-hidden="true" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          Sign in with LinkedIn
+        </a>
+      </div>
     </div>
     <button type="button" class="run-btn" onclick="runAnalysis()">
       <span class="run-btn-icon" aria-hidden="true"><svg viewBox="0 0 24 24" width="18" height="18"><polygon points="8 5 19 12 8 19 8 5" fill="currentColor" stroke="none"/></svg></span>
@@ -2790,19 +2930,132 @@ function scrollDraftTop() {
   if (t) t.scrollIntoView({ behavior: scrollBehaviorOpt(), block: "start" });
 }
 
+var FULL_REPORT_UNLOCK_MSG = "Full report (demo): would run in production.";
+
+function isFullReportUnlocked() {
+  return document.documentElement.classList.contains("full-report-unlocked");
+}
+
+function applyGatedActionHint(el) {
+  if (!el) return;
+  if (isFullReportUnlocked()) {
+    el.textContent = FULL_REPORT_UNLOCK_MSG;
+    el.style.color = "rgba(120, 200, 160, 0.95)";
+    el.removeAttribute("hidden");
+    return;
+  }
+  el.textContent = "Subscription only";
+  el.style.color = "";
+  el.removeAttribute("hidden");
+}
+
+function resetAllSubscriptionHintsHidden() {
+  document.querySelectorAll(".financial-login-hint").forEach(function (el) {
+    el.textContent = "Subscription only";
+    el.style.color = "";
+    el.setAttribute("hidden", "");
+  });
+}
+
 function showAddLatestFinancialsSubscriptionHint() {
-  const el = document.getElementById("financial-subscription-hint");
-  if (el) el.removeAttribute("hidden");
+  applyGatedActionHint(document.getElementById("financial-subscription-hint"));
 }
 
 function showAnalystAddNoteSubscriptionHint() {
-  const el = document.getElementById("analyst-note-subscription-hint");
-  if (el) el.removeAttribute("hidden");
+  applyGatedActionHint(document.getElementById("analyst-note-subscription-hint"));
 }
 
 function showApproveDraftSubscriptionHint() {
-  const el = document.getElementById("approve-draft-subscription-hint");
-  if (el) el.removeAttribute("hidden");
+  applyGatedActionHint(document.getElementById("approve-draft-subscription-hint"));
+}
+
+async function refreshFullReportSession() {
+  const root = document.documentElement;
+  const unconf = document.getElementById("header-auth-unconfigured");
+  const signinHeader = document.getElementById("header-linkedin-signin");
+  const signinCallout = document.getElementById("full-report-linkedin-signin");
+  const out = document.getElementById("header-auth-out");
+  const inn = document.getElementById("header-auth-in");
+  const userLabel = document.getElementById("header-auth-user-label");
+  const panelOff = document.getElementById("full-report-panel-off");
+  const panelOn = document.getElementById("full-report-panel-on");
+  const panelNs = document.getElementById("full-report-panel-noserver");
+  const panelEnv = document.getElementById("full-report-panel-env");
+
+  function setPanels(configured, authenticated, serverReachable) {
+    [panelOff, panelOn, panelNs, panelEnv].forEach(function (p) {
+      if (p) p.hidden = true;
+    });
+    if (!serverReachable) {
+      if (panelNs) panelNs.hidden = false;
+      if (signinCallout) signinCallout.hidden = true;
+      return;
+    }
+    if (!configured && !authenticated) {
+      if (panelEnv) panelEnv.hidden = false;
+      if (signinCallout) signinCallout.hidden = true;
+      return;
+    }
+    if (authenticated) {
+      if (panelOn) panelOn.hidden = false;
+    } else if (panelOff) panelOff.hidden = false;
+    if (signinCallout) signinCallout.hidden = !(configured && !authenticated);
+  }
+
+  try {
+    const r = await fetch("/api/auth/session", { credentials: "include" });
+    if (!r.ok) throw new Error("bad status");
+    const data = await r.json();
+    root.classList.toggle("full-report-unlocked", !!data.authenticated);
+    if (unconf) unconf.hidden = !!data.configured;
+    if (signinHeader) signinHeader.hidden = !data.configured;
+    if (out) out.classList.toggle("header-auth-out--disabled", !data.configured);
+    if (data.authenticated) {
+      if (out) out.hidden = true;
+      if (inn) {
+        inn.hidden = false;
+        if (userLabel) userLabel.textContent = data.name || data.email || "Signed in with LinkedIn";
+      }
+    } else {
+      if (out) out.hidden = false;
+      if (inn) inn.hidden = true;
+      resetAllSubscriptionHintsHidden();
+    }
+    setPanels(!!data.configured, !!data.authenticated, true);
+  } catch (e) {
+    root.classList.remove("full-report-unlocked");
+    if (unconf) unconf.hidden = false;
+    if (signinHeader) signinHeader.hidden = true;
+    if (out) {
+      out.classList.add("header-auth-out--disabled");
+      out.hidden = false;
+    }
+    if (inn) inn.hidden = true;
+    setPanels(false, false, false);
+  }
+}
+
+function showLinkedInAuthFlashFromQuery() {
+  const flash = document.getElementById("auth-flash");
+  if (!flash) return;
+  const params = new URLSearchParams(window.location.search);
+  const mode = params.get("linkedin_auth");
+  if (!mode) return;
+  if (mode === "success") flash.textContent = "Signed in with LinkedIn. Full report actions are unlocked (demo).";
+  else if (mode === "missing_config") flash.textContent = "LinkedIn sign-in is not configured on this deployment yet.";
+  else if (mode === "error")
+    flash.textContent = "LinkedIn sign-in did not complete: " + (params.get("reason") || "unknown error") + ".";
+  else return;
+  flash.hidden = false;
+  flash.classList.remove("auth-flash--warn", "auth-flash--err");
+  if (mode === "missing_config") flash.classList.add("auth-flash--warn");
+  else if (mode === "error") flash.classList.add("auth-flash--err");
+  try {
+    const u = new URL(window.location.href);
+    u.searchParams.delete("linkedin_auth");
+    u.searchParams.delete("reason");
+    window.history.replaceState({}, "", u.pathname + u.search + u.hash);
+  } catch (err) {}
 }
 
 function updateDraftBackTop() {
@@ -3901,7 +4154,7 @@ function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
     btn.addEventListener("click", function () {
       var toolbar = btn.closest(".conclusion-regen-toolbar");
       var hint = toolbar && toolbar.querySelector(".financial-login-hint");
-      if (hint) hint.removeAttribute("hidden");
+      applyGatedActionHint(hint);
     });
   });
 })();
@@ -3994,6 +4247,27 @@ function setCreditRecOptionsDisabled(disabled) {
   var fs = document.querySelector(".rec-options-field");
   if (fs) fs.style.opacity = disabled ? "0.7" : "";
 }
+
+(function initFullReportAuth() {
+  function bind() {
+    refreshFullReportSession();
+    showLinkedInAuthFlashFromQuery();
+    var lo = document.getElementById("header-linkedin-logout");
+    if (lo) {
+      lo.addEventListener("click", function () {
+        fetch("/api/auth/logout", { method: "POST", credentials: "include" })
+          .then(function () {
+            refreshFullReportSession();
+          })
+          .catch(function () {
+            refreshFullReportSession();
+          });
+      });
+    }
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", bind);
+  else bind();
+})();
 
 </script>
 </body>
