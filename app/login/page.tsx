@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 import { ShieldCheck } from "lucide-react";
+import { SESSION_COOKIE, verifySession } from "@/lib/linkedin-session";
+import { creditWorkbenchPathname } from "@/lib/workbench-redirect";
 
 export const metadata: Metadata = {
   title: "Client Access | Principal AI",
@@ -8,7 +12,14 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-export default function LoginPage() {
+export default async function LoginPage() {
+  const jar = await cookies();
+  const token = jar.get(SESSION_COOKIE)?.value ?? "";
+  const secret = (process.env.AUTH_SECRET || "").trim();
+  if (secret && token && verifySession(token, secret)) {
+    redirect(`${creditWorkbenchPathname()}/`);
+  }
+
   return (
     <div className="flex flex-1 flex-col items-center justify-center px-6 py-16 sm:py-20 min-h-0">
       <div className="bg-slate-900/50 border border-slate-800 rounded-2xl p-10 max-w-md w-full mx-auto shadow-xl shadow-black/25">
@@ -59,8 +70,7 @@ export default function LoginPage() {
         </div>
 
         <p className="text-xs text-slate-500 text-center mt-8 mb-0 leading-relaxed">
-          After a successful sign-in you&apos;ll be redirected to Coverage. Your session unlocks research gates and the
-          credit workbench on this domain.
+          After a successful sign-in you&apos;ll go straight to the credit professional&apos;s workbench on this domain.
         </p>
 
         <div className="text-center mt-6">

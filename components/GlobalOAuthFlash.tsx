@@ -12,7 +12,10 @@ function GlobalOAuthFlashInner() {
     if (!mode) return;
 
     if (mode === "success") {
-      setMessage({ text: "You’re signed in. Institutional coverage and tools are available on this session.", kind: "ok" });
+      setMessage({
+        text: "You’re signed in. The credit workbench and research gates are available on this session.",
+        kind: "ok",
+      });
     } else if (mode === "missing_config") {
       setMessage({
         text: "Sign-in isn’t fully configured on this host. Add AUTH_SECRET and provider keys (see .env.example), then redeploy.",

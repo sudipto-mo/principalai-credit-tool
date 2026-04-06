@@ -9,11 +9,12 @@ export function creditWorkbenchPathname(): string {
 
 /**
  * Path users land on after OAuth completes (success / error / config flash via query).
- * Default `/coverage` (Credit-as-a-Service hub). Override with OAUTH_SUCCESS_REDIRECT, e.g. `/credit-workbench/`.
+ * Defaults to {@link creditWorkbenchPathname} (live workbench). Override with OAUTH_SUCCESS_REDIRECT.
  */
 export function oauthSuccessRedirectPath(): string {
-  const raw = (process.env.OAUTH_SUCCESS_REDIRECT || "/coverage").trim() || "/coverage";
-  return raw.startsWith("/") ? raw : "/" + raw;
+  const raw = (process.env.OAUTH_SUCCESS_REDIRECT || "").trim();
+  if (raw) return raw.startsWith("/") ? raw : "/" + raw;
+  return creditWorkbenchPathname();
 }
 
 /**

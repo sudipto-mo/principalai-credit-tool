@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Lock, Activity, Database, ShieldCheck, ArrowRight } from "lucide-react";
 
@@ -45,7 +46,7 @@ export default function LandingPage() {
 
         <div className="w-full lg:w-1/2 relative">
           <div className="absolute inset-0 bg-blue-600/10 blur-[100px] rounded-full pointer-events-none" />
-          <div className="relative rounded-2xl border border-slate-700/50 bg-slate-900/80 backdrop-blur-xl p-2 shadow-2xl">
+          <div className="relative rounded-2xl border border-slate-700/50 bg-slate-900/80 backdrop-blur-xl p-2 shadow-2xl transition-all duration-300 ease-out hover:border-slate-600/60 hover:shadow-[0_28px_90px_-18px_rgba(0,0,0,0.55)]">
             <div className="flex items-center gap-2 px-4 py-3 border-b border-slate-800 bg-slate-950/50 rounded-t-xl">
               <div className="w-3 h-3 rounded-full bg-slate-700" />
               <div className="w-3 h-3 rounded-full bg-slate-700" />
@@ -53,42 +54,34 @@ export default function LandingPage() {
               <div className="ml-4 text-xs font-mono text-slate-500">principalai.pro/research/helios-towers</div>
             </div>
 
-            <div className="relative p-6 bg-slate-900 rounded-b-xl h-[400px] overflow-hidden">
+            <div className="relative bg-slate-900 rounded-b-xl h-[400px] overflow-hidden">
+              {/* Dashboard glimpse: real run, heavily blurred + tinted — add /public/helios-teaser.png */}
+              <div className="absolute inset-0" aria-hidden>
+                <Image
+                  src="/helios-teaser.png"
+                  alt=""
+                  fill
+                  className="object-cover object-top scale-[1.15] blur-lg saturate-[0.9] contrast-[1.05]"
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  priority
+                />
+              </div>
+              <div className="absolute inset-0 bg-slate-950/40 pointer-events-none" aria-hidden />
               <div
-                className="absolute inset-0 opacity-5 mix-blend-overlay pointer-events-none"
-                style={{
-                  backgroundImage: "url(https://www.transparenttextures.com/patterns/cubes.png)",
-                }}
+                className="absolute inset-0 bg-gradient-to-t from-slate-950/65 via-transparent to-slate-950/25 pointer-events-none"
+                aria-hidden
               />
 
-              <div className="space-y-6 blur-[3px] opacity-60 select-none">
-                <div className="flex justify-between items-end border-b border-slate-800 pb-4">
-                  <div>
-                    <div className="h-4 w-24 bg-slate-700 rounded mb-2" />
-                    <div className="h-8 w-64 bg-slate-600 rounded" />
-                  </div>
-                  <div className="h-10 w-32 bg-slate-800 rounded" />
+              <div className="absolute inset-0 z-10 flex flex-col items-center justify-center px-6 text-center">
+                <div className="w-14 h-14 bg-blue-600/25 border border-blue-400/35 rounded-2xl flex items-center justify-center mb-4 shadow-lg shadow-slate-950/40 ring-1 ring-white/10 backdrop-blur-[2px] transition-transform duration-300 ease-out">
+                  <Lock className="w-6 h-6 text-blue-300 drop-shadow-sm" aria-hidden />
                 </div>
-
-                <div className="grid grid-cols-3 gap-4">
-                  <div className="h-24 bg-slate-800/50 rounded border border-slate-700/50" />
-                  <div className="h-24 bg-slate-800/50 rounded border border-slate-700/50" />
-                  <div className="h-24 bg-slate-800/50 rounded border border-slate-700/50" />
-                </div>
-
-                <div className="h-32 bg-slate-800/30 rounded border border-slate-700/50" />
-              </div>
-
-              <div className="absolute inset-0 flex flex-col items-center justify-center bg-slate-950/60 backdrop-blur-sm rounded-b-xl">
-                <div className="w-14 h-14 bg-blue-600/20 border border-blue-500/30 rounded-2xl flex items-center justify-center mb-4">
-                  <Lock className="w-6 h-6 text-blue-400" aria-hidden />
-                </div>
-                <h3 className="text-xl font-bold text-white mb-6">Report Locked</h3>
+                <h3 className="text-xl font-bold text-white mb-6 tracking-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.65)]">
+                  Report Locked
+                </h3>
                 <Link
-                  href="/research/helios-towers"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center justify-center px-6 py-2 bg-white text-slate-900 font-medium text-sm rounded-lg hover:bg-slate-200 transition-colors no-underline"
+                  href="/login"
+                  className="text-sm font-medium px-4 py-2 rounded-md border border-slate-700 text-slate-300 hover:bg-slate-800 transition-colors no-underline shrink-0"
                 >
                   Access Research
                 </Link>

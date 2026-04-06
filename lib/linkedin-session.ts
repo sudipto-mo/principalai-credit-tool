@@ -3,33 +3,11 @@
  */
 
 import crypto from "crypto";
+import { getCookieHeader } from "@/lib/http-cookies";
 
-export const SESSION_COOKIE = "pa_full_report";
-/** CSRF state for LinkedIn authorization. */
-export const STATE_COOKIE = "pa_linkedin_oauth_state";
-/** CSRF state for Google authorization (separate cookie so both flows never clash). */
-export const GOOGLE_STATE_COOKIE = "pa_google_oauth_state";
+export { GOOGLE_STATE_COOKIE, SESSION_COOKIE, STATE_COOKIE } from "@/lib/oauth-cookie-names";
 
-export function getCookieHeader(cookieHeader: string | null, name: string): string {
-  const raw = cookieHeader;
-  if (!raw) return "";
-  const parts = raw.split(";");
-  for (let i = 0; i < parts.length; i++) {
-    const p = parts[i];
-    const idx = p.indexOf("=");
-    if (idx === -1) continue;
-    const k = p.slice(0, idx).trim();
-    const v = p.slice(idx + 1).trim();
-    if (k === name) {
-      try {
-        return decodeURIComponent(v);
-      } catch {
-        return v;
-      }
-    }
-  }
-  return "";
-}
+export { getCookieHeader };
 
 export function signSession(payload: Record<string, unknown>, secret: string): string {
   const data = Buffer.from(JSON.stringify(payload), "utf8").toString("base64url");
