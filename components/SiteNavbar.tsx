@@ -20,7 +20,7 @@ export default function SiteNavbar() {
             href="/products"
             className="text-sm font-medium text-slate-300 hover:text-white transition-colors no-underline"
           >
-            Products
+            Coverage
           </Link>
           <Link
             href="/approach"
@@ -38,7 +38,7 @@ export default function SiteNavbar() {
             href={LINKEDIN_OAUTH_HREF}
             className="text-sm font-medium px-4 py-2 bg-slate-800 hover:bg-slate-700 text-slate-200 rounded-md border border-slate-700 transition-colors no-underline shrink-0"
           >
-            Sign in
+            Client Login
           </a>
         </div>
       </div>

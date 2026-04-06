@@ -19,7 +19,8 @@ export default function LandingPage() {
           </h1>
 
           <p className="text-lg text-slate-400 mb-8 leading-relaxed max-w-xl">
-            Generic AI hallucinates. Principal AI is a finance-first engine built on institutional credit discipline. Extract, spread, and draft TMT infrastructure deals in an hour.
+            Generic AI hallucinates. Principal AI operates as an elite, on-demand credit research desk. Commission
+            institutional-grade TMT infrastructure briefs, covenant analysis, and deal screening in hours, not days.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
@@ -49,7 +50,7 @@ export default function LandingPage() {
               <div className="w-3 h-3 rounded-full bg-slate-700" />
               <div className="w-3 h-3 rounded-full bg-slate-700" />
               <div className="w-3 h-3 rounded-full bg-slate-700" />
-              <div className="ml-4 text-xs font-mono text-slate-500">principalai.pro/workspace/helios-towers</div>
+              <div className="ml-4 text-xs font-mono text-slate-500">principalai.pro/research/helios-towers</div>
             </div>
 
             <div className="relative p-6 bg-slate-900 rounded-b-xl h-[400px] overflow-hidden">
@@ -84,12 +85,12 @@ export default function LandingPage() {
                 </div>
                 <h3 className="text-xl font-bold text-white mb-6">Report Locked</h3>
                 <Link
-                  href="/workspace/helios-towers"
+                  href="/research/helios-towers"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center justify-center px-6 py-2 bg-white text-slate-900 font-medium text-sm rounded-lg hover:bg-slate-200 transition-colors no-underline"
                 >
-                  Unlock Workspace
+                  Access Research
                 </Link>
               </div>
             </div>
