@@ -1,7 +1,5 @@
 import Link from "next/link";
-import { Lock, Activity, Database, ShieldCheck } from "lucide-react";
-
-const LINKEDIN_OAUTH_HREF = "/api/auth/linkedin/authorize";
+import { Lock, Activity, Database, ShieldCheck, ArrowRight } from "lucide-react";
 
 export default function LandingPage() {
   return (
@@ -25,22 +23,22 @@ export default function LandingPage() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <a
-              href={LINKEDIN_OAUTH_HREF}
-              className="inline-flex justify-center items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-semibold text-base transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)] no-underline"
+            <Link
+              href="/contact"
+              className="inline-flex justify-center items-center gap-2 px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-lg font-semibold text-base transition-all shadow-[0_0_20px_rgba(37,99,235,0.3)] hover:shadow-[0_0_30px_rgba(37,99,235,0.5)] no-underline"
             >
-              <Lock className="w-4 h-4 shrink-0" aria-hidden />
-              View Live Demo: Helios Towers
-            </a>
+              <ArrowRight className="w-4 h-4 shrink-0" aria-hidden />
+              Submit a Mandate
+            </Link>
             <Link
               href="/approach"
               className="inline-flex justify-center items-center gap-2 px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-lg font-semibold text-base transition-all border border-slate-700 no-underline"
             >
-              Read the Genesis
+              Our Approach
             </Link>
           </div>
           <p className="mt-4 text-xs text-slate-500 font-medium tracking-wide">
-            SECURE ACCESS VIA LINKEDIN AUTHENTICATION
+            ON-DEMAND CREDIT STRUCTURING & DEAL SCREENING.
           </p>
         </div>
 
@@ -84,16 +82,15 @@ export default function LandingPage() {
                 <div className="w-14 h-14 bg-blue-600/20 border border-blue-500/30 rounded-2xl flex items-center justify-center mb-4">
                   <Lock className="w-6 h-6 text-blue-400" aria-hidden />
                 </div>
-                <h3 className="text-xl font-bold text-white mb-2">Report Locked</h3>
-                <p className="text-sm text-slate-300 mb-6 max-w-xs text-center">
-                  Sign in with LinkedIn to unlock the full FY25 projections and covenant structuring.
-                </p>
-                <a
-                  href={LINKEDIN_OAUTH_HREF}
-                  className="px-6 py-2 bg-white text-slate-900 rounded font-semibold text-sm hover:bg-slate-200 transition-colors no-underline"
+                <h3 className="text-xl font-bold text-white mb-6">Report Locked</h3>
+                <Link
+                  href="/workspace/helios-towers"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center justify-center px-6 py-2 bg-white text-slate-900 font-medium text-sm rounded-lg hover:bg-slate-200 transition-colors no-underline"
                 >
                   Unlock Workspace
-                </a>
+                </Link>
               </div>
             </div>
           </div>
