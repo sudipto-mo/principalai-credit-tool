@@ -12,7 +12,7 @@ export default function LandingPage() {
           </div>
 
           <h1 className="text-5xl lg:text-6xl font-bold tracking-tight text-white mb-6 leading-[1.1]">
-            Institutional credit workflows, <br />
+            Institutional credit structuring, <br />
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-indigo-400">
               minus the analyst friction.
             </span>
@@ -20,7 +20,7 @@ export default function LandingPage() {
 
           <p className="text-lg text-slate-400 mb-8 leading-relaxed max-w-xl">
             Generic AI hallucinates. Principal AI operates as an elite, on-demand credit research desk. Commission
-            institutional-grade TMT infrastructure briefs, covenant analysis, and deal screening in hours, not days.
+            institutional-grade Telecom infrastructure briefs, covenant analysis, and deal screening in hours, not days.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">

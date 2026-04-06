@@ -9,7 +9,7 @@ export default function CreditWorkbenchProductPage() {
     <div className="w-full max-w-3xl">
       <h1 className="text-3xl sm:text-4xl text-slate-50 tracking-tight font-semibold mb-4">Credit Workbench</h1>
       <p className="text-slate-300 leading-relaxed text-base sm:text-lg mb-8 m-0">
-        A demo workbench for TMT / infrastructure-style credit briefs: structured sections, illustrative metrics, and an
+        A demo workbench for Telecom / infrastructure-style credit briefs: structured sections, illustrative metrics, and an
         explicit analyst review layer. Figures are sample / AI-assisted draft material — not for production decisions.
       </p>
       <p className="mb-8">

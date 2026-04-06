@@ -7,6 +7,7 @@ export const metadata: Metadata = {
     "Institutional credit briefs, covenant stress-testing, and Telecom infrastructure deep-dives. Access is strictly gated for authenticated clients.",
 };
 
-export default function ProductsPage() {
+/** Canonical sector hierarchy; same body as /products. */
+export default function CoveragePage() {
   return <CoverageSectors />;
 }
