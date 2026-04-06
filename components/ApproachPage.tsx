@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 
 export function ApproachPage() {
   return (
@@ -64,13 +64,24 @@ export function ApproachPage() {
           <h2 id="approach-cta-heading" className="text-2xl font-semibold text-white mb-6 m-0">
             Ready to accelerate your deal cycle?
           </h2>
-          <Link
-            href="/contact"
-            className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-lg transition-colors no-underline"
-          >
-            <ArrowRight className="w-4 h-4 shrink-0" aria-hidden />
-            Submit a Mandate
-          </Link>
+          <div className="flex flex-col sm:flex-row justify-center items-center gap-4">
+            <Link
+              href="/contact"
+              className="inline-flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-700 text-white font-semibold px-8 py-4 rounded-lg transition-colors no-underline w-full sm:w-auto text-center"
+            >
+              <ArrowRight className="w-4 h-4 shrink-0" aria-hidden />
+              Submit a Mandate
+            </Link>
+            <a
+              href="/Principal_AI_Strategic_Briefing.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-lg font-medium border border-slate-700 text-slate-300 hover:bg-slate-800 transition-colors no-underline w-full sm:w-auto text-center"
+            >
+              <Download className="w-4 h-4 shrink-0 opacity-80" aria-hidden />
+              Download Strategic Briefing
+            </a>
+          </div>
         </section>
       </div>
     </div>
