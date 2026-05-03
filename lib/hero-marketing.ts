@@ -88,7 +88,7 @@ export function getHeroCarouselSlides(): HeroCarouselSlideMeta[] {
 
 export type HeroNavItem =
   | { kind: "link"; label: string; href: string }
-  | { kind: "origination"; label: string; href: string }
+  | { kind: "origination"; label: string; href: string; wip?: true }
   | { kind: "advisory"; label: string; href: string; hasChevron: true };
 
 /**
@@ -98,7 +98,11 @@ export type HeroNavItem =
 export function getHeroPrimaryNavItems(opts: { showOrigination: boolean }): HeroNavItem[] {
   const items: HeroNavItem[] = [{ kind: "link", label: "Research", href: "/research" }];
   if (opts.showOrigination) {
-    items.push({ kind: "origination", label: "Origination", href: "/origination" });
+    items.push(
+      process.env.NODE_ENV === "development"
+        ? { kind: "origination", label: "Origination", href: "/origination", wip: true }
+        : { kind: "origination", label: "Origination", href: "/origination" },
+    );
   }
   items.push(
     { kind: "advisory", label: "Advisory", href: "/advisory", hasChevron: true },

@@ -88,3 +88,15 @@ export const marketingNavTaglineStyle: CSSProperties = {
   marginTop: -2,
 };
 
+/** Dev-only WIP pill next to nav labels (`next dev`); stripped from production bundles. */
+export const marketingNavWipBadgeStyle: CSSProperties = {
+  flexShrink: 0,
+  fontSize: 7.5,
+  padding: "3px 7px",
+  background: "var(--color-violet)",
+  color: "#fff",
+  borderRadius: 2,
+  letterSpacing: "0.07em",
+  fontWeight: 700,
+  textTransform: "uppercase",
+};

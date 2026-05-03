@@ -24,8 +24,10 @@ if [[ -n "$PIDS" ]]; then
   fi
 fi
 
+# Bind IPv4 loopback explicitly. `-H localhost` often resolves to ::1 only, so
+# http://127.0.0.1:8080 fails while the server is listening on [::1]:8080.
 if [[ "${1:-}" == "--webpack" ]]; then
-  exec ./node_modules/.bin/next dev -H localhost -p 8080
+  exec ./node_modules/.bin/next dev -H 0.0.0.0 -p 8080
 else
-  exec ./node_modules/.bin/next dev --turbopack -H localhost -p 8080
+  exec ./node_modules/.bin/next dev --turbopack -H 0.0.0.0 -p 8080
 fi

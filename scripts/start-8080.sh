@@ -20,5 +20,5 @@ if [[ -n "$PIDS" ]]; then
   fi
 fi
 
-exec ./node_modules/.bin/next start -H localhost -p 8080
+exec ./node_modules/.bin/next start -H 0.0.0.0 -p 8080
 

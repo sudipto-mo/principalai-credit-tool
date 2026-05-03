@@ -17,3 +17,7 @@ scripts/universe/daily_price_log.csv
 scripts/universe/cache/
 scripts/universe/roster_reviews/
 scripts/universe/__pycache__/
+
+# Stage-1 history snapshots — append-only, regenerated on each run.
+# Rolled up into DuckDB once score engine ships.
+scripts/universe/data/snapshots/
