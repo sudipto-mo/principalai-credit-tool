@@ -23,7 +23,7 @@ export default async function DorrsumScorePage() {
     email = session?.email ?? null;
   }
 
-  const access = checkDorrsumScoreAccess(email);
+  const access = await checkDorrsumScoreAccess(email);
 
   if (access.granted) {
     return (
