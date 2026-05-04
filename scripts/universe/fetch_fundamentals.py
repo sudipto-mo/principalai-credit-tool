@@ -117,6 +117,9 @@ OUT_COLUMNS = [
 # heavy/analytical-only fields (ev_usd, shares_out, beta, adv_10d, 52w high/low
 # absolutes, etc.) but keeps everything the drawer's six factor cards need.
 EMBED_FIELDS = [
+    # Classification (static — from roster)
+    "name", "band", "subnode", "subnode_title", "held",
+    # Market data
     "currency", "exchange", "data_status",
     "price_local", "market_cap_usd",
     "pe_ttm", "fwd_pe", "ev_ebitda", "peg", "pb", "ps",
@@ -466,14 +469,14 @@ def build_record(entry: dict, info: dict | None, err: str | None, rates: dict[st
     rec["op_margin"] = _as_pct(_safe(info, "operatingMargins"))
     rec["ebitda_margin"] = _as_pct(_safe(info, "ebitdaMargins"))
     rec["rev_growth_yoy_pct"] = _as_pct(_safe(info, "revenueGrowth"))
-    rec["pe_ttm"] = _safe(info, "trailingPE")
-    rec["fwd_pe"] = _safe(info, "forwardPE")
-    rec["ev_revenue"] = _safe(info, "enterpriseToRevenue")
-    rec["ev_ebitda"] = _safe(info, "enterpriseToEbitda")
+    rec["pe_ttm"] = _to_float(_safe(info, "trailingPE"))
+    rec["fwd_pe"] = _to_float(_safe(info, "forwardPE"))
+    rec["ev_revenue"] = _to_float(_safe(info, "enterpriseToRevenue"))
+    rec["ev_ebitda"] = _to_float(_safe(info, "enterpriseToEbitda"))
     rec["div_yield_pct"] = _as_pct(_safe(info, "dividendYield"))
-    rec["beta"] = _safe(info, "beta")
-    rec["price_52w_high"] = _safe(info, "fiftyTwoWeekHigh")
-    rec["price_52w_low"] = _safe(info, "fiftyTwoWeekLow")
+    rec["beta"] = _to_float(_safe(info, "beta"))
+    rec["price_52w_high"] = _to_float(_safe(info, "fiftyTwoWeekHigh"))
+    rec["price_52w_low"] = _to_float(_safe(info, "fiftyTwoWeekLow"))
     rec["ytd_return_pct"] = info.get("_ytd_return_pct")
     rec["one_yr_return_pct"] = info.get("_one_yr_return_pct")
     rec["analyst_target_local"] = _safe(info, "targetMeanPrice")
@@ -481,9 +484,9 @@ def build_record(entry: dict, info: dict | None, err: str | None, rates: dict[st
     rec["adv_10d"] = _safe(info, "averageDailyVolume10Day")
 
     # ---- VALUE additions ----
-    rec["peg"] = _safe(info, "trailingPegRatio", "pegRatio")
-    rec["pb"] = _safe(info, "priceToBook")
-    rec["ps"] = _safe(info, "priceToSalesTrailing12Months")
+    rec["peg"] = _to_float(_safe(info, "trailingPegRatio", "pegRatio"))
+    rec["pb"] = _to_float(_safe(info, "priceToBook"))
+    rec["ps"] = _to_float(_safe(info, "priceToSalesTrailing12Months"))
 
     # ---- GROWTH additions ----
     # earningsGrowth from Yahoo is a fraction (0.19 = 19%); _as_pct normalises.
@@ -669,6 +672,13 @@ def main() -> None:
             records.append(build_record(entry, None, None, rates))
 
     df = pd.DataFrame(records, columns=OUT_COLUMNS)
+
+    # Sanitise any stray "Infinity"/"-Infinity" strings that yfinance can produce
+    # via JSON round-trips — pyarrow refuses to cast these to double.
+    for col in df.select_dtypes(include="object").columns:
+        mask = df[col].isin(["Infinity", "-Infinity", "inf", "-inf", "NaN", "nan"])
+        if mask.any():
+            df.loc[mask, col] = None
 
     # ---- write parquet ----
     df.to_parquet(OUT_PARQUET, index=False)

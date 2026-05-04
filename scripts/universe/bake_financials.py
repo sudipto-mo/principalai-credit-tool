@@ -25,6 +25,11 @@ FENCE_END = "/* === FINANCIALS END === */"
 SCORES_START = "/* === SCORES START ==="
 SCORES_END = "/* === SCORES END === */"
 
+NSE_TICKERS_START = "/* === NSE_TICKERS START ==="
+NSE_TICKERS_END = "/* === NSE_TICKERS END === */"
+
+TICKERS_FILE = ROOT / "tickers.json"
+
 # Anchor: insert the whole block immediately before "var BAND_LABELS"
 ANCHOR = "  var BAND_LABELS = {"
 
@@ -233,6 +238,47 @@ def main() -> None:
             print(f"[SCORES] inserted ({scores_origin})")
         else:
             sys.exit(f"Helpers anchor not found: {helpers_end_marker!r}")
+
+    # --- 5. Inject NSE_TICKERS block (Screen tab metadata) ---
+    # Lightweight array of {symbol, name, sector, nse_industry, subnode}
+    # for all NSE-exchange tickers. Used by the Screen tab JS to build
+    # the filterable table without hitting the heavier FINANCIALS blob.
+    if TICKERS_FILE.exists():
+        all_tickers = json.loads(TICKERS_FILE.read_text())
+        nse_meta = [
+            {
+                "s": t["symbol"],
+                "n": t["name"],
+                "sec": t.get("sector") or "",
+                "ind": t.get("nse_industry") or "",
+                "sub": t.get("subnode") or "",
+            }
+            for t in all_tickers
+            if t.get("exchange") == "NSE" and not t.get("private")
+        ]
+        nse_compact = json.dumps(nse_meta, separators=(",", ":"), ensure_ascii=False)
+        nse_block = (
+            "  " + NSE_TICKERS_START
+            + " (auto-baked from tickers.json; do not edit by hand) */\n"
+            + "  var NSE_TICKERS = " + nse_compact + ";\n"
+            + "  " + NSE_TICKERS_END + "\n"
+        )
+        if NSE_TICKERS_START in html:
+            pat = re.compile(
+                re.escape("  " + NSE_TICKERS_START) + r".*?" + re.escape(NSE_TICKERS_END) + r"\n",
+                re.DOTALL,
+            )
+            html = pat.sub(lambda _m: nse_block, html, count=1)
+            print(f"[NSE_TICKERS] replaced ({len(nse_meta)} tickers)")
+        else:
+            # Insert before BAND_LABELS anchor
+            if ANCHOR in html:
+                html = html.replace(ANCHOR, nse_block + "\n" + ANCHOR, 1)
+                print(f"[NSE_TICKERS] inserted ({len(nse_meta)} tickers)")
+            else:
+                print("[NSE_TICKERS] anchor not found — skipped")
+    else:
+        print("[NSE_TICKERS] tickers.json not found — skipped")
 
     HTML.write_text(html)
     print(f"[WROTE] {HTML} ({len(html)//1024} KB)")
