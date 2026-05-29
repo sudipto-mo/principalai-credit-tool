@@ -1,17 +1,11 @@
 import PortfolioManagementNavLinkInner from "@/components/PortfolioManagementNavLinkInner";
-import { resolvePortfolioManagementUrl } from "@/lib/portfolio-management-url";
 
 /**
- * Client book portal — links to `/portfolio-management`, which redirects to the hosted PM app.
- * Hidden in production when NEXT_PUBLIC_PORTFOLIO_MANAGEMENT_URL is unset.
+ * Client book portal — always visible (like Dorrsum Score).
+ * `/portfolio-management` redirects when NEXT_PUBLIC_PORTFOLIO_MANAGEMENT_URL is set.
  */
 export default function NavPortfolioManagementLink() {
-  const url = resolvePortfolioManagementUrl();
-  if (!url) return null;
+  const configured = Boolean((process.env.NEXT_PUBLIC_PORTFOLIO_MANAGEMENT_URL || "").trim());
 
-  return (
-    <PortfolioManagementNavLinkInner
-      showDevWip={process.env.NODE_ENV === "development" && !process.env.NEXT_PUBLIC_PORTFOLIO_MANAGEMENT_URL?.trim()}
-    />
-  );
+  return <PortfolioManagementNavLinkInner showDevWip={!configured} />;
 }
