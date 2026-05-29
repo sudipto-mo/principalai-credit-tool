@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { HERO_BRAND } from "@/lib/hero-marketing";
 import NavOpenPortfolioLink from "@/components/NavOpenPortfolioLink";
+import NavPortfolioManagementLink from "@/components/NavPortfolioManagementLink";
 import {
   marketingNavBrandMarkLetterStyle,
   marketingNavBrandMarkStyle,
@@ -270,6 +271,7 @@ export default function SiteNavbar({ authBadge, authNavItems }: { authBadge?: Re
               {authNavItems}
               <AdvisoryDropdown />
               <NavOpenPortfolioLink />
+              <NavPortfolioManagementLink />
               <NavMarketingLink href="/contact">Contact</NavMarketingLink>
             </div>
 
@@ -315,6 +317,9 @@ export default function SiteNavbar({ authBadge, authNavItems }: { authBadge?: Re
             </NavMarketingLink>
             <div style={{ padding: "10px 0" }}>
               <NavOpenPortfolioLink />
+            </div>
+            <div style={{ padding: "10px 0" }}>
+              <NavPortfolioManagementLink />
             </div>
             <div style={{ paddingTop: 4 }}>{authNavItems}</div>
             <p style={{ margin: "12px 0 6px", fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", color: "#7b8794", textTransform: "uppercase" }}>
