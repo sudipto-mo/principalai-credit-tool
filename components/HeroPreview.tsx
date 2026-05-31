@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { HERO_MARKETING, getHeroCarouselSlides } from '@/lib/hero-marketing';
+import { isAdvisoryEnabled } from '@/lib/advisory-access';
 import { heroPreviewViz } from '@/lib/hero-preview-viz-styles';
 import { PHYSICAL_STACK_HERO_DETAILS, PHYSICAL_STACK_SUPPLY_TOC } from '@/lib/physical-stack-contents';
 
@@ -634,8 +635,7 @@ export default function HeroPreview() {
               color:'oklch(13% 0.07 258)',
               marginBottom:26,
             }}>
-              {hm.headline.beforeEm}{' '}
-              <em style={{ fontStyle:'italic', fontWeight:400 }}>{hm.headline.em}</em>
+              {hm.headline}
             </h1>
 
             <p style={{
@@ -663,22 +663,51 @@ export default function HeroPreview() {
                 onMouseLeave={e=>{(e.currentTarget as HTMLAnchorElement).style.opacity='1';}}
               >{hm.primaryCta.label}</Link>
 
-              <Link
-                href={hm.secondaryCta.href}
-                style={{
-                  textDecoration:'none',
-                  padding:'13px 26px',
-                  background:'transparent',
-                  color:'oklch(13% 0.07 258)',
-                  border:'1.5px solid oklch(13% 0.07 258 / 0.45)',
-                  borderRadius:2,
-                  fontSize:10.5, letterSpacing:'0.13em', textTransform:'uppercase',
-                  fontWeight:600, cursor:'pointer',
-                  transition:'border-color 0.2s',
-                }}
-                onMouseEnter={e=>{(e.currentTarget as HTMLAnchorElement).style.borderColor='oklch(13% 0.07 258 / 0.8)';}}
-                onMouseLeave={e=>{(e.currentTarget as HTMLAnchorElement).style.borderColor='oklch(13% 0.07 258 / 0.45)';}}
-              >{hm.secondaryCta.label}</Link>
+              {isAdvisoryEnabled() ? (
+                <Link
+                  href={hm.secondaryCta.href}
+                  style={{
+                    textDecoration:'none',
+                    padding:'13px 26px',
+                    background:'transparent',
+                    color:'oklch(13% 0.07 258)',
+                    border:'1.5px solid oklch(13% 0.07 258 / 0.45)',
+                    borderRadius:2,
+                    fontSize:10.5, letterSpacing:'0.13em', textTransform:'uppercase',
+                    fontWeight:600, cursor:'pointer',
+                    transition:'border-color 0.2s',
+                    display:'inline-flex',
+                    alignItems:'center',
+                    gap:8,
+                  }}
+                  onMouseEnter={e=>{(e.currentTarget as HTMLAnchorElement).style.borderColor='oklch(13% 0.07 258 / 0.8)';}}
+                  onMouseLeave={e=>{(e.currentTarget as HTMLAnchorElement).style.borderColor='oklch(13% 0.07 258 / 0.45)';}}
+                >
+                  {hm.secondaryCta.label}
+                  <span style={{
+                    fontSize:8, fontWeight:700, letterSpacing:'0.08em',
+                    padding:'2px 5px', borderRadius:2,
+                    border:'1px solid oklch(13% 0.07 258 / 0.25)',
+                    color:'oklch(13% 0.07 258 / 0.55)',
+                  }}>WIP</span>
+                </Link>
+              ) : (
+                <span
+                  aria-disabled="true"
+                  style={{
+                    padding:'13px 26px',
+                    background:'transparent',
+                    color:'oklch(13% 0.07 258 / 0.35)',
+                    border:'1.5px solid oklch(13% 0.07 258 / 0.18)',
+                    borderRadius:2,
+                    fontSize:10.5, letterSpacing:'0.13em', textTransform:'uppercase',
+                    fontWeight:600, cursor:'not-allowed',
+                    userSelect:'none',
+                  }}
+                >
+                  {hm.secondaryCta.label}
+                </span>
+              )}
             </div>
           </div>
 

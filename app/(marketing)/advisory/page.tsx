@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { notFound } from "next/navigation";
+import { isAdvisoryEnabled } from "@/lib/advisory-access";
 
 export const metadata: Metadata = {
   title: "Advisory",
   description:
     "Independent, practitioner-grade advisory for APAC digital infrastructure credit — across the capital stack.",
+  robots: isAdvisoryEnabled() ? undefined : { index: false, follow: false },
 };
 
 type Persona = "providers" | "sponsors" | "cross-border";
@@ -84,6 +87,10 @@ export default async function AdvisoryPage({
 }: {
   searchParams: Promise<{ persona?: string }>;
 }) {
+  if (!isAdvisoryEnabled()) {
+    notFound();
+  }
+
   const sp = await searchParams;
   const hashPersona = parsePersona(sp.persona);
 

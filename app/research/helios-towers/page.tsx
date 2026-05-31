@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { FileText } from "lucide-react";
+import { isAdvisoryEnabled } from "@/lib/advisory-access";
 import { paEditorialTitleModule } from "@/lib/editorial-typography";
 
 export const metadata: Metadata = {
@@ -23,10 +24,15 @@ export default async function HeliosTowersResearchPage() {
       <article className="relative mx-auto max-w-3xl px-5 pb-8 pt-10 sm:px-8 sm:pt-14 md:pt-16">
         <header className="mb-10 border-b border-[color:var(--pa-border)] pb-8">
           <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-[#7b8794]">
-            <Link href="/advisory" className="no-underline text-[#7b8794] transition-colors hover:text-[var(--pa-navy)]">
-              ← Advisory
-            </Link>
-            {" · "}Indicative Credit Brief
+            {isAdvisoryEnabled() ? (
+              <>
+                <Link href="/advisory" className="no-underline text-[#7b8794] transition-colors hover:text-[var(--pa-navy)]">
+                  ← Advisory
+                </Link>
+                {" · "}
+              </>
+            ) : null}
+            Indicative Credit Brief
           </p>
           <div className="mb-2 flex flex-wrap items-baseline gap-x-3 gap-y-1">
             <h1 className={paEditorialTitleModule}>

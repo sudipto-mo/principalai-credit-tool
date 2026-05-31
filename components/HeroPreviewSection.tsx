@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
+import { HERO_MARKETING } from "@/lib/hero-marketing";
+import { isAdvisoryEnabled } from "@/lib/advisory-access";
 import HeroPreviewBackground from "@/components/HeroPreviewBackground";
 import WorkCard from "@/components/WorkCard";
 import EcosystemWebCardVisual from "@/components/hero-cards/EcosystemWebCardVisual";
@@ -60,29 +62,39 @@ export default function HeroPreviewSection() {
         {/* Left column */}
         <div className="flex w-full flex-[0_0_auto] flex-col justify-center md:max-w-[36%] md:flex-[0_0_36%]">
           <p className="text-[9.5px] font-semibold uppercase tracking-[0.22em] text-[oklch(46%_0.14_253)]">
-            APAC Digital Infrastructure Advisory
+            {HERO_MARKETING.eyebrow}
           </p>
           <h1 className="mt-5 max-w-[520px] font-[family-name:var(--font-serif)] text-[clamp(2rem,4vw,50px)] font-bold leading-[1.08] tracking-[-0.018em] text-[oklch(15%_0.07_258)]">
-            Pricing risk where connectivity, real assets, and{" "}
-            <em className="italic">power converge.</em>
+            {HERO_MARKETING.headline}
           </h1>
           <p className="mt-6 max-w-[370px] text-[15px] font-light leading-[1.8] text-[oklch(33%_0.05_258)]">
-            Independent credit assessment and capital structuring for lenders, sponsors, and institutional clients
-            operating across the digital infrastructure stack.
+            {HERO_MARKETING.body}
           </p>
           <div className="mt-10 flex flex-wrap gap-3">
             <Link
-              href="/research"
+              href={HERO_MARKETING.primaryCta.href}
               className="inline-flex items-center justify-center rounded-[2px] bg-[oklch(15%_0.07_258)] px-5 py-2.5 text-[10.5px] font-semibold uppercase tracking-[0.13em] text-white no-underline transition-opacity hover:opacity-90"
             >
-              View Research
+              {HERO_MARKETING.primaryCta.label}
             </Link>
-            <Link
-              href="/advisory"
-              className="inline-flex items-center justify-center rounded-[2px] border border-[oklch(15%_0.07_258)] bg-transparent px-5 py-2.5 text-[10.5px] font-semibold uppercase tracking-[0.13em] text-[oklch(15%_0.07_258)] no-underline transition-colors hover:bg-black/[0.04]"
-            >
-              Advisory Services
-            </Link>
+            {isAdvisoryEnabled() ? (
+              <Link
+                href={HERO_MARKETING.secondaryCta.href}
+                className="inline-flex items-center justify-center gap-2 rounded-[2px] border border-[oklch(15%_0.07_258)] bg-transparent px-5 py-2.5 text-[10.5px] font-semibold uppercase tracking-[0.13em] text-[oklch(15%_0.07_258)] no-underline transition-colors hover:bg-black/[0.04]"
+              >
+                {HERO_MARKETING.secondaryCta.label}
+                <span className="rounded-[2px] border border-[oklch(15%_0.07_258/0.25)] px-1.5 py-0.5 text-[8px] font-bold tracking-[0.08em] text-[oklch(15%_0.07_258/0.55)]">
+                  WIP
+                </span>
+              </Link>
+            ) : (
+              <span
+                aria-disabled="true"
+                className="inline-flex cursor-not-allowed select-none items-center justify-center rounded-[2px] border border-[oklch(15%_0.07_258/0.18)] bg-transparent px-5 py-2.5 text-[10.5px] font-semibold uppercase tracking-[0.13em] text-[oklch(15%_0.07_258/0.35)]"
+              >
+                {HERO_MARKETING.secondaryCta.label}
+              </span>
+            )}
           </div>
         </div>
 

@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { isAdvisoryEnabled } from "@/lib/advisory-access";
 
 /**
  * Main marketing nav is hidden on this route ({@link ConditionalSiteNavbar}).
@@ -25,12 +26,14 @@ export default function CreditWorkbenchClient() {
         >
           Research
         </Link>
-        <Link
-          href="/advisory"
-          className="text-[12px] font-semibold uppercase tracking-[0.12em] text-[#7b8794] no-underline transition-colors hover:text-[var(--pa-navy)]"
-        >
-          Advisory
-        </Link>
+        {isAdvisoryEnabled() ? (
+          <Link
+            href="/advisory"
+            className="text-[12px] font-semibold uppercase tracking-[0.12em] text-[#7b8794] no-underline transition-colors hover:text-[var(--pa-navy)]"
+          >
+            Advisory
+          </Link>
+        ) : null}
       </nav>
       <iframe
         title="Institutional Credit Desk"

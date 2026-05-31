@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import AdvisoryScopeCards from "@/components/AdvisoryScopeCards";
 import ResearchVault from "@/components/ResearchVault";
 import { ADVISORY_TO_RESEARCH_FILTER } from "@/lib/advisory-pillars";
+import { getAdvisoryHref } from "@/lib/advisory-access";
 import { paEditorialLead, paEditorialTitleResearchHub } from "@/lib/editorial-typography";
 
 export default function CoverageSectors() {
@@ -54,7 +55,7 @@ export default function CoverageSectors() {
               Have a deal to assess or a project to structure?
             </p>
             <Link
-              href="/advisory"
+              href={getAdvisoryHref()}
               className="shrink-0 rounded-sm border border-[color:var(--pa-border)] bg-[#faf8f2] px-4 py-2 text-[12px] font-semibold uppercase tracking-[0.12em] text-[var(--pa-navy)] no-underline transition-colors hover:border-[#bcc4ce]"
             >
               View Advisory Services

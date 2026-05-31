@@ -5,18 +5,18 @@
  */
 
 import { STACK_REPORTS, stackReportFullTitle, type StackReport } from "@/lib/dc-stack-reports";
+import { isAdvisoryEnabled } from "@/lib/advisory-access";
 
 /** Left-column hero — matches marketing homepage intent. */
 export const HERO_MARKETING = {
-  eyebrow: "APAC Digital Infrastructure Advisory",
-  headline: {
-    beforeEm: "Pricing risk where connectivity, real assets, and",
-    em: "power converge.",
-  },
+  eyebrow: "APAC Digital Infrastructure Research",
+  headline: "The physical stack prices the equity.",
   body:
-    "Independent credit assessment and capital structuring for lenders, sponsors, and institutional clients operating across the digital infrastructure stack.",
-  primaryCta: { label: "View Research", href: "/research" as const },
-  secondaryCta: { label: "Advisory Services", href: "/advisory" as const },
+    "The market prices AI infrastructure on growth assumptions. We price it on what the physical layer can actually deliver — the power that's permitted, the silicon that's shipping, the land that's available. The gap is the call.",
+  methodStrip:
+    "Market-implied expectations → physical-stack stress test → the mispricing call",
+  primaryCta: { label: "Read the Research", href: "/research" as const },
+  secondaryCta: { label: "Institutional Advisory", href: "/advisory" as const },
 } as const;
 
 /** Brand block — aligned with `SiteNavbar` home link (wordmark + tagline render in navbar). */
@@ -105,7 +105,9 @@ export function getHeroPrimaryNavItems(opts: { showOrigination: boolean }): Hero
     );
   }
   items.push(
-    { kind: "advisory", label: "Advisory", href: "/advisory", hasChevron: true },
+    ...(isAdvisoryEnabled()
+      ? [{ kind: "advisory" as const, label: "Advisory", href: "/advisory", hasChevron: true as const }]
+      : []),
     { kind: "link", label: "Contact", href: "/contact" },
   );
   return items;

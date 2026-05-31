@@ -4,6 +4,7 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { HERO_BRAND } from "@/lib/hero-marketing";
+import { isAdvisoryEnabled } from "@/lib/advisory-access";
 import { DORRSUM_ADVISORY_NAME } from "@/lib/site-brand";
 import {
   marketingNavBrandMarkLetterStyle,
@@ -106,6 +107,9 @@ function AdvisoryDropdown({ onNavigate }: { onNavigate?: () => void }) {
         }}
       >
         Advisory
+        {process.env.NODE_ENV === "development" ? (
+          <span style={{ ...marketingNavWipBadgeStyle, marginLeft: 8 }}>WIP</span>
+        ) : null}
         <span style={{ fontSize: 7.5, opacity: 0.45 }} aria-hidden>
           ▾
         </span>
@@ -268,7 +272,7 @@ export default function SiteNavbar({ authBadge, authNavItems }: { authBadge?: Re
             >
               <NavMarketingLink href="/research">Research</NavMarketingLink>
               {authNavItems}
-              <AdvisoryDropdown />
+              {isAdvisoryEnabled() ? <AdvisoryDropdown /> : null}
               <NavMarketingLink href="/contact">Contact</NavMarketingLink>
             </div>
 
@@ -313,17 +317,24 @@ export default function SiteNavbar({ authBadge, authNavItems }: { authBadge?: Re
               Research
             </NavMarketingLink>
             <div style={{ paddingTop: 4 }}>{authNavItems}</div>
-            <p style={{ margin: "12px 0 6px", fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", color: "#7b8794", textTransform: "uppercase" }}>
-              Advisory
-            </p>
-            {ADVISORY_ITEMS.map((item) => (
-              <NavMarketingLink key={item.href} href={item.href} onClick={closeMobile} style={{ display: "block", padding: "8px 0 8px 16px" }}>
-                <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
-                  {item.label}
-                  {item.devWip ? <span style={marketingNavWipBadgeStyle}>WIP</span> : null}
-                </span>
-              </NavMarketingLink>
-            ))}
+            {isAdvisoryEnabled() ? (
+              <>
+                <p style={{ margin: "12px 0 6px", fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", color: "#7b8794", textTransform: "uppercase" }}>
+                  Advisory
+                  {process.env.NODE_ENV === "development" ? (
+                    <span style={{ ...marketingNavWipBadgeStyle, marginLeft: 8 }}>WIP</span>
+                  ) : null}
+                </p>
+                {ADVISORY_ITEMS.map((item) => (
+                  <NavMarketingLink key={item.href} href={item.href} onClick={closeMobile} style={{ display: "block", padding: "8px 0 8px 16px" }}>
+                    <span style={{ display: "inline-flex", alignItems: "center", gap: 8 }}>
+                      {item.label}
+                      {item.devWip ? <span style={marketingNavWipBadgeStyle}>WIP</span> : null}
+                    </span>
+                  </NavMarketingLink>
+                ))}
+              </>
+            ) : null}
             <NavMarketingLink href="/contact" onClick={closeMobile} style={{ display: "block", padding: "12px 0 0" }}>
               Contact
             </NavMarketingLink>

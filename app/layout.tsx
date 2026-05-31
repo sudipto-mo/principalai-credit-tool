@@ -44,7 +44,7 @@ export const metadata: Metadata = {
     template: `%s | ${DORRSUM_ADVISORY_NAME}`,
   },
   description:
-    "Research-first, transaction-ready advisory for TMT infrastructure credit — independent, practitioner-grade, and TMT-native.",
+    "Equity valuation for the AI-infrastructure complex, built from the physical stack up. Independent, practitioner-grade, TMT-native.",
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
