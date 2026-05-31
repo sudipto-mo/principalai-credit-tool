@@ -17,7 +17,7 @@ function pickReturnTo(sp: LoginSearchParams): string | null {
 }
 
 export const metadata: Metadata = {
-  title: "Sign in | Principal AI",
+  title: "Sign in",
   description: "Optional LinkedIn or Google sign-in to personalize your session on the site.",
   robots: { index: false, follow: false },
 };

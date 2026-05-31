@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import { Inter, Source_Serif_4, Space_Grotesk, Space_Mono } from "next/font/google";
 import ConditionalSiteNavbar from "@/components/ConditionalSiteNavbar";
 import NavAuthBadge from "@/components/NavAuthBadge";
-import NavOriginationLink from "@/components/NavOriginationLink";
 import GlobalOAuthFlash from "@/components/GlobalOAuthFlash";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
+import { DORRSUM_ADVISORY_NAME } from "@/lib/site-brand";
 import "./globals.css";
 
 const inter = Inter({
@@ -39,7 +39,10 @@ const spaceMono = Space_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "DORRSUM",
+  title: {
+    default: DORRSUM_ADVISORY_NAME,
+    template: `%s | ${DORRSUM_ADVISORY_NAME}`,
+  },
   description:
     "Research-first, transaction-ready advisory for TMT infrastructure credit — independent, practitioner-grade, and TMT-native.",
 };
@@ -55,7 +58,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         className={`${inter.className} flex min-h-screen flex-col bg-[var(--pa-page)] font-sans text-[var(--pa-text)] antialiased`}
       >
         <GoogleAnalytics />
-        <ConditionalSiteNavbar authBadge={<NavAuthBadge />} authNavItems={<NavOriginationLink />} />
+        <ConditionalSiteNavbar authBadge={<NavAuthBadge />} />
         <GlobalOAuthFlash />
         <div className="flex w-full flex-1 flex-col">{children}</div>
       </body>

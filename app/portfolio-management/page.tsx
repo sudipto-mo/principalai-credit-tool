@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { redirect } from "next/navigation";
-import { PORTFOLIO_MANAGEMENT_PATH, resolvePortfolioManagementUrl } from "@/lib/portfolio-management-url";
+import { PORTFOLIO_MANAGEMENT_NAME } from "@/lib/site-brand";
+import { resolvePortfolioManagementUrl } from "@/lib/portfolio-management-url";
 
 export const metadata: Metadata = {
-  title: "Portfolio Management | DORRSUM",
+  title: { absolute: PORTFOLIO_MANAGEMENT_NAME },
   description: "Client portfolio portal — sign in to view holdings, performance, and monitoring.",
   robots: { index: false, follow: false },
 };
@@ -19,7 +20,7 @@ export default function PortfolioManagementPage() {
     <main className="mx-auto max-w-xl px-6 py-20">
       <div className="text-center">
         <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-[#7b8794]">Client portal</p>
-        <h1 className="mb-3 text-2xl font-semibold text-[var(--pa-navy)]">Portfolio Management</h1>
+        <h1 className="mb-3 text-2xl font-semibold text-[var(--pa-navy)]">{PORTFOLIO_MANAGEMENT_NAME}</h1>
         <p className="mb-10 text-sm leading-relaxed text-[var(--pa-muted)]">
           This page redirects to the hosted client portfolio app. It is not wired up yet on production.
         </p>

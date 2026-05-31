@@ -9,7 +9,7 @@ import {
 } from "@/lib/dc-stack-reports";
 
 export const metadata: Metadata = {
-  title: `The ${DIGITAL_INFRASTRUCTURE_STACK} | Principal AI`,
+  title: `The ${DIGITAL_INFRASTRUCTURE_STACK}`,
   description:
     "APAC digital infrastructure research — supply chain, operator landscape, and company-level credit analysis across the full stack.",
   robots: { index: true, follow: true },

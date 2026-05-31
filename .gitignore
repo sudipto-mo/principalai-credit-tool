@@ -9,15 +9,6 @@ test-results/
 tsconfig.tsbuildinfo
 
 # Universe Map pipeline — regenerated artifacts, not source
-scripts/universe/universe_financials.parquet
-scripts/universe/universe_financials.xlsx
-scripts/universe/universe_financials.json
-scripts/universe/failure_log.csv
-scripts/universe/daily_price_log.csv
-scripts/universe/cache/
-scripts/universe/roster_reviews/
-scripts/universe/__pycache__/
 
 # Stage-1 history snapshots — append-only, regenerated on each run.
 # Rolled up into DuckDB once score engine ships.
-scripts/universe/data/snapshots/

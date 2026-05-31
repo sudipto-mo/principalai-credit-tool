@@ -610,7 +610,7 @@ export default function HeroPreview() {
       <BackgroundNetwork />
 
       <main style={{ position:'relative', zIndex:1, paddingTop:0, paddingBottom:48,
-        minHeight:'100vh', display:'flex', alignItems:'center' }}>
+        minHeight:'100vh', display:'flex', alignItems:'flex-start' }}>
         <div style={{
           width:'100%', maxWidth:1440, margin:'0 auto',
           padding:'52px 60px 72px',

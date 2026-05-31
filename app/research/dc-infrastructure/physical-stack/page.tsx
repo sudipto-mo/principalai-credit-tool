@@ -14,7 +14,7 @@ const report = getStackReport("physical-stack");
 const prevReport = getStackReport("worldview");
 
 export const metadata: Metadata = {
-  title: `${stackReportFullTitle(report)} | Principal AI`,
+  title: `${stackReportFullTitle(report)}`,
   description:
     "Digital Infrastructure Stack — where the bottlenecks are: an APAC supply chain map across power, silicon, cooling, land, connectivity, and construction — mapped by constraint status.",
   robots: { index: true, follow: true },

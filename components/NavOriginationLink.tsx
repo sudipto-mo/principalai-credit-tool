@@ -1,8 +1,7 @@
 import OriginationNavLinkInner from "@/components/OriginationNavLinkInner";
 
 /**
- * Origination nav link — dev/staging only.
- * Hidden in production unless ENABLE_ORIGINATION=1 is set in Vercel env vars.
+ * Origination nav link — not used on Dorrsum Advisory nav (route `/origination` may remain for direct access).
  */
 export default function NavOriginationLink() {
   const enabled =

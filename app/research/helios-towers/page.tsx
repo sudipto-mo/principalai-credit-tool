@@ -4,7 +4,7 @@ import { FileText } from "lucide-react";
 import { paEditorialTitleModule } from "@/lib/editorial-typography";
 
 export const metadata: Metadata = {
-  title: "Helios Towers — Indicative Credit Brief | Principal AI",
+  title: "Helios Towers — Indicative Credit Brief",
   description:
     "Illustrative credit summary (financial, equity, and refinancing risk). Commissioned clients receive full institutional briefs, models, and covenant analysis.",
   openGraph: {

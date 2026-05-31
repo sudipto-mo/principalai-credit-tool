@@ -4,16 +4,21 @@
  * https://portfolio.dorrsum.com
  */
 
+/** In-app path; `/portfolio-management` redirects when a URL is configured. */
+export const PORTFOLIO_MANAGEMENT_PATH = "/portfolio-management";
+
 export function resolvePortfolioManagementUrl(): string | null {
   const fromEnv = (process.env.NEXT_PUBLIC_PORTFOLIO_MANAGEMENT_URL || "").trim();
   if (fromEnv) return fromEnv.replace(/\/+$/, "");
 
   if (process.env.NODE_ENV === "development") {
-    return "http://127.0.0.1:8003";
+    return "http://127.0.0.1:8081";
   }
 
   return null;
 }
 
-/** In-app path; `/portfolio-management` redirects to the resolved URL. */
-export const PORTFOLIO_MANAGEMENT_PATH = "/portfolio-management";
+/** Redirect target when env is set; fallback hostname for forced redirects. */
+export function getPortfolioManagementUrl(): string {
+  return resolvePortfolioManagementUrl() ?? "https://portfolio.dorrsum.com";
+}

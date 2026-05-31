@@ -466,3 +466,87 @@ html[data-theme="dark"] .btn-primary:hover {
     @apply font-semibold text-[var(--pa-text)];
   }
 }
+
+/* ─────────────────────────────────────────────────────────────────────────────
+ * Credit desk tokens — scoped to .cd-root only.
+ * Pa editorial tokens are NOT used inside credit-desk files; this block
+ * does not affect any other route in the application.
+ * ───────────────────────────────────────────────────────────────────────── */
+.cd-root {
+  /* Surfaces — distinctly cool-neutral; no Pa cream */
+  --cd-bg:         #edf0f7;
+  --cd-surface:    #ffffff;
+  --cd-surface-2:  #e2e5ef;
+  --cd-active-bg:  #d8dff5;
+
+  /* Borders */
+  --cd-border:     rgba(15, 23, 42, 0.12);
+
+  /* Text */
+  --cd-text:       #0f1117;
+  --cd-text-2:     #5a6272;
+  --cd-text-3:     #9199a8;
+
+  /* Accent */
+  --cd-accent:     #3b5bdb;
+
+  /* Number chips */
+  --cd-chip-good-bg:      #dbeafe;
+  --cd-chip-good-text:    #1e40af;
+  --cd-chip-good-border:  #93c5fd;
+  --cd-chip-watch-bg:     #fef3c7;
+  --cd-chip-watch-text:   #92400e;
+  --cd-chip-watch-border: #fcd34d;
+  --cd-chip-sup-text:     #374151;
+
+  /* Verdict */
+  --cd-verdict-bg:   #dcfce7;
+  --cd-verdict-text: #166534;
+
+  /* Institutional teal — definition-line emphasis (industry risk framing) */
+  --cd-emphasis-teal: #0f766e;
+}
+
+html[data-theme="dark"] .cd-root {
+  --cd-emphasis-teal: #2dd4bf;
+  --cd-bg:         #0d1117;
+  --cd-surface:    #161b22;
+  --cd-surface-2:  #1c2128;
+  --cd-active-bg:  #1a2c44;
+  --cd-border:     rgba(240, 246, 252, 0.10);
+
+  --cd-text:       #e6edf3;
+  --cd-text-2:     #8b949e;
+  --cd-text-3:     #6e7681;
+
+  --cd-accent:     #58a6ff;
+
+  --cd-chip-good-bg:      #1e3a8a;
+  --cd-chip-good-text:    #bfdbfe;
+  --cd-chip-good-border:  #3b82f6;
+  --cd-chip-watch-bg:     #78350f;
+  --cd-chip-watch-text:   #fde68a;
+  --cd-chip-watch-border: #f59e0b;
+  --cd-chip-sup-text:     #d1d5db;
+
+  --cd-verdict-bg:   #052e16;
+  --cd-verdict-text: #86efac;
+}
+
+/* Credit desk — scroll + keyboard focus (respect reduced motion) */
+.cd-root .cd-main-pane {
+  scroll-behavior: smooth;
+}
+@media (prefers-reduced-motion: reduce) {
+  .cd-root .cd-main-pane {
+    scroll-behavior: auto;
+  }
+}
+.cd-root button:focus-visible,
+.cd-root a:focus-visible,
+.cd-root [role="tab"]:focus-visible,
+.cd-root summary:focus-visible,
+.cd-root input:focus-visible {
+  outline: 2px solid var(--cd-accent);
+  outline-offset: 2px;
+}

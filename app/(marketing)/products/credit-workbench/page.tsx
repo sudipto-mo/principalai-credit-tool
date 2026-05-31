@@ -2,7 +2,7 @@ import Link from "next/link";
 import { paEditorialTitleMarketing } from "@/lib/editorial-typography";
 
 export const metadata = {
-  title: "Institutional Credit Desk | Principal AI",
+  title: "Institutional Credit Desk",
 };
 
 export default function CreditWorkbenchProductPage() {

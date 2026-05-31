@@ -14,7 +14,7 @@ const report = getStackReport("worldview");
 const nextReport = getStackReport("physical-stack");
 
 export const metadata: Metadata = {
-  title: `${stackReportFullTitle(report)} (APAC) | Principal AI`,
+  title: `${stackReportFullTitle(report)} (APAC)`,
   description:
     "Digital Infrastructure Stack — APAC colocation and hyperscaler landscape: who is building, where, and with whose capital. Tier 1–4 operators, hyperscaler commitments, and the capital layer financing the buildout.",
   robots: { index: true, follow: true },

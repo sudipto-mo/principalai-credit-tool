@@ -4,8 +4,7 @@ import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { HERO_BRAND } from "@/lib/hero-marketing";
-import NavOpenPortfolioLink from "@/components/NavOpenPortfolioLink";
-import NavPortfolioManagementLink from "@/components/NavPortfolioManagementLink";
+import { DORRSUM_ADVISORY_NAME } from "@/lib/site-brand";
 import {
   marketingNavBrandMarkLetterStyle,
   marketingNavBrandMarkStyle,
@@ -214,7 +213,7 @@ export default function SiteNavbar({ authBadge, authNavItems }: { authBadge?: Re
         <div style={marketingNavInnerRowStyle}>
           <Link
             href="/"
-            aria-label="DORRSUM home"
+            aria-label={`${DORRSUM_ADVISORY_NAME} home`}
             onClick={closeMobile}
             onMouseEnter={(e) => {
               e.currentTarget.style.opacity = "0.95";
@@ -270,8 +269,6 @@ export default function SiteNavbar({ authBadge, authNavItems }: { authBadge?: Re
               <NavMarketingLink href="/research">Research</NavMarketingLink>
               {authNavItems}
               <AdvisoryDropdown />
-              <NavOpenPortfolioLink />
-              <NavPortfolioManagementLink />
               <NavMarketingLink href="/contact">Contact</NavMarketingLink>
             </div>
 
@@ -315,12 +312,6 @@ export default function SiteNavbar({ authBadge, authNavItems }: { authBadge?: Re
             <NavMarketingLink href="/research" onClick={closeMobile} style={{ display: "block", padding: "10px 0" }}>
               Research
             </NavMarketingLink>
-            <div style={{ padding: "10px 0" }}>
-              <NavOpenPortfolioLink />
-            </div>
-            <div style={{ padding: "10px 0" }}>
-              <NavPortfolioManagementLink />
-            </div>
             <div style={{ paddingTop: 4 }}>{authNavItems}</div>
             <p style={{ margin: "12px 0 6px", fontSize: 11, fontWeight: 600, letterSpacing: "0.2em", color: "#7b8794", textTransform: "uppercase" }}>
               Advisory

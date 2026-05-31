@@ -3,7 +3,7 @@ import { SITE_LINKEDIN_URL } from "@/lib/contact-constants";
 import { paEditorialTitleMarketing } from "@/lib/editorial-typography";
 
 export const metadata: Metadata = {
-  title: "Contact | Principal AI",
+  title: "Contact",
   description: "Reach out to Principal AI for credit origination, collaboration, or general inquiries.",
 };
 

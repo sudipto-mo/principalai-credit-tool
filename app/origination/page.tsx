@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Origination Radar | Principal AI",
+  title: "Origination Radar",
   description:
     "Live signal scan across APAC digital infrastructure — deal triggers, competitive landscape, and positional edge for capital providers.",
   robots: { index: false, follow: false },

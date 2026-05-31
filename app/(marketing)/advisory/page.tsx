@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 export const metadata: Metadata = {
-  title: "Advisory | Principal AI",
+  title: "Advisory",
   description:
     "Independent, practitioner-grade advisory for APAC digital infrastructure credit — across the capital stack.",
 };
@@ -255,12 +255,20 @@ export default async function AdvisoryPage({
               The institutional credit assessment environment — open read access; sign in is optional for your session.
             </p>
           </div>
-          <Link
-            href="/credit-workbench"
-            className="shrink-0 border border-[var(--pa-navy)] bg-[var(--pa-navy)] px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-white no-underline transition-colors hover:bg-[var(--pa-navy-deep)]"
-          >
-            Open Credit Desk →
-          </Link>
+          <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
+            <Link
+              href="/credit-workbench/helios-towers"
+              className="border border-[var(--pa-navy)] bg-[var(--pa-navy)] px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-white no-underline transition-colors hover:bg-[var(--pa-navy-deep)]"
+            >
+              Open interactive desk →
+            </Link>
+            <Link
+              href="/credit-workbench"
+              className="border border-[color:var(--pa-border)] bg-transparent px-6 py-3 text-[11px] font-semibold uppercase tracking-[0.2em] text-[var(--pa-navy)] no-underline transition-colors hover:border-[var(--pa-navy)]"
+            >
+              Open credit desk →
+            </Link>
+          </div>
         </div>
       </section>
 
