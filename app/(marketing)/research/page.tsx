@@ -4,7 +4,7 @@ import CoverageSectors from "@/components/CoverageSectors";
 export const metadata: Metadata = {
   title: "Research",
   description:
-    "APAC digital infrastructure sector research — operator landscape, supply chain analysis, and full-stack coverage for Capital Providers and Infrastructure Sponsors.",
+    "TMT infrastructure equity research from the physical stack up — mispricing calls, earnings analysis, and trend intelligence for institutional investors.",
 };
 
 export default function ResearchPage() {
