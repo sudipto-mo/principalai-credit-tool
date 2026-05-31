@@ -11,14 +11,6 @@ const expertise = [
     ],
   },
   {
-    title: "Valuation Advisory",
-    items: [
-      "Enterprise and asset-level valuation",
-      "Equity positioning and investor narrative",
-      "Transaction and capital advisory",
-    ],
-  },
-  {
     title: "Trend Intelligence",
     items: [
       "AI capex cycle and demand signals",
@@ -60,7 +52,7 @@ export default function LandingPage() {
             Research &amp; Advisory
           </h2>
 
-          <div className="mt-10 grid gap-6 md:grid-cols-2">
+          <div className="mx-auto mt-10 max-w-2xl">
             <article className="rounded-[4px] border border-[color:var(--pa-border)] bg-white p-7">
               <h3 className="text-xl font-semibold tracking-tight text-[var(--pa-navy)]">
                 Equity Valuation Research
@@ -72,33 +64,15 @@ export default function LandingPage() {
               <div className="mt-6 border-t border-[color:var(--pa-border)] pt-4">
                 <p className="m-0 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#7b8794]">For</p>
                 <p className="mt-2 text-sm text-[var(--pa-text)]">
-                  Fundamental and long/short equity funds, PE and infra equity, family offices.
+                  Infrastructure and technology-focused LPs, PE and infra equity GPs, long/short equity funds.
                 </p>
                 <p className="mt-4 m-0 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#7b8794]">Mandate</p>
                 <p className="mt-2 text-sm text-[var(--pa-text)]">Mispricing research and valuation calls.</p>
               </div>
             </article>
-
-            <article className="rounded-[4px] border border-[color:var(--pa-border)] bg-white p-7">
-              <h3 className="text-xl font-semibold tracking-tight text-[var(--pa-navy)]">
-                Valuation Advisory
-              </h3>
-              <p className="mt-4 text-sm leading-relaxed text-[var(--pa-muted)]">
-                Valuation and positioning support built around how equity investors and strategic capital assess the
-                enterprise value of digital infrastructure assets.
-              </p>
-              <div className="mt-6 border-t border-[color:var(--pa-border)] pt-4">
-                <p className="m-0 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#7b8794]">For</p>
-                <p className="mt-2 text-sm text-[var(--pa-text)]">
-                  Data centre developers, TowerCos, AI-native operators.
-                </p>
-                <p className="mt-4 m-0 text-[11px] font-semibold uppercase tracking-[0.16em] text-[#7b8794]">Mandate</p>
-                <p className="mt-2 text-sm text-[var(--pa-text)]">Enterprise valuation and investor positioning.</p>
-              </div>
-            </article>
           </div>
 
-          <div className="mt-14 grid gap-6 md:grid-cols-3">
+          <div className="mt-14 grid gap-6 md:grid-cols-2">
             {expertise.map((col) => (
               <article
                 key={col.title}
