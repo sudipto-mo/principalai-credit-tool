@@ -1,0 +1,168 @@
+{
+  "_meta": {
+    "company": "Helios Towers plc",
+    "ticker": "LSE:HTWS",
+    "section": "industry",
+    "generated": "2026-05-11",
+    "digest_source": "HeliosTower_FY25_CreditDigest.txt",
+    "review_status": "PENDING \u2014 analyst to review via HTML report",
+    "pipeline": "build_industry_data.py \u2192 narratives_industry.json \u2192 report_industry.html"
+  },
+  "anchors": {
+    "mno_revenue_pct": 98.4,
+    "contracted_revenue_bn": 5.31,
+    "avg_contract_life_yrs": 6.6,
+    "total_towers": 14746,
+    "group_tenancy_ratio": 2.2,
+    "growth_capex_usdm": 109.6,
+    "growth_capex_pct_total": 61.1,
+    "maintenance_capex_usdm": 41.2,
+    "net_leverage_fy25": 3.4,
+    "net_leverage_fy24": null,
+    "hard_ccy_ebitda_pct": 71,
+    "soft_ccy_revenue_pct": 29,
+    "drc_tax_contingency_usdm": 71.7,
+    "fx_swing_usdm": 40,
+    "minority_buyout_usdm": 19.3,
+    "hard_ccy_markets": 4,
+    "total_markets": 9
+  },
+  "page_1": {
+    "title": "Industry Overview \u2014 Independent Tower Model",
+    "subtitle": "Risk is rising in SSA towers: MNO bargaining power and high capex requirements are the primary structural risks.",
+    "risks": [
+      {
+        "id": "mno_bargaining_power",
+        "theme": "Competition & Customer (MNO) Bargaining Power",
+        "key_risks": [
+          "Large MNOs (Airtel, MTN, Vodacom, Orange, Millicom) hold strong negotiating leverage; 98.4% of revenue from multinational MNOs",
+          "SLA and network uptime obligations expose operators to contract penalties",
+          "Low differentiation \u2014 passive infrastructure largely standardised across providers",
+          "MNO consolidation in select markets could reduce tenancy ratios and contracted revenue"
+        ],
+        "cf_impact": [
+          "Pricing concessions and SLA-driven costs compress EBITDA margins",
+          "Risk of DSCR deterioration if anchor tenants renegotiate or exit",
+          "Sales shortfall on below-plan tenancy growth"
+        ],
+        "csf": [
+          "Scale \u2014 14,746 towers; #1 in 7 of 9 markets increases MNO dependency and bargaining leverage",
+          "Long-term CPI-linked contracts (avg. 6.6 yrs; US$5.31bn contracted revenue) lock in sales visibility",
+          "High network uptime / SLA performance as competitive differentiator",
+          "Disciplined pricing on acquisitions to preserve return thresholds"
+        ],
+        "sources": [
+          "Digest \u00a7 1",
+          "Digest \u00a7 8",
+          "Flag 10"
+        ]
+      },
+      {
+        "id": "capex_execution",
+        "theme": "High Capital Requirements & Growth Execution Risk",
+        "key_risks": [
+          "Significant capex required for build-to-suit programme \u2014 growth capex US$109.6m (61.1% of total FY25 capex)",
+          "Competition for quality tower assets drives up acquisition multiples",
+          "Integration and operational execution risk post-acquisition",
+          "Net leverage 3.4x at year-end \u2014 at top of management comfort range (2.5\u20133.5x)"
+        ],
+        "cf_impact": [
+          "Growth capex persistently exceeds depreciation \u2192 sustained DSCR compression",
+          "Risk of overpaying for acquisitions \u2192 impairment charges / negative FCF",
+          "Leverage remains elevated until organic tenancy growth accelerates cash flow",
+          "Minority buyout liabilities (US$19.3m, up 5x YoY) represent off-B/S obligation"
+        ],
+        "csf": [
+          "Disciplined build programme management \u2014 maintenance capex ring-fenced at US$41.2m",
+          "Rigorous acquisition due diligence \u2014 return hurdles and tenancy underwrite",
+          "Maintain access to debt and equity capital markets",
+          "Prioritise deleveraging over M&A \u2014 leverage improved 4.2x \u2192 3.4x YoY"
+        ],
+        "sources": [
+          "Digest \u00a7 4",
+          "Digest \u00a7 5",
+          "Flag 2",
+          "Flag 3"
+        ]
+      }
+    ]
+  },
+  "page_2": {
+    "title": "Industry Overview \u2014 Independent Tower Model",
+    "subtitle": "FX volatility and energy/political risk compound the structural pressures, particularly in Sub-Saharan Africa.",
+    "risks": [
+      {
+        "id": "fx_macro",
+        "theme": "FX & Macro Volatility \u2014 Sub-Saharan Africa",
+        "key_risks": [
+          "SSA currencies (TZS, GHS, CDF, ZAR) subject to material devaluation risk; 29% of revenue from non-hard-currency markets",
+          "Tower contracts often USD-linked but sales partially collected in local FX",
+          "Multi-country inflation and interest rate divergence across markets",
+          "IAS 29 hyperinflationary accounting: DRC and Congo B remain in scope post Ghana removal (Jul 2025)"
+        ],
+        "cf_impact": [
+          "USD-reporting shortfall when local currencies depreciate",
+          "FCF available for USD debt service reduced by FX translation losses",
+          "Higher effective cost of local currency working capital",
+          "Finance cost FX line swung US$40m between FY24 and FY25 [V]"
+        ],
+        "csf": [
+          "Geographic diversification across 9 markets limits single-currency FX concentration",
+          "USD-linked lease escalators partially offset FX depreciation [V]",
+          "Partial hedging in place for USD vs. key local currencies",
+          "Energy transition reduces diesel cost exposure to FX volatility"
+        ],
+        "strength_weakness": {
+          "strengths": [
+            "9-market geographic spread limits single-currency FX concentration; USD-linked escalators and partial hedging in place [V]",
+            "71% of Adj EBITDA from hard-currency markets (4 of 9) provides structural USD anchor"
+          ],
+          "weaknesses": [
+            "DRC (CDF), Ghana (GHS) and Tanzania (TZS) devaluations suppressed USD sales growth FY2023/24 [V]",
+            "USD debt vs. local-currency collections creates structural FX mismatch; 29% soft-currency revenue exposure"
+          ]
+        },
+        "sources": [
+          "Digest \u00a7 8",
+          "Flag 7"
+        ]
+      },
+      {
+        "id": "energy_political",
+        "theme": "Energy Cost & Political / Regulatory Risk",
+        "key_risks": [
+          "Diesel dependency (~20\u201325% of opex) exposes margins to oil price swings",
+          "Political instability in DRC, Congo Brazzaville and other markets",
+          "Regulatory risk: tower sharing mandates, spectrum policy, tax regimes",
+          "ESG pressure: rising Scope 1 scrutiny on diesel generators; US$71.7m unresolved DRC tax contingency"
+        ],
+        "cf_impact": [
+          "EBITDA margin compression from fuel price surges",
+          "Site disruption, confiscation or contract termination in high-risk markets",
+          "ESG non-compliance costs and reputational risk",
+          "UTP crystallisation could be material \u2014 no quantum disclosed; #1 audit KAM FY2025"
+        ],
+        "csf": [
+          "Solar-hybrid and battery storage rollout reduces diesel opex and Scope 1 exposure",
+          "Energy cost pass-through in customer contracts",
+          "Geographic spread across 9 markets limits political concentration",
+          "Proactive tax management with external specialists across all jurisdictions"
+        ],
+        "strength_weakness": {
+          "strengths": [
+            "Solar-hybrid deployment underway; energy cost pass-through in MNO contracts; 9-market spread limits political concentration risk"
+          ],
+          "weaknesses": [
+            "Diesel still ~20\u201325% of opex; DRC and Congo Brazzaville carry high political risk; South Africa competitive headwinds; rising Scope 1 scrutiny [V]",
+            "US$71.7m unresolved DRC tax contingency; UTPs = #1 key audit matter FY2025"
+          ]
+        },
+        "sources": [
+          "Digest \u00a7 4",
+          "Flag 6",
+          "Flag 10"
+        ]
+      }
+    ]
+  }
+}

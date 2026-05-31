@@ -1,0 +1,701 @@
+{
+  "_meta": {
+    "company": "Helios Towers plc",
+    "ticker": "LSE:HTWS",
+    "section": "asset_management",
+    "generated": "2026-05-12",
+    "source": "Helios Worksheet - Beginner.xlsx :: Asset Management",
+    "review_status": "PENDING \u2014 analyst to review via HTML report",
+    "pipeline": "build_asset_management_data.py \u2192 narratives_asset_management.json"
+  },
+  "anchors": {
+    "nwa_adj_fy24": 74.3,
+    "nwa_adj_fy25": 50.6,
+    "nwa_pct_sales_fy24": 9.4,
+    "nwa_pct_sales_fy25": 5.9,
+    "nwcc_days_fy24": 34.2,
+    "nwcc_days_fy25": 21.6,
+    "debtor_days_fy24": 79.7,
+    "debtor_days_fy25": 109.3,
+    "creditor_days_fy24": -17.5,
+    "creditor_days_fy25": -20.0,
+    "da_total_fy24": 165.9,
+    "da_total_fy25": 172.3,
+    "capex_fy24": -154.5,
+    "capex_fy25": -179.5,
+    "capex_da_ratio_fy24": 0.9,
+    "capex_da_ratio_fy25": 1.0,
+    "ocf_fy24": 198.3,
+    "ocf_fy25": 265.5,
+    "fcf_after_capex_fy24": -29.3,
+    "revenue_per_site_fy24": 55.3,
+    "revenue_per_site_fy25": 57.9,
+    "total_sites_fy25": 14746
+  },
+  "nwa_table": [
+    {
+      "label": "Net Trade Receivables",
+      "type": "component",
+      "values": {
+        "2023": 0,
+        "2024": 172.9,
+        "2025": 255.8,
+        "2026": 0,
+        "2027": 0,
+        "2028": 0,
+        "2029": 0,
+        "2030": 0
+      }
+    },
+    {
+      "label": "Contract Assets",
+      "type": "component",
+      "values": {
+        "2023": 0,
+        "2024": 80.3,
+        "2025": 53.1,
+        "2026": 0,
+        "2027": 0,
+        "2028": 0,
+        "2029": 0,
+        "2030": 0
+      }
+    },
+    {
+      "label": "Inventories",
+      "type": "component",
+      "values": {
+        "2023": 0,
+        "2024": 10,
+        "2025": 12.9,
+        "2026": 25.7,
+        "2027": 27.2,
+        "2028": 28.6,
+        "2029": 30.4,
+        "2030": 32.2
+      }
+    },
+    {
+      "label": "Prepayments",
+      "type": "component",
+      "values": {
+        "2023": 0,
+        "2024": 36.9,
+        "2025": 38.6,
+        "2026": 60.0,
+        "2027": 58.8,
+        "2028": 57.1,
+        "2029": 60.8,
+        "2030": 59.1
+      }
+    },
+    {
+      "label": "(-) Deferred Income",
+      "type": "component",
+      "values": {
+        "2023": 0,
+        "2024": -64.4,
+        "2025": -80.6,
+        "2026": 0,
+        "2027": 0,
+        "2028": 0,
+        "2029": 0,
+        "2030": 0
+      }
+    },
+    {
+      "label": "(-) Trade Payables",
+      "type": "component",
+      "values": {
+        "2023": 0,
+        "2024": -37.9,
+        "2025": -46.7,
+        "2026": 0,
+        "2027": 0,
+        "2028": 0,
+        "2029": 0,
+        "2030": 0
+      }
+    },
+    {
+      "label": "(-) Accruals",
+      "type": "component",
+      "values": {
+        "2023": 0,
+        "2024": -123.5,
+        "2025": -182.5,
+        "2026": 0,
+        "2027": 0,
+        "2028": 0,
+        "2029": 0,
+        "2030": 0
+      }
+    },
+    {
+      "label": "Net Working Assets (Adj)",
+      "type": "total",
+      "values": {
+        "2023": 0,
+        "2024": 74.3,
+        "2025": 50.6,
+        "2026": 85.8,
+        "2027": 86.0,
+        "2028": 85.7,
+        "2029": 91.2,
+        "2030": 91.3
+      }
+    },
+    {
+      "label": "NWA / Sales (%)",
+      "type": "margin",
+      "values": {
+        "2024": 9.4,
+        "2025": 5.9,
+        "2026": 9.4,
+        "2027": 8.9,
+        "2028": 8.3,
+        "2029": 8.3,
+        "2030": 7.8
+      }
+    }
+  ],
+  "nwcc_drivers": [
+    {
+      "label": "Debtors DOH (days)",
+      "type": "component",
+      "values": {
+        "2023": null,
+        "2024": 79.7,
+        "2025": 109.3,
+        "2026": 0,
+        "2027": 0,
+        "2028": 0,
+        "2029": 0,
+        "2030": 0
+      }
+    },
+    {
+      "label": "Inventory DOH (days)",
+      "type": "component",
+      "values": {
+        "2023": null,
+        "2024": 4.6,
+        "2025": 5.5,
+        "2026": 10.3,
+        "2027": 10.2,
+        "2028": 10.1,
+        "2029": 10.1,
+        "2030": 10.1
+      }
+    },
+    {
+      "label": "Contract Assets DOH (days)",
+      "type": "component",
+      "values": {
+        "2023": null,
+        "2024": 37.0,
+        "2025": 22.7,
+        "2026": 0,
+        "2027": 0,
+        "2028": 0,
+        "2029": 0,
+        "2030": 0
+      }
+    },
+    {
+      "label": "Prepayments DOH (days)",
+      "type": "component",
+      "values": {
+        "2023": null,
+        "2024": 17.0,
+        "2025": 16.5,
+        "2026": 24.0,
+        "2027": 22.1,
+        "2028": 20.3,
+        "2029": 20.2,
+        "2030": 18.4
+      }
+    },
+    {
+      "label": "(-) Deferred Income DOH (days)",
+      "type": "component",
+      "values": {
+        "2023": null,
+        "2024": -29.7,
+        "2025": -34.4,
+        "2026": 0,
+        "2027": 0,
+        "2028": 0,
+        "2029": 0,
+        "2030": 0
+      }
+    },
+    {
+      "label": "(-) Creditors DOH (days)",
+      "type": "component",
+      "values": {
+        "2023": null,
+        "2024": -17.5,
+        "2025": -20.0,
+        "2026": 0,
+        "2027": 0,
+        "2028": 0,
+        "2029": 0,
+        "2030": 0
+      }
+    },
+    {
+      "label": "(-) Accruals DOH (days)",
+      "type": "component",
+      "values": {
+        "2023": null,
+        "2024": -56.9,
+        "2025": -78.0,
+        "2026": 0,
+        "2027": 0,
+        "2028": 0,
+        "2029": 0,
+        "2030": 0
+      }
+    },
+    {
+      "label": "NWCC (days)",
+      "type": "total",
+      "values": {
+        "2023": null,
+        "2024": 34.2,
+        "2025": 21.6,
+        "2026": 34.2,
+        "2027": 32.3,
+        "2028": 30.4,
+        "2029": 30.3,
+        "2030": 28.5
+      }
+    }
+  ],
+  "peer_comparison": [
+    {
+      "label": "Debtors Days on Hand (on sales)",
+      "companies": {
+        "American Tower Corp": {
+          "2024": null,
+          "2025": null
+        },
+        "IHS Towers": {
+          "2024": null,
+          "2025": null
+        },
+        "Helios Towers": {
+          "2024": 79.7,
+          "2025": 109.3
+        },
+        "SBA Communications": {
+          "2024": null,
+          "2025": null
+        }
+      }
+    },
+    {
+      "label": "Creditors Days on Hand (on sales)",
+      "companies": {
+        "American Tower Corp": {
+          "2024": null,
+          "2025": null
+        },
+        "IHS Towers": {
+          "2024": null,
+          "2025": null
+        },
+        "Helios Towers": {
+          "2024": 17.5,
+          "2025": 20.0
+        },
+        "SBA Communications": {
+          "2024": null,
+          "2025": null
+        }
+      }
+    },
+    {
+      "label": "Deferred Income + Contract Liabilities DOH",
+      "companies": {
+        "American Tower Corp": {
+          "2024": null,
+          "2025": null
+        },
+        "IHS Towers": {
+          "2024": null,
+          "2025": null
+        },
+        "Helios Towers": {
+          "2024": 66.7,
+          "2025": 57.1
+        },
+        "SBA Communications": {
+          "2024": null,
+          "2025": null
+        }
+      }
+    },
+    {
+      "label": "NWA / Sales (%)",
+      "companies": {
+        "American Tower Corp": {
+          "2024": null,
+          "2025": null
+        },
+        "IHS Towers": {
+          "2024": null,
+          "2025": null
+        },
+        "Helios Towers": {
+          "2024": 0.1,
+          "2025": 0.1
+        },
+        "SBA Communications": {
+          "2024": null,
+          "2025": null
+        }
+      }
+    }
+  ],
+  "nwa_cash_impact": [
+    {
+      "label": "Change in Net Receivables",
+      "type": "component",
+      "values": {
+        "2024": null,
+        "2025": -82.9,
+        "2026": 255.8,
+        "2027": 0,
+        "2028": 0,
+        "2029": 0,
+        "2030": 0
+      }
+    },
+    {
+      "label": "Change in Contract Assets",
+      "type": "component",
+      "values": {
+        "2024": null,
+        "2025": 27.2,
+        "2026": 53.1,
+        "2027": 0,
+        "2028": 0,
+        "2029": 0,
+        "2030": 0
+      }
+    },
+    {
+      "label": "Change in Inventory",
+      "type": "component",
+      "values": {
+        "2024": null,
+        "2025": -2.9,
+        "2026": -12.8,
+        "2027": -1.4,
+        "2028": -1.4,
+        "2029": -1.8,
+        "2030": -1.8
+      }
+    },
+    {
+      "label": "Change in Prepayments",
+      "type": "component",
+      "values": {
+        "2024": null,
+        "2025": -1.7,
+        "2026": -21.4,
+        "2027": 1.2,
+        "2028": 1.7,
+        "2029": -3.6,
+        "2030": 1.7
+      }
+    },
+    {
+      "label": "Change in Deferred Income",
+      "type": "component",
+      "values": {
+        "2024": null,
+        "2025": 16.2,
+        "2026": -80.6,
+        "2027": 0,
+        "2028": 0,
+        "2029": 0,
+        "2030": 0
+      }
+    },
+    {
+      "label": "Change in Trade Payables",
+      "type": "component",
+      "values": {
+        "2024": null,
+        "2025": 8.8,
+        "2026": -46.7,
+        "2027": 0,
+        "2028": 0,
+        "2029": 0,
+        "2030": 0
+      }
+    },
+    {
+      "label": "Change in Accruals",
+      "type": "component",
+      "values": {
+        "2024": null,
+        "2025": 59,
+        "2026": -182.5,
+        "2027": 0,
+        "2028": 0,
+        "2029": 0,
+        "2030": 0
+      }
+    },
+    {
+      "label": "Change in Adj. NWA (total)",
+      "type": "total",
+      "values": {
+        "2024": 0,
+        "2025": 23.7,
+        "2026": -35.2,
+        "2027": -0.2,
+        "2028": 0.3,
+        "2029": -5.5,
+        "2030": -0.2
+      }
+    }
+  ],
+  "fixed_asset_sufficiency": [
+    {
+      "label": "Site & Warehouse D&A",
+      "type": "component",
+      "values": {
+        "2024": 131.4,
+        "2025": 134.6
+      }
+    },
+    {
+      "label": "Non-tower D&A",
+      "type": "component",
+      "values": {
+        "2024": 34.5,
+        "2025": 37.7
+      }
+    },
+    {
+      "label": "Total D&A",
+      "type": "subtotal",
+      "values": {
+        "2024": 165.9,
+        "2025": 172.3,
+        "2026": 160.9,
+        "2027": 167.2,
+        "2028": 173.8,
+        "2029": 180.5,
+        "2030": 187.5
+      }
+    },
+    {
+      "label": "Capex (Statutory CFS)",
+      "type": "component",
+      "values": {
+        "2024": 154.5,
+        "2025": 179.5,
+        "2026": 186,
+        "2027": 192,
+        "2028": 199,
+        "2029": 205,
+        "2030": 213
+      }
+    },
+    {
+      "label": "Capex / D&A (x)",
+      "type": "ratio",
+      "values": {
+        "2024": 0.9,
+        "2025": 1.0,
+        "2026": 1.2,
+        "2027": 1.1,
+        "2028": 1.1,
+        "2029": 1.1
+      }
+    }
+  ],
+  "capex_affordability": [
+    {
+      "label": "Operating Cash Flow",
+      "type": "subtotal",
+      "values": {
+        "2024": 198.3,
+        "2025": 265.5,
+        "2026": -97.4,
+        "2027": 458.3,
+        "2028": 487.2,
+        "2029": 514.5,
+        "2030": 554.3
+      }
+    },
+    {
+      "label": "(-) CPLTD (ST Loans + ST Leases)",
+      "type": "component",
+      "values": {
+        "2024": -73.1,
+        "2025": -85.8,
+        "2026": -25,
+        "2027": -25,
+        "2028": -25,
+        "2029": -25,
+        "2030": -25
+      }
+    },
+    {
+      "label": "Cash After Debt Amortisation",
+      "type": "subtotal",
+      "values": {
+        "2024": 125.2,
+        "2025": 179.7,
+        "2026": -122.4,
+        "2027": 433.3,
+        "2028": 462.2,
+        "2029": 489.5,
+        "2030": 529.3
+      }
+    },
+    {
+      "label": "(-) Capex (Statutory CFS)",
+      "type": "component",
+      "values": {
+        "2024": -154.5,
+        "2025": -179.5,
+        "2026": -186,
+        "2027": -192,
+        "2028": -199,
+        "2029": -205,
+        "2030": -213
+      }
+    },
+    {
+      "label": "Free Cash Flow After Capex",
+      "type": "total",
+      "values": {
+        "2024": -29.3,
+        "2025": 0.2,
+        "2026": -308.4,
+        "2027": 241.3,
+        "2028": 263.2,
+        "2029": 284.5,
+        "2030": 316.3
+      }
+    },
+    {
+      "label": "Capex / OCF (%)",
+      "type": "ratio",
+      "values": {
+        "2024": 77.9,
+        "2025": 67.6,
+        "2026": -191.0,
+        "2027": 41.9,
+        "2028": 40.8,
+        "2029": 39.8,
+        "2030": 38.4
+      }
+    }
+  ],
+  "capex_payoff": [
+    {
+      "label": "Sales (USD m)",
+      "type": "metric",
+      "values": {
+        "2023": 0,
+        "2024": 792,
+        "2025": 854.1,
+        "2026": 914.7,
+        "2027": 970.4,
+        "2028": 1029.4,
+        "2029": 1097.3,
+        "2030": 1169.7
+      }
+    },
+    {
+      "label": "EBITDA Margin (%)",
+      "type": "margin",
+      "values": {
+        "2024": 52.2,
+        "2025": 53.5,
+        "2026": 63.2,
+        "2027": 63.5,
+        "2028": 63.8,
+        "2029": 64.0,
+        "2030": 64.3
+      }
+    },
+    {
+      "label": "Total D&A (USD m)",
+      "type": "metric",
+      "values": {
+        "2023": 0,
+        "2024": 165.9,
+        "2025": 172.3,
+        "2026": 160.9,
+        "2027": 167.2,
+        "2028": 173.8,
+        "2029": 180.5,
+        "2030": 187.5
+      }
+    },
+    {
+      "label": "Total Sites",
+      "type": "metric",
+      "values": {
+        "2023": 0,
+        "2024": 14325,
+        "2025": 14746,
+        "2026": 15483.3,
+        "2027": 16102.6,
+        "2028": 16746.7,
+        "2029": 17416.6,
+        "2030": 18113.3
+      }
+    },
+    {
+      "label": "Capex (USD m)",
+      "type": "metric",
+      "values": {
+        "2023": 0,
+        "2024": 154.5,
+        "2025": 179.5,
+        "2026": 186,
+        "2027": 192,
+        "2028": 199,
+        "2029": 205,
+        "2030": 213
+      }
+    },
+    {
+      "label": "Capex / D&A (x)",
+      "type": "ratio",
+      "values": {
+        "2024": 0.9,
+        "2025": 1.0,
+        "2026": 1.2,
+        "2027": 1.1,
+        "2028": 1.1,
+        "2029": 1.1,
+        "2030": 1.1
+      }
+    },
+    {
+      "label": "Revenue per Site ($k)",
+      "type": "metric",
+      "values": {
+        "2024": 55.3,
+        "2025": 57.9,
+        "2026": 59.1,
+        "2027": 60.3,
+        "2028": 61.5,
+        "2029": 63.0,
+        "2030": 64.6
+      }
+    }
+  ]
+}

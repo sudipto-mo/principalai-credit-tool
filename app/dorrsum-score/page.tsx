@@ -1,11 +1,10 @@
 import type { Metadata } from "next";
 import { notFound, redirect } from "next/navigation";
 import { getDorrsumScoreUrl } from "@/lib/dorrsum-score-url";
-import { PORTFOLIO_MANAGEMENT_NAME } from "@/lib/site-brand";
 
 export const metadata: Metadata = {
   title: "Dorrsum Score",
-  description: `Digital infrastructure universe screener — hosted on ${PORTFOLIO_MANAGEMENT_NAME}.`,
+  description: "Not available on Dorrsum Advisory in production.",
 };
 
 /** Dev only — Dorrsum Score is not served from Dorrsum Advisory in production. */
