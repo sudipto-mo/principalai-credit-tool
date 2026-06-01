@@ -57,6 +57,18 @@ export type ResearchArtifact = {
  */
 export const RESEARCH_ARCHIVE: ResearchArtifact[] = [
   {
+    id: "banking-rerating-2026",
+    category: "Sector Note",
+    issueLabel: "Principal AI · Digital Infrastructure Stack · JUN 2026",
+    date: "June 2026",
+    title: "The Banking Re-Rating Starts Here",
+    excerpt:
+      "The AI trade isn't only in AI stocks — bank equity scale premiums are mispriced versus operational precision and hyperscaler compute constraints.",
+    authors: ["S. Mondal"],
+    href: "/research/dc-infrastructure/banking-rerating",
+    access: "open",
+  },
+  {
     id: "dc-worldview-2026",
     category: "Worldview",
     issueLabel: "Principal AI Worldview · No. 003",

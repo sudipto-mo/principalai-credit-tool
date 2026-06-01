@@ -7,6 +7,7 @@ import {
   STACK_REPORT_LIST,
   stackReportMainPillarLine,
 } from "@/lib/dc-stack-reports";
+import { STACK_EQUITY_NOTES, stackEquityNoteToLibraryModule } from "@/lib/stack-equity-notes";
 
 export const metadata: Metadata = {
   title: `The ${DIGITAL_INFRASTRUCTURE_STACK}`,
@@ -29,8 +30,8 @@ const strategicReports: LibraryModule[] = STACK_REPORT_LIST.map((r) => ({
   categories: r.pillarResearchCategories,
 }));
 
-/** Layer-tagged briefs only — add rows here as standalone notes ship (use status + real hrefs). */
-const assetDeepDives: LibraryModule[] = [];
+/** Layer-tagged briefs — equity mispricing notes and company-level research. */
+const assetDeepDives: LibraryModule[] = STACK_EQUITY_NOTES.map(stackEquityNoteToLibraryModule);
 
 export default function DCInfrastructureIndexPage() {
   return (
