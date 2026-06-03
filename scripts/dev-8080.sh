@@ -8,6 +8,21 @@ cd "$ROOT"
 # Polling is slower but far more robust and avoids exhausting watch handles.
 export WATCHPACK_POLLING="${WATCHPACK_POLLING:-true}"
 
+USE_TURBO=0
+CLEAN=0
+for arg in "$@"; do
+  case "$arg" in
+    --turbo|--turbopack) USE_TURBO=1 ;;
+    --clean) CLEAN=1 ;;
+    --webpack) USE_TURBO=0 ;;
+  esac
+done
+
+if [[ "$CLEAN" == "1" ]]; then
+  echo "Removing .next cache…"
+  rm -rf .next
+fi
+
 pids_for_port() {
   lsof -tiTCP:8080 -sTCP:LISTEN 2>/dev/null || true
 }
@@ -24,10 +39,10 @@ if [[ -n "$PIDS" ]]; then
   fi
 fi
 
-# Bind IPv4 loopback explicitly. `-H localhost` often resolves to ::1 only, so
-# http://127.0.0.1:8080 fails while the server is listening on [::1]:8080.
-if [[ "${1:-}" == "--webpack" ]]; then
-  exec ./node_modules/.bin/next dev -H 0.0.0.0 -p 8080
-else
+# Webpack dev is the default — Turbopack HMR can corrupt .next manifests on this repo.
+# Use: npm run dev:turbo  (opt-in)  |  npm run dev:clean  (fresh .next + webpack)
+if [[ "$USE_TURBO" == "1" ]]; then
   exec ./node_modules/.bin/next dev --turbopack -H 0.0.0.0 -p 8080
+else
+  exec ./node_modules/.bin/next dev -H 0.0.0.0 -p 8080
 fi

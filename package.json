@@ -6,7 +6,10 @@
   },
   "scripts": {
     "dev": "bash scripts/dev-8080.sh",
+    "dev:clean": "bash scripts/dev-8080.sh --clean",
+    "dev:turbo": "bash scripts/dev-8080.sh --turbo",
     "dev:webpack": "bash scripts/dev-8080.sh --webpack",
+    "verify:local": "bash scripts/verify-local.sh",
     "build": "next build",
     "start": "bash scripts/start-8080.sh",
     "test:smoke": "start-server-and-test \"npm run start\" http://localhost:8080 \"playwright test\""
