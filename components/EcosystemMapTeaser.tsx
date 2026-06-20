@@ -50,7 +50,7 @@ export default function EcosystemMapTeaser({
           {/* Header with eyebrow + toggle */}
           <div className="absolute inset-x-0 top-0 z-10 px-4 pt-4 sm:px-5 sm:pt-5">
             <p className="mb-2 text-[9px] font-bold uppercase tracking-[0.18em] text-[#4f6ef7] sm:text-[10px]">
-              Principal AI · Data Centre Coverage
+              Dorrsum · Data Centre Coverage
             </p>
             <div className="inline-flex gap-[3px] rounded-lg border border-[#1c1c2c] bg-[#0e0e18] p-[3px]">
               <span className="rounded-[5px] bg-[#4f6ef7] px-[14px] py-[6px] text-[11px] font-semibold text-white sm:px-[18px] sm:py-[7px] sm:text-[12px]">
@@ -267,7 +267,7 @@ export default function EcosystemMapTeaser({
 
             {/* Watermark */}
             <text x="858" y="558" textAnchor="end" fill="#1e2236" fontSize="8" fontWeight="600" letterSpacing="0.04em" fontFamily="Inter, system-ui, sans-serif">
-              © 2026 Principal AI
+              © 2026 Dorrsum
             </text>
           </svg>
 

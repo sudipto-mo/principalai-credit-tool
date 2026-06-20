@@ -8,14 +8,14 @@ import { useCallback, useEffect, useRef, useState } from "react";
 const TEASERS = [
   {
     id: "network",
-    pathLabel: "principalai.pro/dc-network-map",
+    pathLabel: "dorrsum.com/dc-network-map",
     openHref: "/dc-network-map.html",
     footerHint:
       "Review the network preview. Deeper models, covenants, and full briefs are available to clients.",
   },
   {
     id: "helios",
-    pathLabel: "principalai.pro/research/helios-towers",
+    pathLabel: "dorrsum.com/research/helios-towers",
     openHref: "/research/helios-towers",
     footerHint:
       "Public excerpt — illustrative summary. Full models, covenants, and institutional briefs require client access.",

@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Helios Towers — Indicative Credit Brief",
     description:
-      "Sample Principal AI credit research: illustrative risk summary for qualified counterparties.",
+      "Sample Dorrsum credit research: illustrative risk summary for qualified counterparties.",
   },
 };
 

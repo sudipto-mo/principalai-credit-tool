@@ -282,7 +282,7 @@ export default async function AdvisoryPage({
       {/* Closing — disclosure-style */}
       <footer className="mt-4 border-t border-[color:var(--pa-border)] py-10">
         <p className="max-w-3xl text-[12px] leading-relaxed text-[#7b8794]">
-          Principal AI provides independent research and advisory. We do not solicit deposits,
+          Dorrsum Advisory provides independent research and advisory. We do not solicit deposits,
           place securities, or receive transaction-contingent fees. All engagements are scoped under
           a written mandate. Jurisdictional availability may vary.
         </p>

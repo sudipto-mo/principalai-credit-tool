@@ -183,7 +183,7 @@ function EcosystemMapSlide() {
       {/* Top header */}
       <div className="absolute inset-x-0 top-0 z-10 px-4 pt-5 sm:px-5">
         <p className="mb-2 text-[9px] font-bold uppercase tracking-[0.18em] text-[#4f6ef7] sm:text-[10px]">
-          Principal AI · Data Centre Coverage
+          Dorrsum · Data Centre Coverage
         </p>
         <div className="inline-flex gap-[3px] rounded-lg border border-[#1c1c2c] bg-[#0e0e18] p-[3px]">
           <span className="rounded-[5px] bg-[#4f6ef7] px-[14px] py-[6px] text-[11px] font-semibold text-white sm:text-[12px]">
@@ -291,7 +291,7 @@ function ResearchPaperSlide() {
       >
         <div className="border-b-[3px] border-[#6b1d2a] px-4 pb-2 pt-3">
           <p className="text-[7px] font-bold uppercase tracking-[0.2em] text-[#6b1d2a]">Bridgewater-style archive</p>
-          <p className="mt-1 font-serif text-[10px] font-bold text-[#1a1a1a]">Principal AI · Worldview</p>
+          <p className="mt-1 font-serif text-[10px] font-bold text-[#1a1a1a]">Dorrsum · Worldview</p>
         </div>
         <div className="space-y-1.5 p-4">
           {[92, 85, 78, 88, 70, 82, 76].map((w, i) => (
@@ -327,7 +327,7 @@ function ResearchPaperSlide() {
       <div className="absolute left-1/2 top-[50%] w-[62%] max-w-[380px] -translate-x-1/2 -translate-y-1/2 -rotate-[1.5deg] bg-white shadow-[0_40px_70px_-15px_rgba(0,0,0,0.45),0_15px_30px_-8px_rgba(0,0,0,0.25)]">
         <div className="border-b-[4px] border-[#6b1d2a] px-5 pb-3 pt-5">
           <p className="text-[9px] font-bold uppercase tracking-[0.22em] text-[#6b1d2a]">
-            Principal AI · Worldview · No. 003
+            Dorrsum · Worldview · No. 003
           </p>
           <p className="mt-1 text-[8px] font-semibold uppercase tracking-[0.14em] text-[#6b7280]">April 2026 · 18 pp</p>
         </div>
@@ -391,7 +391,7 @@ function FrameworkSlide() {
       <div className="relative flex h-full flex-col px-6 pb-[100px] pt-6 sm:px-8 sm:pt-8">
         <div>
           <p className="text-[9px] font-bold uppercase tracking-[0.18em] text-[#4f6ef7] sm:text-[10px]">
-            Principal AI · Proprietary Methodology
+            Dorrsum · Proprietary Methodology
           </p>
           <h3 className="mt-2 text-[18px] font-semibold leading-tight text-white sm:text-[20px]">
             6-Layer TMT Credit Framework

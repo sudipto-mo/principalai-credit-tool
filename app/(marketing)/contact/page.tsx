@@ -4,7 +4,7 @@ import { paEditorialTitleMarketing } from "@/lib/editorial-typography";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Reach out to Principal AI for credit origination, collaboration, or general inquiries.",
+  description: "Reach out to Dorrsum Advisory for credit origination, collaboration, or general inquiries.",
 };
 
 export default function ContactPage() {

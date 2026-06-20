@@ -22,7 +22,7 @@ export type ResearchArtifact = {
   /** Short category chip (top-left of the card). */
   category: ResearchCategory;
 
-  /** Issue line, e.g. "Principal AI Credit Brief · No. 003". */
+  /** Issue line, e.g. "Dorrsum Credit Brief · No. 003". */
   issueLabel: string;
 
   /** Month + year the brief was released. */
@@ -59,7 +59,7 @@ export const RESEARCH_ARCHIVE: ResearchArtifact[] = [
   {
     id: "banking-rerating-2026",
     category: "Sector Note",
-    issueLabel: "Principal AI · Digital Infrastructure Stack · JUN 2026",
+    issueLabel: "Dorrsum · Digital Infrastructure Stack · JUN 2026",
     date: "June 2026",
     title: "The Banking Re-Rating Starts Here",
     excerpt:
@@ -71,7 +71,7 @@ export const RESEARCH_ARCHIVE: ResearchArtifact[] = [
   {
     id: "dc-worldview-2026",
     category: "Worldview",
-    issueLabel: "Principal AI Worldview · No. 003",
+    issueLabel: "Dorrsum Worldview · No. 003",
     date: "April 2026",
     title:
       "Data centres are now an energy story. APAC investors are underpricing the transition.",
@@ -85,7 +85,7 @@ export const RESEARCH_ARCHIVE: ResearchArtifact[] = [
   {
     id: "dc-physical-stack-2026",
     category: "Sector Note",
-    issueLabel: "Principal AI Sector Note · No. 002",
+    issueLabel: "Dorrsum Sector Note · No. 002",
     date: "March 2026",
     title:
       "The physical stack of digital infrastructure: where covenants still fail to reach.",
@@ -99,7 +99,7 @@ export const RESEARCH_ARCHIVE: ResearchArtifact[] = [
   {
     id: "helios-towers-2026",
     category: "Credit Brief",
-    issueLabel: "Principal AI Credit Brief · No. 001",
+    issueLabel: "Dorrsum Credit Brief · No. 001",
     date: "February 2026",
     title:
       "Helios Towers plc: tower credit resilience when currencies and tenants both move.",
